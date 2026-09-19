@@ -24,41 +24,41 @@ export function Header() {
 
   return (
     <header 
-      className={`fixed left-0 top-0 z-50 w-full transition-all duration-300 ${isScrolled ? 'bg-white' : 'bg-transparent'}`}
+      className={`fixed left-0 top-0 z-50 w-full transition-all duration-300 bg-white`}
       style={{
         boxShadow: isScrolled ? "0 1px 3px rgba(0,0,0,0.1)" : "none"
       }}
     >
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-5 transition-all duration-300 md:px-10">
         {/* Logo */}
-        <Link href="#hero" className="flex items-center gap-2 text-black" aria-label="Sajawat Interior home">
+        <Link href="/" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="flex items-center gap-2 text-black" aria-label="Sajawat Interior home">
           <img src={logoUrl} alt="Sajawat Interior logo" className="h-9 w-9 object-cover" />
           <span className="text-sm font-semibold uppercase tracking-[0.2em]">Sajawat</span>
-          <span className="hidden text-[9px] uppercase tracking-[0.25em] text-[#c0392b] lg:inline">Pokhara</span>
+          <span className="hidden text-[9px] uppercase tracking-[0.25em] text-[#c0392b] lg:inline">Interiors</span>
         </Link>
 
         {/* Desktop Navigation */}
         <nav className="hidden items-center gap-10 md:flex">
           <Link
-            href="#technology"
+            href="/#technology"
             className="text-sm text-black/80 transition-colors hover:text-black"
           >
             Services
           </Link>
           <Link
-            href="#gallery"
+            href="/#gallery"
             className="text-sm text-black/80 transition-colors hover:text-black"
           >
             Portfolio
           </Link>
           <Link
-            href="#accessories"
+            href="/#accessories"
             className="text-sm text-black/80 transition-colors hover:text-black"
           >
             Approach
           </Link>
           <Link
-            href="#about"
+            href="/#about"
             className="text-sm text-black/80 transition-colors hover:text-black"
           >
             About us
@@ -127,28 +127,28 @@ export function Header() {
         <div className="border-t border-border bg-background px-6 py-8 md:hidden">
           <nav className="flex flex-col gap-6">
             <Link
-              href="#technology"
+              href="/#technology"
               className="text-lg text-foreground"
               onClick={() => setIsMenuOpen(false)}
             >
               Services
             </Link>
             <Link
-              href="#gallery"
+              href="/#gallery"
               className="text-lg text-foreground"
               onClick={() => setIsMenuOpen(false)}
             >
               Portfolio
             </Link>
             <Link
-              href="#accessories"
+              href="/#accessories"
               className="text-lg text-foreground"
               onClick={() => setIsMenuOpen(false)}
             >
               Approach
             </Link>
             <Link
-              href="#about"
+              href="/#about"
               className="text-lg text-foreground"
               onClick={() => setIsMenuOpen(false)}
             >

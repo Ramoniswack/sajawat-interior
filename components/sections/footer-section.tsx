@@ -19,98 +19,88 @@ const footerLinks = {
 
 export function FooterSection() {
   return (
-    <footer className="bg-foreground text-background">
-      {/* Contact CTA */}
-      <div className="border-b border-background/15 px-6 py-16 md:px-12 md:py-20 lg:px-20">
-        <div className="mx-auto flex max-w-7xl flex-col gap-8 md:flex-row md:items-end md:justify-between">
-          <div className="max-w-2xl">
-            <p className="mb-4 text-xs uppercase tracking-[0.28em] text-background/55">Start a conversation</p>
-            <h2 className="font-display text-4xl leading-[0.95] tracking-tight md:text-6xl">
-              Let&apos;s make space for what matters.
-            </h2>
-          </div>
-          <Link
-            href="/contact"
-            className="group inline-flex w-fit items-center gap-3 bg-[#e99816] px-5 py-3 text-sm font-medium text-white transition-colors hover:bg-[#c9790b]"
-          >
-            Plan your space
-            <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-          </Link>
-        </div>
-      </div>
-
-      {/* Main footer content */}
-      <div className="px-6 py-14 md:px-12 md:py-16 lg:px-20">
-        <div className="mx-auto grid max-w-7xl gap-12 md:grid-cols-12 md:gap-8">
-          <div className="md:col-span-5 lg:col-span-6">
-            <Link href="#hero" className="flex w-fit items-center gap-3" aria-label="Sajawat Interior home">
-              <img src={logoUrl} alt="Sajawat Interior logo" className="h-10 w-10 object-cover" />
-              <span className="text-sm font-semibold uppercase tracking-[0.2em]">Sajawat Interior</span>
-            </Link>
-            <div className="mt-7 space-y-3 text-sm text-background/65">
-              <a className="flex w-fit items-center gap-3 transition-colors hover:text-background" href="mailto:hello@sajawatinterior.com">
-                <Mail className="h-4 w-4 text-[#e99816]" />
-                hello@sajawatinterior.com
-              </a>
-              <a className="flex w-fit items-center gap-3 transition-colors hover:text-background" href="tel:+9779800000000">
-                <Phone className="h-4 w-4 text-[#e99816]" />
-                +977 980 000 0000
-              </a>
-              <p className="flex items-center gap-3">
-                <MapPin className="h-4 w-4 text-[#e99816]" />
-                Damauli, Tanahu, Nepal
-              </p>
-            </div>
-          </div>
-
-          <nav aria-label="Footer navigation" className="grid grid-cols-2 gap-8 md:col-span-7 lg:col-span-6">
+    <footer className="bg-[#0A0A0A] text-white pt-24 overflow-hidden relative">
+      <div className="mx-auto max-w-7xl px-6 md:px-12 lg:px-20">
+        <div className="grid gap-16 md:grid-cols-[1fr_1.5fr] md:gap-12 lg:gap-20 mb-24">
+          
+          {/* Left Column - CTA */}
+          <div className="flex flex-col justify-between max-w-md">
             <div>
-              <h3 className="mb-5 text-xs uppercase tracking-[0.2em] text-background/45">Explore</h3>
-              <ul className="space-y-3">
-                {footerLinks.explore.map((link) => (
-                  <li key={link.label}>
-                    <Link href={link.href} className="text-sm text-background/70 transition-colors hover:text-background">
-                      {link.label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div>
-              <h3 className="mb-5 text-xs uppercase tracking-[0.2em] text-background/45">Company</h3>
-              <ul className="space-y-3">
-                {footerLinks.company.map((link) => (
-                  <li key={link.label}>
-                    <Link href={link.href} className="text-sm text-background/70 transition-colors hover:text-background">
-                      {link.label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-              <a
-                href="https://instagram.com"
-                target="_blank"
-                rel="noreferrer"
-                className="group mt-7 inline-flex items-center gap-2 text-sm text-background/70 transition-colors hover:text-background"
-                aria-label="Sajawat Interior on Instagram"
+              <p className="mb-4 text-xs uppercase tracking-[0.3em] text-[#e99816]">Start a conversation</p>
+              <h2 className="font-display text-4xl font-light leading-[1.1] tracking-tight md:text-5xl lg:text-6xl mb-10">
+                Let's make space for what matters.
+              </h2>
+              <Link
+                href="/contact"
+                className="group inline-flex items-center gap-4 border-b border-white/30 pb-3 text-sm font-medium uppercase tracking-[0.15em] text-white transition-all hover:border-white"
               >
-                <Instagram className="h-4 w-4" />
-                Instagram
-                <ArrowUpRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-              </a>
+                Plan your space
+                <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
+              </Link>
             </div>
-          </nav>
+          </div>
+
+          {/* Right Column - Navigation & Contact */}
+          <div className="grid grid-cols-2 gap-12 sm:grid-cols-3">
+            <div>
+              <h3 className="mb-8 text-xs font-semibold uppercase tracking-[0.2em] text-white/60">Explore</h3>
+              <ul className="space-y-5">
+                <li><Link href="/#technology" className="text-sm text-white/90 transition-colors hover:text-white">Services</Link></li>
+                <li><Link href="/#gallery" className="text-sm text-white/90 transition-colors hover:text-white">Portfolio</Link></li>
+                <li><Link href="/#accessories" className="text-sm text-white/90 transition-colors hover:text-white">Approach</Link></li>
+                <li><Link href="/#about" className="text-sm text-white/90 transition-colors hover:text-white">About Us</Link></li>
+              </ul>
+            </div>
+            
+            <div className="col-span-2 sm:col-span-2">
+              <h3 className="mb-8 text-xs font-semibold uppercase tracking-[0.2em] text-white/60">Connect</h3>
+              <ul className="space-y-5">
+                <li>
+                  <a href="mailto:hello@sajawatinterior.com" className="group flex w-fit items-center gap-4 text-sm text-white/90 transition-colors hover:text-white">
+                    <Mail className="h-4 w-4 text-white/50 transition-colors group-hover:text-[#e99816]" />
+                    hello@sajawatinterior.com
+                  </a>
+                </li>
+                <li>
+                  <a href="tel:+9779800000000" className="group flex w-fit items-center gap-4 text-sm text-white/90 transition-colors hover:text-white">
+                    <Phone className="h-4 w-4 text-white/50 transition-colors group-hover:text-[#e99816]" />
+                    +977 980 000 0000
+                  </a>
+                </li>
+                <li>
+                  <p className="flex items-center gap-4 text-sm text-white/90">
+                    <MapPin className="h-4 w-4 text-white/50" />
+                    Damauli, Tanahu, Nepal
+                  </p>
+                </li>
+                <li className="pt-4">
+                  <a href="https://instagram.com" target="_blank" rel="noreferrer" className="group inline-flex items-center gap-3 text-sm text-white/90 transition-colors hover:text-white">
+                    <Instagram className="h-4 w-4 text-white/50 transition-colors group-hover:text-[#e99816]" /> 
+                    <span>Instagram</span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
         </div>
       </div>
 
-      {/* Bottom bar */}
-      <div className="border-t border-background/15 px-6 py-5 md:px-12 lg:px-20">
-        <div className="mx-auto flex max-w-7xl flex-col items-start justify-between gap-4 text-xs text-background/45 sm:flex-row sm:items-center">
-          <p>© 2026 Sajawat Interior. All rights reserved.</p>
-          <Link href="#hero" className="group inline-flex items-center gap-2 transition-colors hover:text-background">
-            Back to top
-            <MoveUpRight className="h-3.5 w-3.5 transition-transform group-hover:-translate-y-0.5" />
-          </Link>
+      {/* Massive Brand Name */}
+      <div className="w-full border-t border-white/10 pt-12 pb-8 flex flex-col items-center">
+        <h1 className="text-[14vw] font-black uppercase tracking-tighter leading-none text-white/[0.05] select-none w-full text-center px-4 overflow-hidden whitespace-nowrap">
+          SAJAWAT
+        </h1>
+        
+        {/* Bottom Bar */}
+        <div className="w-full max-w-7xl px-6 md:px-12 lg:px-20 mt-6 flex flex-col sm:flex-row items-center justify-between text-[10px] font-medium uppercase tracking-[0.2em] text-white/60 gap-6">
+          <div className="flex items-center gap-3">
+            <img src={logoUrl} alt="Logo" className="h-5 w-5 opacity-40 grayscale" />
+            <span>© 2026 Sajawat Interior</span>
+          </div>
+          <div className="flex gap-8">
+            <Link href="/privacy" className="hover:text-white transition-colors">Privacy</Link>
+            <Link href="/terms" className="hover:text-white transition-colors">Terms</Link>
+          </div>
         </div>
       </div>
     </footer>

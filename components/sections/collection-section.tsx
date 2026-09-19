@@ -3,6 +3,7 @@
 import { FadeImage } from "@/components/fade-image";
 import { ArrowLeft, ArrowRight, ArrowUpRight, Check } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
+import { motion } from "framer-motion";
 
 const DEFAULT_ACCESSORY_ID = 1;
 
@@ -65,12 +66,26 @@ export function CollectionSection() {
   const activeAccessory = accessories.find((item) => item.id === activeId) ?? accessories[0];
   const activeIndex = accessories.findIndex((item) => item.id === activeId);
 
+  const isMounted = useRef(false);
+
   useEffect(() => {
-    cardRefs.current[activeId]?.scrollIntoView({
-      behavior: "smooth",
-      block: "nearest",
-      inline: "center",
-    });
+    if (!isMounted.current) {
+      isMounted.current = true;
+      return;
+    }
+    
+    const container = sliderRef.current;
+    const card = cardRefs.current[activeId];
+    
+    if (container && card) {
+      // Calculate position to center the card horizontally
+      const scrollLeft = card.offsetLeft - container.offsetLeft - (container.clientWidth - card.clientWidth) / 2;
+      
+      container.scrollTo({
+        left: scrollLeft,
+        behavior: "smooth"
+      });
+    }
   }, [activeId]);
 
 
@@ -83,43 +98,50 @@ export function CollectionSection() {
   };
 
   return (
-    <section id="accessories" className="bg-background">
+    <section id="accessories" className="bg-background overflow-hidden">
       <div className="px-6 py-20 md:px-12 md:py-10 lg:px-20">
-        <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
-          <div>
+        <motion.div 
+          className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between"
+          initial={{ opacity: 0, y: 80 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
+        >
+          <div className="max-w-xl">
             <p className="mb-3 text-xs uppercase tracking-[0.28em] text-muted-foreground">Explore the collection</p>
             <h2 className="text-3xl font-medium tracking-tight text-foreground md:text-4xl">Surface Options</h2>
-          </div>
-          <div className="flex max-w-sm items-end gap-4">
-            <div className="flex-1 border border-border/60 bg-secondary/40 p-4 text-sm text-muted-foreground">
-              <span className="mb-2 flex items-center gap-2 text-foreground">
-                <Check className="h-4 w-4 text-[#e99816]" /> Selected: {activeAccessory.name}
-              </span>
+            <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
               Shape your interior around a palette, material, and mood that feels like home.
-            </div>
-            <div className="flex shrink-0 gap-2">
-              <button
-                type="button"
-                onClick={() => moveSelection("previous")}
-                className="flex h-10 w-10 items-center justify-center border border-border text-foreground transition-colors hover:bg-foreground hover:text-background"
-                aria-label="Previous surface option"
-              >
-                <ArrowLeft className="h-4 w-4" />
-              </button>
-              <button
-                type="button"
-                onClick={() => moveSelection("next")}
-                className="flex h-10 w-10 items-center justify-center bg-foreground text-background transition-colors hover:bg-[#e99816]"
-                aria-label="Next surface option"
-              >
-                <ArrowRight className="h-4 w-4" />
-              </button>
-            </div>
+            </p>
           </div>
-        </div>
+          <div className="flex shrink-0 gap-2 mt-4 md:mt-0">
+            <button
+              type="button"
+              onClick={() => moveSelection("previous")}
+              className="flex h-10 w-10 items-center justify-center border border-border text-foreground transition-colors hover:bg-foreground hover:text-background"
+              aria-label="Previous surface option"
+            >
+              <ArrowLeft className="h-4 w-4" />
+            </button>
+            <button
+              type="button"
+              onClick={() => moveSelection("next")}
+              className="flex h-10 w-10 items-center justify-center bg-foreground text-background transition-colors hover:bg-[#e99816]"
+              aria-label="Next surface option"
+            >
+              <ArrowRight className="h-4 w-4" />
+            </button>
+          </div>
+        </motion.div>
       </div>
 
-      <div className="overflow-hidden pb-24">
+      <motion.div 
+        className="overflow-hidden pb-24"
+        initial={{ opacity: 0, y: 100 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-100px" }}
+        transition={{ duration: 1.2, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+      >
         <div
           ref={sliderRef}
           className="surface-carousel-scrollbar flex snap-x snap-mandatory gap-6 overflow-x-auto scroll-smooth px-6 pb-4 md:px-12 lg:px-20"
@@ -157,7 +179,7 @@ export function CollectionSection() {
             </button>
           ))}
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 }

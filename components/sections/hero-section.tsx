@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 
 const word = "SAJAWAT";
@@ -78,8 +79,8 @@ export function HeroSection() {
   return (
     <section id="hero" ref={sectionRef} className="relative bg-transparent">
       {/* Sticky container for scroll animation */}
-      <div className="sticky top-0 h-svh min-h-140 overflow-hidden">
-        <div className="relative flex h-full w-full items-center justify-center">
+      <div className="sticky top-0 h-svh min-h-140">
+        <div className="relative flex h-full w-full items-center justify-center overflow-hidden">
           {/* Bento Grid Container */}
           <div 
             className="relative flex h-full w-full items-stretch justify-center"
@@ -135,14 +136,23 @@ export function HeroSection() {
                 className="hero-image-reveal object-cover object-center opacity-100"
                 priority
               />
-              <div className="hero-caption-reveal absolute inset-0 z-10 flex items-end justify-center bg-linear-to-t from-black/35 via-transparent to-transparent px-6 pb-[12%] text-center text-white drop-shadow-lg">
-                <div>
-                  <p className="text-sm tracking-[0.2em] text-[#f0b38b]" lang="ne">
-                    तपाईंका लागि, तपाईंको शैलीमा।
-                  </p>
-                </div>
+              <div 
+                className="hero-caption-reveal absolute inset-0 z-10 bg-linear-to-t from-black/50 via-transparent to-transparent pointer-events-none transition-opacity duration-300" 
+                style={{ opacity: Math.max(0, 1 - scrollProgress * 3) }} 
+              />
+              
+              {/* CTA Button */}
+              <div 
+                className="hero-caption-reveal absolute inset-x-0 bottom-[16%] z-20 flex justify-center transition-opacity duration-300"
+                style={{ opacity: Math.max(0, 1 - scrollProgress * 3) }}
+              >
+                <Link 
+                  href="/contact" 
+                  className="group flex items-center gap-2 bg-white/90 px-7 py-3.5 text-xs font-semibold uppercase tracking-[0.15em] text-black backdrop-blur-md transition-all hover:bg-white hover:scale-105"
+                >
+                  Start your project
+                </Link>
               </div>
-
             </div>
 
             {/* Right Column */}
@@ -177,10 +187,29 @@ export function HeroSection() {
 
           </div>
         </div>
+        
+        {/* Traveling Text */}
+        <div 
+          className="hero-caption-reveal absolute left-0 right-0 z-20 flex justify-center pointer-events-none"
+          style={{
+            bottom: `calc(12% - ${scrollProgress * 12}% - ${scrollProgress * 68}px)`,
+          }}
+        >
+          <p 
+             className="text-sm tracking-[0.2em] transition-colors duration-500"
+             style={{ 
+               color: scrollProgress > 0.8 ? '#c0392b' : '#f0b38b',
+               textShadow: scrollProgress < 0.5 ? '0 2px 4px rgba(0,0,0,0.5)' : 'none'
+             }} 
+             lang="ne"
+          >
+            मायाले सजिएको घर
+          </p>
+        </div>
       </div>
 
       {/* Scroll space to enable animation */}
-      <div className="h-[200vh]" />
+      <div className="h-[150vh]" />
     </section>
   );
 }

@@ -3,6 +3,8 @@
 import { FormEvent, useState } from "react";
 import Link from "next/link";
 import { ArrowUpRight, Instagram, Mail, MapPin, Phone } from "lucide-react";
+import { FooterSection } from "@/components/sections/footer-section";
+import { Header } from "@/components/header";
 
 const logoUrl = "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/logo-BXFvUsoRqPfmQg9wVzT7VpQnkxJzMn.png";
 
@@ -16,15 +18,8 @@ export default function ContactPage() {
 
   return (
     <main className="min-h-screen bg-background text-foreground">
-      <header className="flex items-center justify-between px-6 py-6 md:px-12">
-        <Link href="/" className="flex items-center gap-3" aria-label="Sajawat Interior home">
-          <img src={logoUrl} alt="Sajawat Interior logo" className="h-10 w-10 object-cover" />
-          <span className="text-sm font-semibold uppercase tracking-[0.2em]">Sajawat</span>
-        </Link>
-        <Link href="/" className="text-sm text-muted-foreground transition-colors hover:text-foreground">Back home</Link>
-      </header>
-
-      <section className="mx-auto grid max-w-7xl gap-16 px-6 pb-20 pt-12 md:grid-cols-[0.9fr_1.1fr] md:px-12 md:pb-28 md:pt-24">
+      <Header />
+      <section className="mx-auto grid max-w-7xl gap-16 px-6 pb-20 pt-32 md:grid-cols-[0.9fr_1.1fr] md:px-12 md:pb-28 md:pt-40">
         <div className="flex flex-col justify-between gap-14">
           <div>
             <p className="mb-6 text-xs uppercase tracking-[0.25em] text-muted-foreground">Start a conversation</p>
@@ -66,10 +61,7 @@ export default function ContactPage() {
         </div>
       </section>
 
-      <footer className="flex items-center justify-between border-t border-border px-6 py-6 text-xs text-muted-foreground md:px-12">
-        <span>© 2026 Sajawat Interior</span>
-        <a href="https://instagram.com" aria-label="Sajawat Interior on Instagram" className="hover:text-foreground"><Instagram size={17} /></a>
-      </footer>
+      <FooterSection />
     </main>
   );
 }
