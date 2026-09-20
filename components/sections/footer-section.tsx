@@ -77,7 +77,7 @@ export function FooterSection() {
 
       {/* Massive Brand Name */}
       <div className="w-full border-t border-border pt-12 pb-8 flex flex-col items-center">
-        <h1 className="text-[14vw] font-black uppercase tracking-tighter leading-none text-foreground/[0.03] select-none w-full text-center px-4 overflow-hidden whitespace-nowrap">
+        <h1 className="text-[15vw] font-display font-medium uppercase tracking-tight leading-none text-foreground/[0.03] select-none w-full text-center px-4 overflow-hidden whitespace-nowrap">
           SAJAWAT
         </h1>
         
