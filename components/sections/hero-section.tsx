@@ -141,18 +141,6 @@ export function HeroSection() {
                 style={{ opacity: Math.max(0, 1 - scrollProgress * 3) }} 
               />
               
-              {/* CTA Button */}
-              <div 
-                className="hero-caption-reveal absolute inset-x-0 bottom-[16%] z-20 flex justify-center transition-opacity duration-300"
-                style={{ opacity: Math.max(0, 1 - scrollProgress * 3) }}
-              >
-                <Link 
-                  href="/contact" 
-                  className="group flex items-center gap-2 bg-white/90 px-7 py-3.5 text-xs font-semibold uppercase tracking-[0.15em] text-black backdrop-blur-md transition-all hover:bg-white hover:scale-105"
-                >
-                  Start your project
-                </Link>
-              </div>
             </div>
 
             {/* Right Column */}
@@ -186,6 +174,22 @@ export function HeroSection() {
             </div>
 
           </div>
+        </div>
+
+        {/* CTA Button */}
+        <div 
+          className="hero-caption-reveal absolute left-0 right-0 z-30 flex justify-center pointer-events-none transition-opacity duration-300"
+          style={{ 
+            opacity: Math.max(0, 1 - scrollProgress * 3),
+            bottom: "16%" // Keeping original positioning
+          }}
+        >
+          <Link 
+            href="/contact" 
+            className="group flex items-center gap-2 bg-white/90 px-6 py-3 text-[10px] md:px-7 md:py-3.5 md:text-xs font-semibold uppercase tracking-[0.15em] text-black backdrop-blur-md transition-all hover:bg-white hover:scale-105 pointer-events-auto whitespace-nowrap"
+          >
+            Start your project
+          </Link>
         </div>
         
         {/* Traveling Text */}
