@@ -367,3 +367,10 @@
 }
 
 
+
+@keyframes scroll-down {
+  0% { transform: translateY(-100%); }
+  75% { transform: translateY(350%); }
+  100% { transform: translateY(350%); }
+}
+

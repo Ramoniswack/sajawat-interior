@@ -143,16 +143,22 @@ export function TechnologySection() {
               </div>
             </div>
 
-            {/* Scroll Down Indicator */}
+            {/* Scroll Down Indicator - Premium Minimal */}
             <div 
-              className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3 transition-opacity duration-700 pointer-events-none"
+              className="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-4 transition-opacity duration-700 pointer-events-none"
               style={{ opacity: scrollProgress > 0.85 ? 0 : 1 }}
             >
-              <span className="text-[10px] font-semibold uppercase tracking-[0.3em] text-white/80">
-                Keep Scrolling
+              <span className="text-[9px] font-medium uppercase tracking-[0.4em] text-white/50">
+                Scroll
               </span>
-              <div className="flex h-12 w-6 justify-center rounded-full border border-white/40 p-1">
-                <div className="h-1.5 w-1.5 animate-[bounce_2s_infinite] rounded-full bg-white" />
+              <div className="relative h-16 w-[1px] bg-white/20 overflow-hidden">
+                <div 
+                  className="absolute left-0 top-0 w-full bg-white/90" 
+                  style={{ 
+                    height: '30%', 
+                    animation: 'scroll-down 2s cubic-bezier(0.77, 0, 0.175, 1) infinite' 
+                  }} 
+                />
               </div>
             </div>
 
