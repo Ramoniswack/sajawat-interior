@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { Header } from "@/components/header";
 import { FooterSection } from "@/components/sections/footer-section";
+import { HowItWorksSection } from "@/components/sections/how-it-works-section";
 
 export default function DesignIdeaPage() {
   return (
@@ -8,14 +9,16 @@ export default function DesignIdeaPage() {
       <Header />
       
       <main className="flex-grow pt-24 pb-16">
-        <div className="mx-auto max-w-7xl px-6 md:px-10">
-          <div className="mb-16 text-center">
-            <h1 className="text-4xl font-bold tracking-tight sm:text-5xl mb-4">Design Ideas</h1>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Explore our curated collection of interior design styles, blending rich Nepali heritage with modern aesthetics to inspire your next project.
-            </p>
-          </div>
+        <div className="mx-auto max-w-7xl px-6 md:px-10 mb-16 text-center">
+          <h1 className="text-4xl font-bold tracking-tight sm:text-5xl mb-4">Design Ideas</h1>
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+            Explore our curated collection of interior design styles, blending rich Nepali heritage with modern aesthetics to inspire your next project.
+          </p>
+        </div>
 
+        <HowItWorksSection />
+
+        <div className="mx-auto max-w-7xl px-6 md:px-10 mt-24">
           <div className="space-y-24">
             {/* Section 1: Newari Contemporary Fusion */}
             <section id="newari-fusion" className="scroll-mt-24 flex flex-col md:flex-row gap-8 items-center">

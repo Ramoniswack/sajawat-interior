@@ -57,6 +57,7 @@ export function Header() {
                     <h3 className="mb-4 text-xs font-bold uppercase tracking-wider text-gray-500">Work with a Designer</h3>
                     <ul className="flex flex-col gap-3">
                       <li><Link href="#" className="text-sm text-gray-700 hover:text-black">Interior Design Services</Link></li>
+                      <li><Link href="/design-ideas#process" className="text-sm text-gray-700 hover:text-black">How it works</Link></li>
                       <li><Link href="#" className="text-sm text-gray-700 hover:text-black">In-Person Interior Design</Link></li>
                       <li><Link href="#" className="text-sm text-gray-700 hover:text-black">AI Interior Design</Link></li>
                     </ul>
