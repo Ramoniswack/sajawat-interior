@@ -40,28 +40,28 @@ export function Header() {
         {/* Desktop Navigation */}
         <nav className="hidden items-center gap-10 md:flex">
           <Link
-            href="/#technology"
+            href="/#design-idea"
+            className="text-sm text-black/80 transition-colors hover:text-black"
+          >
+            Design Idea
+          </Link>
+          <Link
+            href="/#services"
             className="text-sm text-black/80 transition-colors hover:text-black"
           >
             Services
           </Link>
           <Link
-            href="/#gallery"
+            href="/#rooms"
             className="text-sm text-black/80 transition-colors hover:text-black"
           >
-            Portfolio
-          </Link>
-          <Link
-            href="/#accessories"
-            className="text-sm text-black/80 transition-colors hover:text-black"
-          >
-            Approach
+            Rooms
           </Link>
           <Link
             href="/#about"
             className="text-sm text-black/80 transition-colors hover:text-black"
           >
-            About us
+            About
           </Link>
         </nav>
 
@@ -127,32 +127,32 @@ export function Header() {
         <div className="border-t border-border bg-background px-6 py-8 md:hidden">
           <nav className="flex flex-col gap-6">
             <Link
-              href="/#technology"
+              href="/#design-idea"
+              className="text-lg text-foreground"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              Design Idea
+            </Link>
+            <Link
+              href="/#services"
               className="text-lg text-foreground"
               onClick={() => setIsMenuOpen(false)}
             >
               Services
             </Link>
             <Link
-              href="/#gallery"
+              href="/#rooms"
               className="text-lg text-foreground"
               onClick={() => setIsMenuOpen(false)}
             >
-              Portfolio
-            </Link>
-            <Link
-              href="/#accessories"
-              className="text-lg text-foreground"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              Approach
+              Rooms
             </Link>
             <Link
               href="/#about"
               className="text-lg text-foreground"
               onClick={() => setIsMenuOpen(false)}
             >
-              About us
+              About
             </Link>
             <Link
               href="/contact"
