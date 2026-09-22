@@ -1,5 +1,7 @@
 'use client'
 
+import { useState, useEffect } from "react";
+import { useSearchParams } from "next/navigation";
 import Image from "next/image";
 import { Header } from "@/components/header";
 import { FooterSection } from "@/components/sections/footer-section";
@@ -62,14 +64,24 @@ const locations = [
 ]
 
 export default function DesignIdeaPage() {
+  const searchParams = useSearchParams();
+  const [defaultTab, setDefaultTab] = useState('style');
+
+  useEffect(() => {
+    const tab = searchParams.get('tab');
+    if (tab === 'style' || tab === 'location') {
+      setDefaultTab(tab);
+    }
+  }, [searchParams]);
+
   return (
     <div className="flex min-h-screen flex-col">
       <Header />
       
       <main className="flex-grow pt-24 pb-16">
         <div className="mx-auto max-w-7xl px-6 md:px-10 mb-16 text-center">
-          <h1 className="text-4xl font-bold tracking-tight sm:text-5xl mb-4">Design Ideas</h1>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+          <h1 className="text-4xl font-light tracking-tight sm:text-5xl mb-4" style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", sans-serif', WebkitFontSmoothing: 'antialiased', MozOsxFontSmoothing: 'grayscale' }}>Design Ideas</h1>
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto" style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", sans-serif', WebkitFontSmoothing: 'antialiased', MozOsxFontSmoothing: 'grayscale', fontWeight: 300 }}>
             Explore our curated collection of interior design styles, blending rich Nepali heritage with modern aesthetics to inspire your next project.
           </p>
         </div>
@@ -77,10 +89,10 @@ export default function DesignIdeaPage() {
         <HowItWorksSection />
 
         <div className="mx-auto max-w-7xl px-6 md:px-10 mt-24">
-          <Tabs defaultValue="style" className="w-full">
+          <Tabs defaultValue={defaultTab} className="w-full">
             <TabsList className="mb-8">
               <TabsTrigger value="style" className="tab-button">By Style</TabsTrigger>
-              <TabsTrigger value="location" className="tab-button">By Location</TabsTrigger>
+              <TabsTrigger value="location" className="tab-button">By City</TabsTrigger>
             </TabsList>
 
             <TabsContent value="style">
@@ -128,7 +140,7 @@ export default function DesignIdeaPage() {
                     <div className="feature-content">
                       <h3 className="feature-heading">{location.title}</h3>
                       <p className="feature-detail">{location.detail}</p>
-                      <span className="learn-more">Explore Location</span>
+                      <span className="learn-more">Explore City</span>
                     </div>
                   </button>
                 ))}

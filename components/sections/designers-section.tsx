@@ -53,7 +53,7 @@ export function DesignersSection() {
           </p>
         </div>
 
-        <div className="relative bg-[#fbfbfa] rounded-[28px] overflow-hidden py-12 sm:rounded-[34px]">
+        <div className="relative bg-[#fbfbfa] rounded-[4px] overflow-hidden py-12">
           <button aria-label="Previous designer" onClick={previous} className="nav-button left-4 sm:left-7">
             <span aria-hidden="true">‹</span>
           </button>
