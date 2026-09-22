@@ -602,3 +602,200 @@
   justify-content: flex-start !important;
 }
 
+/* Designer Carousel Styles */
+.carousel-track {
+  display: flex;
+  align-items: center;
+  gap: 53px;
+  transition: transform 500ms cubic-bezier(.22,.61,.36,1);
+  will-change: transform;
+}
+
+.profile-card {
+  width: 298px;
+  flex: 0 0 298px;
+  overflow: hidden;
+  border-radius: 24px;
+  background: #fff;
+  box-shadow: 0 19px 43px rgba(20, 20, 20, .09);
+  transition: opacity 400ms ease, transform 500ms ease, box-shadow 400ms ease;
+}
+
+.profile-card.is-active {
+  width: 326px;
+  flex-basis: 326px;
+  transform: scale(1.08);
+  box-shadow: 0 26px 55px rgba(20, 20, 20, .13);
+  z-index: 1;
+}
+
+.profile-card.is-side {
+  opacity: .92;
+}
+
+.profile-card.is-side .profile-copy {
+  display: none;
+}
+
+.portrait-frame {
+  height: 442px;
+  overflow: hidden;
+  background: #b9b5ae;
+  position: relative;
+}
+
+.profile-card.is-active .portrait-frame {
+  height: 254px;
+}
+
+.portrait-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 28%;
+  display: block;
+}
+
+.profile-copy {
+  padding: 30px 22px 22px;
+}
+
+.profile-copy h1 {
+  margin: 0;
+  color: #111;
+  font-size: 22px;
+  line-height: 1.1;
+  font-weight: 700;
+  letter-spacing: -.04em;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.profile-copy p {
+  min-height: 38px;
+  margin: 7px 0 18px;
+  color: #767676;
+  font-size: 12px;
+  line-height: 1.35;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.profile-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.profile-footer span {
+  border-radius: 999px;
+  background: #f1f1ef;
+  padding: 7px 11px;
+  color: #696969;
+  font-size: 10px;
+  white-space: nowrap;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.profile-footer button {
+  border: 0;
+  border-radius: 999px;
+  background: #101010;
+  padding: 8px 13px;
+  color: white;
+  font-size: 10px;
+  font-weight: 600;
+  white-space: nowrap;
+  cursor: pointer;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background 0.3s ease;
+}
+
+.profile-footer button:hover {
+  background: #e99816;
+}
+
+.nav-button {
+  position: absolute;
+  top: 50%;
+  z-index: 3;
+  display: grid;
+  width: 46px;
+  height: 46px;
+  transform: translateY(-50%);
+  place-items: center;
+  border: 0;
+  border-radius: 999px;
+  background: white;
+  color: #111;
+  box-shadow: 0 7px 22px rgba(0, 0, 0, .08);
+  cursor: pointer;
+  font-size: 32px;
+  line-height: 1;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.nav-button:hover {
+  background: #e99816;
+  color: white;
+  transform: translateY(-50%) scale(1.1);
+}
+
+.nav-button span { transform: translateY(-2px); }
+
+/* Social Media Icons */
+.social-icons {
+  display: flex;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.social-icon {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #f1f1ef;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.3s ease, transform 0.2s ease;
+  text-decoration: none;
+}
+
+.social-icon:hover {
+  background: #e99816;
+  transform: scale(1.1);
+}
+
+.social-icon svg {
+  width: 14px;
+  height: 14px;
+  color: #696969;
+  transition: color 0.3s ease;
+}
+
+.social-icon:hover svg {
+  color: white;
+}
+
+@media (max-width: 640px) {
+  .carousel-track { gap: 29px; }
+  .profile-card { width: 252px; flex-basis: 252px; }
+  .profile-card.is-active { width: 288px; flex-basis: 288px; }
+  .portrait-frame { height: 372px; }
+  .profile-card.is-active .portrait-frame { height: 228px; }
+  .nav-button { width: 41px; height: 41px; }
+  .profile-copy h1 { font-size: 20px; }
+  .profile-copy p { font-size: 11px; }
+  .social-icons { margin-top: 10px; }
+  .social-icon { width: 24px; height: 24px; }
+  .social-icon svg { width: 12px; height: 12px; }
+}
+
