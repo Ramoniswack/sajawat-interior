@@ -44,19 +44,19 @@ const locations = [
   {
     id: 'kathmandu',
     title: 'Kathmandu',
-    image: '/design-ideas/kathmandu.jpg',
+    image: '/images/luxury-dining-room.png',
     detail: 'Urban sophistication meets traditional charm in Kathmandu interiors. Perfect for city living with a blend of modern amenities and cultural heritage.'
   },
   {
     id: 'pokhara',
     title: 'Pokhara',
-    image: '/design-ideas/pokhara.jpg',
+    image: '/images/luxury-bedroom.png',
     detail: 'Lakeside tranquility inspires Pokhara interiors. Natural light, panoramic views, and relaxed elegance define this serene style.'
   },
   {
     id: 'chitwan',
     title: 'Chitwan',
-    image: '/design-ideas/chitwan.jpg',
+    image: '/images/luxury-kitchen.png',
     detail: 'Jungle-inspired elegance for Chitwan interiors. Earthy tones, natural materials, and wildlife motifs create a unique connection to nature.'
   }
 ]
@@ -78,9 +78,9 @@ export default function DesignIdeaPage() {
 
         <div className="mx-auto max-w-7xl px-6 md:px-10 mt-24">
           <Tabs defaultValue="style" className="w-full">
-            <TabsList className="mx-auto mb-8">
-              <TabsTrigger value="style">By Style</TabsTrigger>
-              <TabsTrigger value="location">By Location</TabsTrigger>
+            <TabsList className="mb-8">
+              <TabsTrigger value="style" className="tab-button">By Style</TabsTrigger>
+              <TabsTrigger value="location" className="tab-button">By Location</TabsTrigger>
             </TabsList>
 
             <TabsContent value="style">
