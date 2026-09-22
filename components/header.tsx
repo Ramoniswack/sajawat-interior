@@ -101,7 +101,7 @@ export function Header() {
           </div>
 
           <Link
-            href="/#services"
+            href="/services"
             className="text-sm text-black/80 transition-colors hover:text-black"
           >
             Services
@@ -254,7 +254,7 @@ export function Header() {
               Design Idea
             </Link>
             <Link
-              href="/#services"
+              href="/services"
               className="text-lg text-foreground"
               onClick={() => setIsMenuOpen(false)}
             >
