@@ -6,6 +6,7 @@ import Image from "next/image";
 import { Header } from "@/components/header";
 import { FooterSection } from "@/components/sections/footer-section";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
+import { FlipBook } from "@/components/flip-book";
 
 const roomDesigns = [
   {
@@ -114,6 +115,13 @@ export default function RoomsPage() {
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto" style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", sans-serif', WebkitFontSmoothing: 'antialiased', MozOsxFontSmoothing: 'grayscale', fontWeight: 300 }}>
             Explore stunning interior designs organized by room type. From living rooms to home offices, find inspiration for every space in your home.
           </p>
+        </div>
+
+        {/* Flip Book Section */}
+        <div className="mx-auto max-w-7xl px-6 md:px-10 mb-24">
+          <div className="flex flex-col items-center justify-center">
+            <FlipBook />
+          </div>
         </div>
 
         <div className="mx-auto max-w-7xl px-6 md:px-10 mt-24">

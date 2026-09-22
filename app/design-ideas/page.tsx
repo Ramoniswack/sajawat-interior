@@ -88,6 +88,109 @@ export default function DesignIdeaPage() {
 
         <HowItWorksSection />
 
+        {/* Statistics Section */}
+        <div className="mx-auto max-w-7xl px-6 md:px-10 mt-24">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+            <div>
+              <div className="text-4xl font-bold text-[#e99816] mb-2" style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", sans-serif' }}>500+</div>
+              <div className="text-sm text-muted-foreground" style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", sans-serif', fontWeight: 300 }}>Projects Completed</div>
+            </div>
+            <div>
+              <div className="text-4xl font-bold text-[#e99816] mb-2" style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", sans-serif' }}>50+</div>
+              <div className="text-sm text-muted-foreground" style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", sans-serif', fontWeight:300 }}>Expert Designers</div>
+            </div>
+            <div>
+              <div className="text-4xl font-bold text-[#e99816] mb-2" style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", sans-serif' }}>1000+</div>
+              <div className="text-sm text-muted-foreground" style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", sans-serif', fontWeight:300 }}>Happy Clients</div>
+            </div>
+            <div>
+              <div className="text-4xl font-bold text-[#e99816] mb-2" style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", sans-serif' }}>15+</div>
+              <div className="text-sm text-muted-foreground" style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", sans-serif', fontWeight:300 }}>Design Styles</div>
+            </div>
+          </div>
+        </div>
+
+        {/* Design Tips Section */}
+        <div className="mx-auto max-w-7xl px-6 md:px-10 mt-24">
+          <h2 className="text-3xl font-light tracking-tight sm:text-4xl mb-8 text-center" style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", sans-serif', WebkitFontSmoothing: 'antialiased', MozOsxFontSmoothing: 'grayscale' }}>
+            Design Tips & Inspiration
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="bg-card p-6 rounded-lg border border-border/50">
+              <h3 className="text-lg font-semibold mb-3" style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", sans-serif' }}>Start with Natural Light</h3>
+              <p className="text-muted-foreground text-sm leading-relaxed" style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", sans-serif', fontWeight: 300 }}>
+                Maximize natural light in your space to create a bright, welcoming atmosphere. Consider window treatments that enhance rather than block sunlight.
+              </p>
+            </div>
+            <div className="bg-card p-6 rounded-lg border border-border/50">
+              <h3 className="text-lg font-semibold mb-3" style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", sans-serif' }}>Embrace Local Materials</h3>
+              <p className="text-muted-foreground text-sm leading-relaxed" style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", sans-serif', fontWeight: 300 }}>
+                Incorporate locally sourced materials like bamboo, stone, and wood to connect your space with Nepali heritage and craftsmanship.
+              </p>
+            </div>
+            <div className="bg-card p-6 rounded-lg border border-border/50">
+              <h3 className="text-lg font-semibold mb-3" style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", sans-serif' }}>Balance Function & Beauty</h3>
+              <p className="text-muted-foreground text-sm leading-relaxed" style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", sans-serif', fontWeight: 300 }}>
+                Find the perfect balance between practical functionality and aesthetic beauty. Every element should serve both form and purpose in your daily life.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* Featured Projects Section */}
+        <div className="mx-auto max-w-7xl px-6 md:px-10 mt-24">
+          <h2 className="text-3xl font-light tracking-tight sm:text-4xl mb-8 text-center" style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", sans-serif', WebkitFontSmoothing: 'antialiased', MozOsxFontSmoothing: 'grayscale' }}>
+            Featured Projects
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="group relative overflow-hidden rounded-lg bg-card cursor-pointer">
+              <div className="relative aspect-[4/3] overflow-hidden">
+                <Image
+                  src="/images/luxury-living-room.png"
+                  alt="Modern Living Room"
+                  fill
+                  className="object-cover transition-transform duration-500 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
+                <div className="absolute bottom-0 left-0 right-0 p-6">
+                  <h3 className="text-white font-semibold text-xl" style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", sans-serif' }}>Modern Living Room</h3>
+                  <p className="text-white/80 text-sm mt-1" style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", sans-serif', fontWeight: 300 }}>Kathmandu</p>
+                </div>
+              </div>
+            </div>
+            <div className="group relative overflow-hidden rounded-lg bg-card cursor-pointer">
+              <div className="relative aspect-[4/3] overflow-hidden">
+                <Image
+                  src="/images/luxury-bedroom.png"
+                  alt="Serene Bedroom"
+                  fill
+                  className="object-cover transition-transform duration-500 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
+                <div className="absolute bottom-0 left-0 right-0 p-6">
+                  <h3 className="text-white font-semibold text-xl" style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", sans-serif' }}>Serene Bedroom</h3>
+                  <p className="text-white/80 text-sm mt-1" style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", sans-serif', fontWeight: 300 }}>Pokhara</p>
+                </div>
+              </div>
+            </div>
+            <div className="group relative overflow-hidden rounded-lg bg-card cursor-pointer">
+              <div className="relative aspect-[4/3] overflow-hidden">
+                <Image
+                  src="/images/luxury-kitchen.png"
+                  alt="Contemporary Kitchen"
+                  fill
+                  className="object-cover transition-transform duration-500 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
+                <div className="absolute bottom-0 left-0 right-0 p-6">
+                  <h3 className="text-white font-semibold text-xl" style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", sans-serif' }}>Contemporary Kitchen</h3>
+                  <p className="text-white/80 text-sm mt-1" style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", sans-serif', fontWeight: 300 }}>Lalitpur</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
         <div className="mx-auto max-w-7xl px-6 md:px-10 mt-24">
           <Tabs defaultValue={defaultTab} className="w-full">
             <TabsList className="mb-8">
