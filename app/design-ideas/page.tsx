@@ -1,8 +1,65 @@
+'use client'
+
 import Image from "next/image";
 import { Header } from "@/components/header";
 import { FooterSection } from "@/components/sections/footer-section";
 import { HowItWorksSection } from "@/components/sections/how-it-works-section";
 import { DesignersSection } from "@/components/sections/designers-section";
+import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
+
+const designStyles = [
+  {
+    id: 'newari-fusion',
+    title: 'Newari Contemporary Fusion',
+    image: '/design-ideas/newari-fusion.jpg',
+    detail: 'Experience the perfect harmony of traditional Newari architecture and contemporary design. This style features exposed red brick walls, intricately carved wooden elements, paired with modern minimalist furniture.'
+  },
+  {
+    id: 'mongolian-modern',
+    title: 'Nepali Mongolian Modern',
+    image: '/design-ideas/mongolian-modern.jpg',
+    detail: 'Drawing inspiration from the rich heritage of Gurung, Magar, and Tamang cultures, this modern style incorporates traditional geometric rugs, cultural artifacts, and elegant wooden furniture.'
+  },
+  {
+    id: 'nepali-minimalist',
+    title: 'Modern Nepali Minimalist',
+    image: '/design-ideas/nepali-minimalist.jpg',
+    detail: 'Embracing the "less is more" philosophy, the Modern Nepali Minimalist style focuses on clean lines, natural materials, and uncluttered spaces. Subtle traditional motifs are integrated thoughtfully.'
+  },
+  {
+    id: 'nepali-rustic',
+    title: 'Nepali Rustic',
+    image: '/design-ideas/nepali-rustic.jpg',
+    detail: 'Capture the charm of a mountain cabin with the Nepali Rustic aesthetic. This style highlights exposed stone walls, raw timber beams, and mud-plastered effects, complemented by warm textiles.'
+  },
+  {
+    id: 'nepali-biophilic',
+    title: 'Nepali Biophilic',
+    image: '/design-ideas/nepali-biophilic.jpg',
+    detail: 'Connect with nature through the Nepali Biophilic design. By incorporating abundant indoor plants, bamboo elements, and traditional Dhaka fabric accents, this style blurs the lines between indoor and outdoor.'
+  }
+]
+
+const locations = [
+  {
+    id: 'kathmandu',
+    title: 'Kathmandu',
+    image: '/design-ideas/kathmandu.jpg',
+    detail: 'Urban sophistication meets traditional charm in Kathmandu interiors. Perfect for city living with a blend of modern amenities and cultural heritage.'
+  },
+  {
+    id: 'pokhara',
+    title: 'Pokhara',
+    image: '/design-ideas/pokhara.jpg',
+    detail: 'Lakeside tranquility inspires Pokhara interiors. Natural light, panoramic views, and relaxed elegance define this serene style.'
+  },
+  {
+    id: 'chitwan',
+    title: 'Chitwan',
+    image: '/design-ideas/chitwan.jpg',
+    detail: 'Jungle-inspired elegance for Chitwan interiors. Earthy tones, natural materials, and wildlife motifs create a unique connection to nature.'
+  }
+]
 
 export default function DesignIdeaPage() {
   return (
@@ -20,130 +77,64 @@ export default function DesignIdeaPage() {
         <HowItWorksSection />
 
         <div className="mx-auto max-w-7xl px-6 md:px-10 mt-24">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            
-            {/* Section 1: Newari Contemporary Fusion */}
-            <div id="newari-fusion" className="flex flex-col bg-card text-card-foreground rounded-xl shadow-sm border border-border/50 overflow-hidden hover:shadow-md transition-shadow">
-              <div className="relative w-full h-64">
-                <Image 
-                  src="/design-ideas/newari-fusion.jpg" 
-                  alt="Newari Contemporary Fusion Interior" 
-                  fill 
-                  className="object-cover hover:scale-105 transition-transform duration-500" 
-                />
-              </div>
-              <div className="p-6 flex flex-col flex-grow">
-                <h2 className="text-xl font-semibold mb-3">Newari Contemporary Fusion</h2>
-                <p className="text-muted-foreground text-sm flex-grow mb-6 leading-relaxed">
-                  Experience the perfect harmony of traditional Newari architecture and contemporary design. 
-                  This style features exposed red brick walls, intricately carved wooden elements, paired with 
-                  modern minimalist furniture.
-                </p>
-                <div className="flex justify-end mt-auto">
-                  <button className="bg-primary text-primary-foreground hover:bg-primary/90 px-4 py-2 rounded-md text-sm font-medium transition-colors">
-                    Explore Style
-                  </button>
-                </div>
-              </div>
-            </div>
+          <Tabs defaultValue="style" className="w-full">
+            <TabsList className="mx-auto mb-8">
+              <TabsTrigger value="style">By Style</TabsTrigger>
+              <TabsTrigger value="location">By Location</TabsTrigger>
+            </TabsList>
 
-            {/* Section 2: Nepali Mongolian Modern Style */}
-            <div id="mongolian-modern" className="flex flex-col bg-card text-card-foreground rounded-xl shadow-sm border border-border/50 overflow-hidden hover:shadow-md transition-shadow">
-              <div className="relative w-full h-64">
-                <Image 
-                  src="/design-ideas/mongolian-modern.jpg" 
-                  alt="Nepali Mongolian Modern Interior" 
-                  fill 
-                  className="object-cover hover:scale-105 transition-transform duration-500" 
-                />
-              </div>
-              <div className="p-6 flex flex-col flex-grow">
-                <h2 className="text-xl font-semibold mb-3">Nepali Mongolian Modern</h2>
-                <p className="text-muted-foreground text-sm flex-grow mb-6 leading-relaxed">
-                  Drawing inspiration from the rich heritage of Gurung, Magar, and Tamang cultures, 
-                  this modern style incorporates traditional geometric rugs, cultural artifacts, and elegant wooden furniture.
-                </p>
-                <div className="flex justify-end mt-auto">
-                  <button className="bg-primary text-primary-foreground hover:bg-primary/90 px-4 py-2 rounded-md text-sm font-medium transition-colors">
-                    Explore Style
+            <TabsContent value="style">
+              <div className="card-stack" aria-label="Design styles">
+                {designStyles.map((style) => (
+                  <button
+                    key={style.id}
+                    className="feature-card"
+                  >
+                    <div className="feature-image-wrapper">
+                      <Image
+                        src={style.image}
+                        alt={style.title}
+                        fill
+                        className="feature-image"
+                      />
+                    </div>
+                    <span className="feature-title">{style.title}</span>
+                    <div className="feature-content">
+                      <h3 className="feature-heading">{style.title}</h3>
+                      <p className="feature-detail">{style.detail}</p>
+                      <span className="learn-more">Explore Style</span>
+                    </div>
                   </button>
-                </div>
+                ))}
               </div>
-            </div>
+            </TabsContent>
 
-            {/* Section 3: Modern Nepali Minimalist */}
-            <div id="nepali-minimalist" className="flex flex-col bg-card text-card-foreground rounded-xl shadow-sm border border-border/50 overflow-hidden hover:shadow-md transition-shadow">
-              <div className="relative w-full h-64">
-                <Image 
-                  src="/design-ideas/nepali-minimalist.jpg" 
-                  alt="Modern Nepali Minimalist Interior" 
-                  fill 
-                  className="object-cover hover:scale-105 transition-transform duration-500" 
-                />
-              </div>
-              <div className="p-6 flex flex-col flex-grow">
-                <h2 className="text-xl font-semibold mb-3">Modern Nepali Minimalist</h2>
-                <p className="text-muted-foreground text-sm flex-grow mb-6 leading-relaxed">
-                  Embracing the 'less is more' philosophy, the Modern Nepali Minimalist style focuses on clean lines, 
-                  natural materials, and uncluttered spaces. Subtle traditional motifs are integrated thoughtfully.
-                </p>
-                <div className="flex justify-end mt-auto">
-                  <button className="bg-primary text-primary-foreground hover:bg-primary/90 px-4 py-2 rounded-md text-sm font-medium transition-colors">
-                    Explore Style
+            <TabsContent value="location">
+              <div className="card-stack" aria-label="Design locations">
+                {locations.map((location) => (
+                  <button
+                    key={location.id}
+                    className="feature-card"
+                  >
+                    <div className="feature-image-wrapper">
+                      <Image
+                        src={location.image}
+                        alt={location.title}
+                        fill
+                        className="feature-image"
+                      />
+                    </div>
+                    <span className="feature-title">{location.title}</span>
+                    <div className="feature-content">
+                      <h3 className="feature-heading">{location.title}</h3>
+                      <p className="feature-detail">{location.detail}</p>
+                      <span className="learn-more">Explore Location</span>
+                    </div>
                   </button>
-                </div>
+                ))}
               </div>
-            </div>
-
-            {/* Section 4: Nepali Rustic */}
-            <div id="nepali-rustic" className="flex flex-col bg-card text-card-foreground rounded-xl shadow-sm border border-border/50 overflow-hidden hover:shadow-md transition-shadow">
-              <div className="relative w-full h-64">
-                <Image 
-                  src="/design-ideas/nepali-rustic.jpg" 
-                  alt="Nepali Rustic Interior" 
-                  fill 
-                  className="object-cover hover:scale-105 transition-transform duration-500" 
-                />
-              </div>
-              <div className="p-6 flex flex-col flex-grow">
-                <h2 className="text-xl font-semibold mb-3">Nepali Rustic</h2>
-                <p className="text-muted-foreground text-sm flex-grow mb-6 leading-relaxed">
-                  Capture the charm of a mountain cabin with the Nepali Rustic aesthetic. 
-                  This style highlights exposed stone walls, raw timber beams, and mud-plastered effects, complemented by warm textiles.
-                </p>
-                <div className="flex justify-end mt-auto">
-                  <button className="bg-primary text-primary-foreground hover:bg-primary/90 px-4 py-2 rounded-md text-sm font-medium transition-colors">
-                    Explore Style
-                  </button>
-                </div>
-              </div>
-            </div>
-
-            {/* Section 5: Nepali Biophilic */}
-            <div id="nepali-biophilic" className="flex flex-col bg-card text-card-foreground rounded-xl shadow-sm border border-border/50 overflow-hidden hover:shadow-md transition-shadow">
-              <div className="relative w-full h-64">
-                <Image 
-                  src="/design-ideas/nepali-biophilic.jpg" 
-                  alt="Nepali Biophilic Interior" 
-                  fill 
-                  className="object-cover hover:scale-105 transition-transform duration-500" 
-                />
-              </div>
-              <div className="p-6 flex flex-col flex-grow">
-                <h2 className="text-xl font-semibold mb-3">Nepali Biophilic</h2>
-                <p className="text-muted-foreground text-sm flex-grow mb-6 leading-relaxed">
-                  Connect with nature through the Nepali Biophilic design. By incorporating abundant indoor plants, 
-                  bamboo elements, and traditional Dhaka fabric accents, this style blurs the lines between indoor and outdoor.
-                </p>
-                <div className="flex justify-end mt-auto">
-                  <button className="bg-primary text-primary-foreground hover:bg-primary/90 px-4 py-2 rounded-md text-sm font-medium transition-colors">
-                    Explore Style
-                  </button>
-                </div>
-              </div>
-            </div>
-            
-          </div>
+            </TabsContent>
+          </Tabs>
         </div>
 
         <DesignersSection />
