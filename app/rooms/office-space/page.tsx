@@ -1,8 +1,10 @@
 "use client"
 
+import { useState } from "react"
 import { Header } from "@/components/header"
 import { FooterSection } from "@/components/sections/footer-section"
 import { RoomGalleryCard } from "@/components/rooms/room-gallery-card"
+import { RoomModal } from "@/components/rooms/room-modal"
 
 const officeSpaceImages = [
   {
@@ -104,6 +106,24 @@ const byLocationImages = [
 ]
 
 export default function OfficeSpacePage() {
+  const [selectedRoom, setSelectedRoom] = useState<any>(null)
+  const [isModalOpen, setIsModalOpen] = useState(false)
+
+  const handleExplore = (item: any) => {
+    setSelectedRoom({
+      id: item.title.toLowerCase().replace(/\s+/g, '-'),
+      title: item.title,
+      description: item.description,
+      image: item.url
+    })
+    setIsModalOpen(true)
+  }
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false)
+    setSelectedRoom(null)
+  }
+
   return (
     <div className="flex min-h-screen flex-col">
       <Header />
@@ -143,7 +163,7 @@ export default function OfficeSpacePage() {
             <h2 className="mb-12 text-3xl font-light text-foreground">Office Space Gallery</h2>
             <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
               {officeSpaceImages.map((item, index) => (
-                <RoomGalleryCard key={index} item={item} index={index} />
+                <RoomGalleryCard key={index} item={item} index={index} onExplore={handleExplore} />
               ))}
             </div>
           </div>
@@ -151,10 +171,33 @@ export default function OfficeSpacePage() {
 
         <section className="py-24 bg-gray-50">
           <div className="mx-auto max-w-7xl px-6 md:px-10">
-            <h2 className="mb-12 text-3xl font-light text-foreground">By Style</h2>
+            <div className="mb-16 text-center">
+              <h2
+                className="mb-4 text-3xl font-light text-foreground md:text-4xl"
+                style={{
+                  fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", sans-serif',
+                  WebkitFontSmoothing: 'antialiased',
+                  MozOsxFontSmoothing: 'grayscale',
+                  letterSpacing: '0.02em',
+                }}
+              >
+                By Style
+              </h2>
+              <p
+                className="mx-auto max-w-2xl text-base text-muted-foreground"
+                style={{
+                  fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", sans-serif',
+                  WebkitFontSmoothing: 'antialiased',
+                  MozOsxFontSmoothing: 'grayscale',
+                  fontWeight: 300,
+                }}
+              >
+                Explore different design styles to find the perfect aesthetic for your space.
+              </p>
+            </div>
             <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
               {byStyleImages.map((item, index) => (
-                <RoomGalleryCard key={index} item={item} index={index} />
+                <RoomGalleryCard key={index} item={item} index={index} onExplore={handleExplore} />
               ))}
             </div>
           </div>
@@ -162,15 +205,40 @@ export default function OfficeSpacePage() {
 
         <section className="py-24 bg-white">
           <div className="mx-auto max-w-7xl px-6 md:px-10">
-            <h2 className="mb-12 text-3xl font-light text-foreground">By Location</h2>
+            <div className="mb-16 text-center">
+              <h2
+                className="mb-4 text-3xl font-light text-foreground md:text-4xl"
+                style={{
+                  fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", sans-serif',
+                  WebkitFontSmoothing: 'antialiased',
+                  MozOsxFontSmoothing: 'grayscale',
+                  letterSpacing: '0.02em',
+                }}
+              >
+                By Location
+              </h2>
+              <p
+                className="mx-auto max-w-2xl text-base text-muted-foreground"
+                style={{
+                  fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", sans-serif',
+                  WebkitFontSmoothing: 'antialiased',
+                  MozOsxFontSmoothing: 'grayscale',
+                  fontWeight: 300,
+                }}
+              >
+                Discover designs inspired by different regions and cultural influences.
+              </p>
+            </div>
             <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
               {byLocationImages.map((item, index) => (
-                <RoomGalleryCard key={index} item={item} index={index} />
+                <RoomGalleryCard key={index} item={item} index={index} onExplore={handleExplore} />
               ))}
             </div>
           </div>
         </section>
       </main>
+
+      <RoomModal room={selectedRoom} isOpen={isModalOpen} onClose={handleCloseModal} />
 
       <FooterSection />
     </div>

@@ -27,7 +27,15 @@ export function RoomGalleryCard({ item, index, onExplore }: RoomGalleryCardProps
       }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      role="article"
+      onClick={() => onExplore(item)}
+      onKeyDown={(e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault()
+          onExplore(item)
+        }
+      }}
+      role="button"
+      tabIndex={0}
       aria-label={`${item.title} design`}
     >
       {/* Image Section */}
@@ -92,37 +100,21 @@ export function RoomGalleryCard({ item, index, onExplore }: RoomGalleryCardProps
         {/* Default Title */}
         <div
           className={cn(
-            "absolute bottom-0 left-0 right-0 p-6 transition-transform duration-500",
+            "absolute bottom-0 left-0 right-0 p-4 transition-transform duration-500",
             isHovered ? "translate-y-full" : "translate-y-0"
           )}
         >
           <h3
-            className="text-xl font-light text-white"
+            className="text-lg font-semibold text-white"
             style={{
               fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", sans-serif',
               WebkitFontSmoothing: 'antialiased',
               MozOsxFontSmoothing: 'grayscale',
-              letterSpacing: '0.02em',
             }}
           >
             {item.title}
           </h3>
         </div>
-      </div>
-
-      {/* Content Section */}
-      <div className="p-6">
-        <p
-          className="text-sm text-muted-foreground leading-relaxed"
-          style={{
-            fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", sans-serif',
-            WebkitFontSmoothing: 'antialiased',
-            MozOsxFontSmoothing: 'grayscale',
-            fontWeight: 300,
-          }}
-        >
-          {item.description}
-        </p>
       </div>
     </div>
   )
