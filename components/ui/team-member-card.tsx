@@ -12,6 +12,7 @@
 import { ArrowRight } from 'lucide-react'
 import { motion } from 'framer-motion'
 import { cn } from '@/lib/utils'
+import { useState, useEffect } from 'react'
 
 interface TeamMemberCardProps {
   position?: 'left' | 'right'
@@ -38,6 +39,44 @@ export default function TeamMemberCard({
 }: TeamMemberCardProps) {
   const fullName = `${firstName} ${lastName}`
   const isPositionRight = position === 'right'
+  const [isDarkBackground, setIsDarkBackground] = useState(false)
+
+  useEffect(() => {
+    const checkImageBrightness = async () => {
+      try {
+        const img = new Image()
+        img.crossOrigin = 'anonymous'
+        img.src = imageUrl
+        
+        img.onload = () => {
+          const canvas = document.createElement('canvas')
+          const ctx = canvas.getContext('2d')
+          canvas.width = img.width
+          canvas.height = img.height
+          ctx.drawImage(img, 0, 0)
+          
+          const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height)
+          const data = imageData.data
+          
+          let totalBrightness = 0
+          for (let i = 0; i < data.length; i += 4) {
+            const r = data[i]
+            const g = data[i + 1]
+            const b = data[i + 2]
+            const brightness = (r * 299 + g * 587 + b * 114) / 1000
+            totalBrightness += brightness
+          }
+          
+          const avgBrightness = totalBrightness / (data.length / 4)
+          setIsDarkBackground(avgBrightness < 128)
+        }
+      } catch (error) {
+        console.error('Error checking image brightness:', error)
+      }
+    }
+
+    checkImageBrightness()
+  }, [imageUrl])
 
   return (
     <motion.div
@@ -54,7 +93,7 @@ export default function TeamMemberCard({
       >
         <p
           className={cn(
-            'mb-4 text-xs font-medium tracking-[0.3em] text-zinc-400 uppercase dark:text-zinc-500',
+            'mb-4 text-xs font-medium tracking-[0.3em] uppercase text-white/80',
             isPositionRight && 'text-right'
           )}
         >
@@ -88,13 +127,16 @@ export default function TeamMemberCard({
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.6, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
           className={cn(
-            'relative -left-8 z-2 flex w-[calc(100%-350px)] flex-col gap-14',
+            'relative -left-8 z-2 flex w-[calc(100%-350px)] flex-col gap-14 bg-black/80 p-8',
             isPositionRight && 'left-8 items-end'
           )}
         >
           {/* Display name — large editorial type */}
           <div>
-            <p className='text-5xl leading-[1.1] font-extralight tracking-tight text-zinc-900 dark:text-white' style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", sans-serif' }}>
+            <p 
+              className='text-5xl leading-[1.1] font-extralight tracking-tight text-white'
+              style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", sans-serif' }}
+            >
               {firstName}
               <br />
               <span className='font-normal'>{lastName}</span>
@@ -108,14 +150,14 @@ export default function TeamMemberCard({
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.95 }}
               className={cn(
-                'group flex h-20 w-20 shrink-0 cursor-pointer items-center justify-center rounded-full border border-zinc-300 transition-colors duration-300 hover:border-zinc-600 hover:bg-zinc-900 dark:border-white/20 dark:hover:border-white/60 dark:hover:bg-white/10',
+                'group flex h-20 w-20 shrink-0 cursor-pointer items-center justify-center rounded-full border border-white/50 transition-colors duration-300 hover:border-white hover:bg-white/20',
                 isPositionRight && 'order-1'
               )}
             >
               <ArrowRight
                 size={22}
                 className={cn(
-                  'text-zinc-600 transition-all duration-300 group-hover:-rotate-45 group-hover:text-white dark:text-zinc-400 dark:group-hover:text-white',
+                  'text-white transition-all duration-300 group-hover:-rotate-45 group-hover:text-white',
                   isPositionRight && 'rotate-180 group-hover:rotate-225'
                 )}
               />
@@ -125,7 +167,7 @@ export default function TeamMemberCard({
             <div className='w-[40%]'>
               <p
                 className={cn(
-                  'text-sm leading-[1.8] text-zinc-500 dark:text-zinc-400',
+                  'text-sm leading-[1.8] text-white/80',
                   isPositionRight && 'text-right'
                 )}
                 style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", sans-serif', fontWeight: 300 }}

@@ -6,33 +6,27 @@ import TeamMemberCard from "@/components/ui/team-member-card"
 const designers = [
   {
     name: "Aarav Sharma",
-    role: "Lead Interior Designer",
-    description: "With over 10 years of experience, Aarav specializes in blending traditional Nepali aesthetics with modern minimalism.",
+    role: "Lead Designer",
+    description: "Aarav is a visionary designer with over 10 years of experience in creating stunning residential and commercial spaces. His innovative approach blends modern aesthetics with functional design.",
     image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=600&auto=format&fit=crop",
   },
   {
     name: "Priya Gurung",
     role: "Architectural Specialist",
-    description: "Priya brings a wealth of knowledge in sustainable and biophilic design, ensuring every space feels natural and breathable.",
+    description: "Priya brings a wealth of knowledge in sustainable and biophilic design, ensuring every space feels natural and breathable. Her designs seamlessly integrate nature with modern living.",
     image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=600&auto=format&fit=crop",
   },
   {
     name: "Siddharth Thapa",
-    role: "Modern Spaces Director",
-    description: "An expert in contemporary fusion, Siddharth transforms ordinary rooms into luxurious, cutting-edge living environments.",
+    role: "Design Director",
+    description: "An expert in contemporary fusion, Siddharth transforms ordinary rooms into luxurious, cutting-edge living environments. His work has been featured in leading design publications.",
     image: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=600&auto=format&fit=crop",
   },
   {
     name: "Anita Rai",
-    role: "Traditional Crafts Expert",
-    description: "Anita specializes in incorporating traditional Nepali craftsmanship into modern interior spaces with authentic materials.",
+    role: "Interior Consultant",
+    description: "Anita specializes in creating warm, inviting spaces that reflect her clients' personalities. Her attention to detail and personalized approach ensures every project tells a unique story.",
     image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=600&auto=format&fit=crop",
-  },
-  {
-    name: "Rajan Shrestha",
-    role: "Sustainable Design Lead",
-    description: "Rajan focuses on eco-friendly design solutions that blend sustainability with luxurious comfort and style.",
-    image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=600&auto=format&fit=crop",
   },
 ];
 

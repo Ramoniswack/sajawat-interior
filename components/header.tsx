@@ -85,7 +85,7 @@ export function Header() {
                   <div className="flex flex-col">
                     <h3 className="mb-4 text-xs font-bold uppercase tracking-wider text-gray-500">Plan your Project</h3>
                     <ul className="flex flex-col gap-3">
-                      <li><Link href="#" className="text-sm text-gray-700 hover:text-black">Pricing & Packages</Link></li>
+                      <li><Link href="/pricing" className="text-sm text-gray-700 hover:text-black">Pricing & Packages</Link></li>
                       <li><Link href="#" className="text-sm text-gray-700 hover:text-black">Interior Design Cost Guide</Link></li>
                       <li><Link href="#" className="text-sm text-gray-700 hover:text-black">Interior Design Style Quiz</Link></li>
                       <li><Link href="#" className="text-sm text-gray-700 hover:text-black">Gift Cards</Link></li>
@@ -197,9 +197,9 @@ export function Header() {
                   <div className="flex flex-col">
                     <h3 className="mb-4 text-xs font-bold uppercase tracking-wider text-gray-500">Living Spaces</h3>
                     <ul className="flex flex-col gap-3">
-                      <li><Link href="/rooms?tab=rooms" className="text-sm text-gray-700 hover:text-black">Living Room</Link></li>
-                      <li><Link href="/rooms?tab=rooms" className="text-sm text-gray-700 hover:text-black">Dining Room</Link></li>
-                      <li><Link href="/rooms?tab=rooms" className="text-sm text-gray-700 hover:text-black">Family Room</Link></li>
+                      <li><Link href="/rooms/living-room" className="text-sm text-gray-700 hover:text-black">Living Room</Link></li>
+                      <li><Link href="/rooms/dining-room" className="text-sm text-gray-700 hover:text-black">Dining Room</Link></li>
+                      <li><Link href="/rooms/family-room" className="text-sm text-gray-700 hover:text-black">Family Room</Link></li>
                     </ul>
                   </div>
 
@@ -207,9 +207,9 @@ export function Header() {
                   <div className="flex flex-col">
                     <h3 className="mb-4 text-xs font-bold uppercase tracking-wider text-gray-500">Private Spaces</h3>
                     <ul className="flex flex-col gap-3">
-                      <li><Link href="/rooms?tab=rooms" className="text-sm text-gray-700 hover:text-black">Bedroom</Link></li>
-                      <li><Link href="/rooms?tab=rooms" className="text-sm text-gray-700 hover:text-black">Master Suite</Link></li>
-                      <li><Link href="/rooms?tab=rooms" className="text-sm text-gray-700 hover:text-black">Home Office</Link></li>
+                      <li><Link href="/rooms/bedroom" className="text-sm text-gray-700 hover:text-black">Bedroom</Link></li>
+                      <li><Link href="/rooms/master-suite" className="text-sm text-gray-700 hover:text-black">Master Suite</Link></li>
+                      <li><Link href="/rooms/home-office" className="text-sm text-gray-700 hover:text-black">Home Office</Link></li>
                     </ul>
                   </div>
 
@@ -217,9 +217,9 @@ export function Header() {
                   <div className="flex flex-col">
                     <h3 className="mb-4 text-xs font-bold uppercase tracking-wider text-gray-500">Functional Spaces</h3>
                     <ul className="flex flex-col gap-3">
-                      <li><Link href="/rooms?tab=rooms" className="text-sm text-gray-700 hover:text-black">Kitchen</Link></li>
-                      <li><Link href="/rooms?tab=rooms" className="text-sm text-gray-700 hover:text-black">Bathroom</Link></li>
-                      <li><Link href="/rooms?tab=rooms" className="text-sm text-gray-700 hover:text-black">Laundry Room</Link></li>
+                      <li><Link href="/rooms/kitchen" className="text-sm text-gray-700 hover:text-black">Kitchen</Link></li>
+                      <li><Link href="/rooms/bathroom" className="text-sm text-gray-700 hover:text-black">Bathroom</Link></li>
+                      <li><Link href="/rooms/laundry-room" className="text-sm text-gray-700 hover:text-black">Laundry Room</Link></li>
                     </ul>
                   </div>
 
@@ -227,9 +227,9 @@ export function Header() {
                   <div className="flex flex-col">
                     <h3 className="mb-4 text-xs font-bold uppercase tracking-wider text-gray-500">Commercial Spaces</h3>
                     <ul className="flex flex-col gap-3">
-                      <li><Link href="/rooms?tab=rooms" className="text-sm text-gray-700 hover:text-black">Cafe</Link></li>
-                      <li><Link href="/rooms?tab=rooms" className="text-sm text-gray-700 hover:text-black">Restaurant</Link></li>
-                      <li><Link href="/rooms?tab=rooms" className="text-sm text-gray-700 hover:text-black">Office Space</Link></li>
+                      <li><Link href="/rooms/cafe" className="text-sm text-gray-700 hover:text-black">Cafe</Link></li>
+                      <li><Link href="/rooms/restaurant" className="text-sm text-gray-700 hover:text-black">Restaurant</Link></li>
+                      <li><Link href="/rooms/office-space" className="text-sm text-gray-700 hover:text-black">Office Space</Link></li>
                     </ul>
                   </div>
                 </div>
@@ -252,9 +252,9 @@ export function Header() {
             </div>
           </div>
           <Link
-            href="/#about"
+            href="/about"
             className={`text-sm transition-colors hover:text-black ${
-              isActive("/#about") || pathname === "/" 
+              isActive("/about") 
                 ? "text-black" 
                 : "text-black/80"
             }`}
@@ -346,15 +346,24 @@ export function Header() {
               Rooms
             </Link>
             <Link
-              href="/#about"
-              className={`text-lg ${isActive("/#about") || pathname === "/" ? "text-black font-medium" : "text-foreground"}`}
+              href="/about"
+              className={`text-lg ${isActive("/about") ? "text-black font-medium" : "text-foreground"}`}
               onClick={() => setIsMenuOpen(false)}
             >
               About
             </Link>
+            <div className="mt-4 pt-4 border-t border-gray-200">
+              <p className="text-sm text-gray-500 mb-3">Plan Your Project</p>
+              <ul className="flex flex-col gap-2">
+                <li><Link href="/pricing" className="text-sm text-gray-700 hover:text-black">Pricing & Packages</Link></li>
+                <li><Link href="#" className="text-sm text-gray-700 hover:text-black">Interior Design Cost Guide</Link></li>
+                <li><Link href="#" className="text-sm text-gray-700 hover:text-black">Interior Design Style Quiz</Link></li>
+                <li><Link href="#" className="text-sm text-gray-700 hover:text-black">Gift Cards</Link></li>
+              </ul>
+            </div>
             <Link
               href="/contact"
-              className="mt-4 bg-foreground px-5 py-3 text-center text-sm font-medium text-background"
+              className="bg-foreground px-5 py-3 text-center text-sm font-medium text-background"
               onClick={() => setIsMenuOpen(false)}
             >
               Contact
