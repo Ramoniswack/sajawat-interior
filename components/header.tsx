@@ -100,12 +100,67 @@ export function Header() {
             </div>
           </div>
 
-          <Link
-            href="/services"
-            className="text-sm text-black/80 transition-colors hover:text-black"
-          >
-            Services
-          </Link>
+          <div className="group flex h-full items-center">
+            <Link
+              href="/services"
+              className="py-6 text-sm text-black/80 transition-colors hover:text-black group-hover:text-black group-hover:border-b-2 group-hover:border-[#e99816]"
+            >
+              Services
+            </Link>
+
+            {/* Mega Menu Container */}
+            <div className="absolute left-0 top-[76px] w-full bg-white opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 shadow-xl border-t border-gray-100 pb-10 pt-8 z-50">
+              <div className="mx-auto flex max-w-7xl justify-between px-6 md:px-10">
+                {/* Links Section */}
+                <div className="flex gap-16">
+                  {/* Column 1 */}
+                  <div className="flex flex-col">
+                    <h3 className="mb-4 text-xs font-bold uppercase tracking-wider text-gray-500">Residential</h3>
+                    <ul className="flex flex-col gap-3">
+                      <li><Link href="/services" className="text-sm text-gray-700 hover:text-black">Residential Interior</Link></li>
+                      <li><Link href="/services" className="text-sm text-gray-700 hover:text-black">Custom Design</Link></li>
+                      <li><Link href="/services" className="text-sm text-gray-700 hover:text-black">Space Planning</Link></li>
+                    </ul>
+                  </div>
+
+                  {/* Column 2 */}
+                  <div className="flex flex-col">
+                    <h3 className="mb-4 text-xs font-bold uppercase tracking-wider text-gray-500">Commercial</h3>
+                    <ul className="flex flex-col gap-3">
+                      <li><Link href="/services" className="text-sm text-gray-700 hover:text-black">Office or Workspace</Link></li>
+                      <li><Link href="/services" className="text-sm text-gray-700 hover:text-black">Hospitality or Café</Link></li>
+                      <li><Link href="/services" className="text-sm text-gray-700 hover:text-black">Retail Design</Link></li>
+                    </ul>
+                  </div>
+
+                  {/* Column 3 */}
+                  <div className="flex flex-col">
+                    <h3 className="mb-4 text-xs font-bold uppercase tracking-wider text-gray-500">Styling</h3>
+                    <ul className="flex flex-col gap-3">
+                      <li><Link href="/services" className="text-sm text-gray-700 hover:text-black">Furniture and Styling</Link></li>
+                      <li><Link href="/services" className="text-sm text-gray-700 hover:text-black">Art Selection</Link></li>
+                      <li><Link href="/services" className="text-sm text-gray-700 hover:text-black">Accessory Styling</Link></li>
+                    </ul>
+                  </div>
+                </div>
+
+                {/* Right Image/CTA Section */}
+                <div className="relative h-64 w-96 overflow-hidden rounded-xl bg-gray-100 group/card cursor-pointer">
+                  <img
+                    src="/images/luxury-living-room.png"
+                    alt="Professional Design Services"
+                    className="h-full w-full object-cover transition-transform duration-700 group-hover/card:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+                  <div className="absolute bottom-6 left-6 text-white">
+                    <p className="mb-1 text-xs font-bold uppercase tracking-wider">Design Services</p>
+                    <p className="mb-2 text-xl font-bold">Transform Your Space</p>
+                    <p className="text-sm text-gray-200">Expert interior design solutions</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
           <div className="group flex h-full items-center">
             <Link
               href="/rooms"
