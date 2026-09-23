@@ -2,6 +2,7 @@
 
 import { Header } from "@/components/header"
 import { FooterSection } from "@/components/sections/footer-section"
+import { AsymmetricGrid } from "@/components/ui/asymmetric-grid"
 
 const officeSpaceImages = [
   "https://images.unsplash.com/photo-1497215728101-856f4ea42174?q=80&w=800&auto=format&fit=crop",
@@ -53,17 +54,7 @@ export default function OfficeSpacePage() {
 
         <section className="py-24 bg-white">
           <div className="mx-auto max-w-7xl px-6 md:px-10">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-              {officeSpaceImages.map((image, index) => (
-                <div key={index} className="border border-gray-200 overflow-hidden">
-                  <img
-                    src={image}
-                    alt={`Office Space Design ${index + 1}`}
-                    className="h-64 w-full object-cover transition-transform duration-500 hover:scale-105"
-                  />
-                </div>
-              ))}
-            </div>
+            <AsymmetricGrid images={officeSpaceImages} />
           </div>
         </section>
       </main>

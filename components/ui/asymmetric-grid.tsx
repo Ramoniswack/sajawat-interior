@@ -12,7 +12,7 @@ export function AsymmetricGrid({ images, className }: AsymmetricGridProps) {
   const [visibleItems, setVisibleItems] = useState<number[]>([])
 
   useEffect(() => {
-    // Birth animation - scale in with offset
+    // Birth animation - scale in with offset (birthSpeed: 1200ms, birthOffset: 150ms)
     images.forEach((_, index) => {
       setTimeout(() => {
         setVisibleItems((prev) => [...prev, index])
@@ -33,15 +33,15 @@ export function AsymmetricGrid({ images, className }: AsymmetricGridProps) {
   }
 
   return (
-    <div className={cn("grid grid-cols-4 gap-[15px]", className)}>
+    <div className={cn("grid grid-cols-4 gap-[15px] auto-rows-[200px]", className)}>
       {images.map((image, index) => (
         <div
           key={index}
           className={cn(
-            "relative overflow-hidden rounded-lg bg-white",
+            "relative overflow-hidden bg-white min-h-[200px]",
             getSpanClass(index),
             visibleItems.includes(index) ? "scale-100 opacity-100" : "scale-0 opacity-0",
-            "transition-all duration-[1200ms] ease-out"
+            "transition-all duration-[1200ms] ease-out rounded-lg"
           )}
           style={{
             transitionDelay: `${index * 150}ms`,
