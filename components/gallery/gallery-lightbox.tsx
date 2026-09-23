@@ -4,8 +4,10 @@ import { useCallback, useEffect } from "react"
 import { ChevronLeft, ChevronRight, ImageIcon, Play, X } from "lucide-react"
 import type { GalleryItem } from "@/lib/gallery-data"
 
+type ExtendedGalleryItem = GalleryItem & { features?: string[] }
+
 type GalleryLightboxProps = {
-  items: GalleryItem[]
+  items: ExtendedGalleryItem[]
   index: number
   onClose: () => void
   onNavigate: (index: number) => void
@@ -111,6 +113,19 @@ export function GalleryLightbox({ items, index, onClose, onNavigate }: GalleryLi
       {item.description ? (
         <div className="border-t border-border px-4 py-3">
           <p className="mx-auto max-w-3xl text-sm text-muted-foreground" style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", sans-serif', WebkitFontSmoothing: 'antialiased', MozOsxFontSmoothing: 'grayscale', fontWeight: 300 }}>{item.description}</p>
+          {item.features && item.features.length > 0 && (
+            <div className="mx-auto max-w-3xl mt-3">
+              <h4 className="text-sm font-medium mb-2" style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", sans-serif', WebkitFontSmoothing: 'antialiased', MozOsxFontSmoothing: 'grayscale', fontWeight: 300, letterSpacing: '0.02em' }}>What We Offer:</h4>
+              <ul className="grid grid-cols-1 sm:grid-cols-2 gap-1">
+                {item.features.map((feature, index) => (
+                  <li key={index} className="text-sm text-muted-foreground flex items-center gap-2" style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", sans-serif', WebkitFontSmoothing: 'antialiased', MozOsxFontSmoothing: 'grayscale', fontWeight: 300 }}>
+                    <span className="w-1.5 h-1.5 bg-[#e99816] rounded-full flex-shrink-0" />
+                    {feature}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
         </div>
       ) : null}
     </div>

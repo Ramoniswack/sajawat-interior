@@ -20,6 +20,8 @@ export type GalleryItem = {
    * "tall" spans two rows, "wide" spans two columns, "large" spans both.
    */
   span?: "tall" | "wide" | "large"
+  /** Optional features list for services or other detailed items */
+  features?: string[]
 }
 
 /**

@@ -6,13 +6,15 @@ import { GalleryFilters } from "./gallery-filters"
 import { GalleryItem as GalleryItemCard } from "./gallery-item"
 import { GalleryLightbox } from "./gallery-lightbox"
 
+type ExtendedGalleryItem = GalleryItem & { features?: string[] }
+
 type GalleryProps = {
   /** Title shown in the header. */
   title?: string
   /** Supporting line shown under the title. */
   subtitle?: string
   /** Items to display. Defaults to the placeholder set in lib/gallery-data. */
-  items?: GalleryItem[]
+  items?: ExtendedGalleryItem[]
   /** Filter categories. Defaults to the placeholder set in lib/gallery-data. */
   categories?: { id: string; label: string }[]
 }
@@ -31,7 +33,7 @@ export function Gallery({
     [items, activeCategory],
   )
 
-  const handleSelect = (item: GalleryItem) => {
+  const handleSelect = (item: ExtendedGalleryItem) => {
     const index = filtered.findIndex((i) => i.id === item.id)
     if (index >= 0) setOpenIndex(index)
   }

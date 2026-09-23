@@ -799,3 +799,111 @@
   .social-icon svg { width: 12px; height: 12px; }
 }
 
+/* Services Page Custom Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.6s ease-out forwards;
+}
+
+.animate-slide-in-left {
+  animation: slideInLeft 0.6s ease-out forwards;
+}
+
+.animate-scale-in {
+  animation: scaleIn 0.4s ease-out forwards;
+}
+
+/* Service Card Hover Effects */
+.service-card-image {
+  transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.service-card:hover .service-card-image {
+  transform: scale(1.1);
+}
+
+.service-card-overlay {
+  transition: opacity 0.5s ease-in-out;
+}
+
+.service-card:hover .service-card-overlay {
+  opacity: 1;
+}
+
+.service-card-title {
+  transition: transform 0.5s ease-in-out;
+}
+
+.service-card:hover .service-card-title {
+  transform: translateY(-100%);
+}
+
+/* Modal Animation */
+.modal-backdrop {
+  animation: fadeIn 0.3s ease-out;
+}
+
+.modal-content {
+  animation: scaleIn 0.3s ease-out;
+}
+
+/* Process Step Hover */
+.process-step {
+  transition: all 0.3s ease;
+}
+
+.process-step:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+.process-step:hover .step-number {
+  color: #c9790b;
+}
+
+/* Button Micro-interactions */
+.button-hover {
+  transition: all 0.3s ease;
+}
+
+.button-hover:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(233, 152, 22, 0.3);
+}
+
+.button-hover:active {
+  transform: translateY(0);
+}
+
