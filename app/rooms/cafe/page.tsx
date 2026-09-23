@@ -2,7 +2,7 @@
 
 import { Header } from "@/components/header"
 import { FooterSection } from "@/components/sections/footer-section"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { RoomGalleryCard } from "@/components/rooms/room-gallery-card"
 
 const cafeImages = [
   {
@@ -133,19 +133,7 @@ export default function CafePage() {
             <h2 className="mb-12 text-3xl font-light text-foreground">Cafe Gallery</h2>
             <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
               {cafeImages.map((item, index) => (
-                <Card key={index} className="overflow-hidden">
-                  <div className="relative h-80 overflow-hidden">
-                    <img
-                      src={item.url}
-                      alt={item.title}
-                      className="h-full w-full object-cover transition-transform duration-300 hover:scale-105"
-                    />
-                  </div>
-                  <CardHeader className="pb-6">
-                    <CardTitle className="text-xl">{item.title}</CardTitle>
-                    <CardDescription className="text-base">{item.description}</CardDescription>
-                  </CardHeader>
-                </Card>
+                <RoomGalleryCard key={index} item={item} index={index} />
               ))}
             </div>
           </div>
@@ -156,19 +144,7 @@ export default function CafePage() {
             <h2 className="mb-12 text-3xl font-light text-foreground">By Style</h2>
             <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
               {byStyleImages.map((item, index) => (
-                <Card key={index} className="overflow-hidden">
-                  <div className="relative h-80 overflow-hidden">
-                    <img
-                      src={item.url}
-                      alt={item.title}
-                      className="h-full w-full object-cover transition-transform duration-300 hover:scale-105"
-                    />
-                  </div>
-                  <CardHeader className="pb-6">
-                    <CardTitle className="text-xl">{item.title}</CardTitle>
-                    <CardDescription className="text-base">{item.description}</CardDescription>
-                  </CardHeader>
-                </Card>
+                <RoomGalleryCard key={index} item={item} index={index} />
               ))}
             </div>
           </div>
@@ -179,19 +155,7 @@ export default function CafePage() {
             <h2 className="mb-12 text-3xl font-light text-foreground">By Location</h2>
             <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
               {byLocationImages.map((item, index) => (
-                <Card key={index} className="overflow-hidden">
-                  <div className="relative h-80 overflow-hidden">
-                    <img
-                      src={item.url}
-                      alt={item.title}
-                      className="h-full w-full object-cover transition-transform duration-300 hover:scale-105"
-                    />
-                  </div>
-                  <CardHeader className="pb-6">
-                    <CardTitle className="text-xl">{item.title}</CardTitle>
-                    <CardDescription className="text-base">{item.description}</CardDescription>
-                  </CardHeader>
-                </Card>
+                <RoomGalleryCard key={index} item={item} index={index} />
               ))}
             </div>
           </div>
