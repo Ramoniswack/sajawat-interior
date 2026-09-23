@@ -1,25 +1,33 @@
 "use client"
 
-import { useState } from "react"
+import { useRouter } from "next/navigation"
 import { Header } from "@/components/header"
 import { FooterSection } from "@/components/sections/footer-section"
 import { ServicesHero } from "@/components/services/services-hero"
 import { ServiceCard } from "@/components/services/service-card"
-import { ServiceModal } from "@/components/services/service-modal"
 import { services } from "@/lib/services-data-custom"
 
 export default function ServicesPage() {
-  const [selectedService, setSelectedService] = useState<any>(null)
-  const [isModalOpen, setIsModalOpen] = useState(false)
+  const router = useRouter()
 
   const handleLearnMore = (service: any) => {
-    setSelectedService(service)
-    setIsModalOpen(true)
-  }
+    // Map service IDs to their dedicated page routes
+    const routeMap: Record<string, string> = {
+      'residential-interior': '/services/residential-interior',
+      'custom-design': '/services/custom-design',
+      'space-planning': '/services/space-planning',
+      'office-workspace': '/services/office-workspace',
+      'hospitality-cafe': '/services/hospitality-cafe',
+      'retail-design': '/services/retail-design',
+      'furniture-styling': '/services/furniture-styling',
+      'art-selection': '/services/art-selection',
+      'accessory-styling': '/services/accessory-styling',
+    }
 
-  const handleCloseModal = () => {
-    setIsModalOpen(false)
-    setTimeout(() => setSelectedService(null), 300)
+    const route = routeMap[service.id]
+    if (route) {
+      router.push(route)
+    }
   }
 
   return (
@@ -57,7 +65,7 @@ export default function ServicesPage() {
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {services.map((service, index) => (
                 <ServiceCard
                   key={service.id}
@@ -189,12 +197,6 @@ export default function ServicesPage() {
       </main>
 
       <FooterSection />
-
-      <ServiceModal
-        service={selectedService}
-        isOpen={isModalOpen}
-        onClose={handleCloseModal}
-      />
     </div>
   )
 }

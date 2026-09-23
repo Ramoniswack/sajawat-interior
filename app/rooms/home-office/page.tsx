@@ -2,17 +2,95 @@
 
 import { Header } from "@/components/header"
 import { FooterSection } from "@/components/sections/footer-section"
-import { AsymmetricGrid } from "@/components/ui/asymmetric-grid"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 
 const homeOfficeImages = [
-  "https://images.unsplash.com/photo-1497215728101-856f4ea42174?q=80&w=800&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1518455027359-f3f8164ba6bd?q=80&w=800&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1505693314120-0d443867891c?q=80&w=800&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1524758631624-e2822e304c36?q=80&w=800&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1593640408182-31c70c8268f5?q=80&w=800&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1530018607912-eff2daa1bac4?q=80&w=800&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1593642632559-0c6d3fc62b89?q=80&w=800&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?q=80&w=800&auto=format&fit=crop",
+  {
+    url: "https://images.unsplash.com/photo-1497215728101-856f4ea42174?q=80&w=800&auto=format&fit=crop",
+    title: "Nepali Traditional",
+    description: "Warm earthy tones with traditional Nepali patterns and handcrafted wooden desk elements."
+  },
+  {
+    url: "https://images.unsplash.com/photo-1518455027359-f3f8164ba6bd?q=80&w=800&auto=format&fit=crop",
+    title: "Himalayan Minimalist",
+    description: "Clean lines inspired by mountain landscapes with natural materials and serene colors."
+  },
+  {
+    url: "https://images.unsplash.com/photo-1505693314120-0d443867891c?q=80&w=800&auto=format&fit=crop",
+    title: "Newari Heritage",
+    description: "Traditional Newari office design with intricate wood carvings and rich cultural motifs."
+  },
+  {
+    url: "https://images.unsplash.com/photo-1524758631624-e2822e304c36?q=80&w=800&auto=format&fit=crop",
+    title: "Kathmandu Contemporary",
+    description: "Modern design blended with traditional Nepali textiles and vibrant cultural colors."
+  },
+  {
+    url: "https://images.unsplash.com/photo-1593640408182-31c70c8268f5?q=80&w=800&auto=format&fit=crop",
+    title: "Mountain Retreat",
+    description: "Cozy atmosphere inspired by Himalayan homes with warm lighting and natural textures."
+  },
+  {
+    url: "https://images.unsplash.com/photo-1530018607912-eff2daa1bac4?q=80&w=800&auto=format&fit=crop",
+    title: "Tibetan Influence",
+    description: "Buddhist-inspired design with mandala patterns and spiritual color palettes."
+  },
+  {
+    url: "https://images.unsplash.com/photo-1593642632559-0c6d3fc62b89?q=80&w=800&auto=format&fit=crop",
+    title: "Pokhara Lakeside",
+    description: "Breezy, light-filled spaces inspired by lakeside living with natural materials."
+  },
+  {
+    url: "https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?q=80&w=800&auto=format&fit=crop",
+    title: "Royal Tharu Style",
+    description: "Traditional Tharu tribal patterns with earthy colors and handcrafted decorative elements."
+  },
+]
+
+const byStyleImages = [
+  {
+    url: "https://images.unsplash.com/photo-1497215728101-856f4ea42174?q=80&w=800&auto=format&fit=crop",
+    title: "Nepali Traditional",
+    description: "Warm earthy tones with traditional Nepali patterns and handcrafted wooden desk elements."
+  },
+  {
+    url: "https://images.unsplash.com/photo-1518455027359-f3f8164ba6bd?q=80&w=800&auto=format&fit=crop",
+    title: "Himalayan Minimalist",
+    description: "Clean lines inspired by mountain landscapes with natural materials and serene colors."
+  },
+  {
+    url: "https://images.unsplash.com/photo-1505693314120-0d443867891c?q=80&w=800&auto=format&fit=crop",
+    title: "Newari Heritage",
+    description: "Traditional Newari office design with intricate wood carvings and rich cultural motifs."
+  },
+  {
+    url: "https://images.unsplash.com/photo-1524758631624-e2822e304c36?q=80&w=800&auto=format&fit=crop",
+    title: "Kathmandu Contemporary",
+    description: "Modern design blended with traditional Nepali textiles and vibrant cultural colors."
+  },
+]
+
+const byLocationImages = [
+  {
+    url: "https://images.unsplash.com/photo-1593640408182-31c70c8268f5?q=80&w=800&auto=format&fit=crop",
+    title: "Kathmandu City",
+    description: "Space-efficient design perfect for Kathmandu living with smart storage solutions."
+  },
+  {
+    url: "https://images.unsplash.com/photo-1530018607912-eff2daa1bac4?q=80&w=800&auto=format&fit=crop",
+    title: "Lalitpur Residence",
+    description: "Dedicated workspace with room for productivity and traditional Newari elements."
+  },
+  {
+    url: "https://images.unsplash.com/photo-1593642632559-0c6d3fc62b89?q=80&w=800&auto=format&fit=crop",
+    title: "Pokhara Lakeside",
+    description: "Breezy, light-filled spaces inspired by lakeside living with natural materials."
+  },
+  {
+    url: "https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?q=80&w=800&auto=format&fit=crop",
+    title: "Chitwan Jungle",
+    description: "Rustic charm with natural materials and earthy colors inspired by Terai region."
+  },
 ]
 
 export default function HomeOfficePage() {
@@ -52,7 +130,70 @@ export default function HomeOfficePage() {
 
         <section className="py-24 bg-white">
           <div className="mx-auto max-w-7xl px-6 md:px-10">
-            <AsymmetricGrid images={homeOfficeImages} />
+            <h2 className="mb-12 text-3xl font-light text-foreground">Home Office Gallery</h2>
+            <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+              {homeOfficeImages.map((item, index) => (
+                <Card key={index} className="overflow-hidden">
+                  <div className="relative h-80 overflow-hidden">
+                    <img
+                      src={item.url}
+                      alt={item.title}
+                      className="h-full w-full object-cover transition-transform duration-300 hover:scale-105"
+                    />
+                  </div>
+                  <CardHeader className="pb-6">
+                    <CardTitle className="text-xl">{item.title}</CardTitle>
+                    <CardDescription className="text-base">{item.description}</CardDescription>
+                  </CardHeader>
+                </Card>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="py-24 bg-gray-50">
+          <div className="mx-auto max-w-7xl px-6 md:px-10">
+            <h2 className="mb-12 text-3xl font-light text-foreground">By Style</h2>
+            <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+              {byStyleImages.map((item, index) => (
+                <Card key={index} className="overflow-hidden">
+                  <div className="relative h-80 overflow-hidden">
+                    <img
+                      src={item.url}
+                      alt={item.title}
+                      className="h-full w-full object-cover transition-transform duration-300 hover:scale-105"
+                    />
+                  </div>
+                  <CardHeader className="pb-6">
+                    <CardTitle className="text-xl">{item.title}</CardTitle>
+                    <CardDescription className="text-base">{item.description}</CardDescription>
+                  </CardHeader>
+                </Card>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="py-24 bg-white">
+          <div className="mx-auto max-w-7xl px-6 md:px-10">
+            <h2 className="mb-12 text-3xl font-light text-foreground">By Location</h2>
+            <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+              {byLocationImages.map((item, index) => (
+                <Card key={index} className="overflow-hidden">
+                  <div className="relative h-80 overflow-hidden">
+                    <img
+                      src={item.url}
+                      alt={item.title}
+                      className="h-full w-full object-cover transition-transform duration-300 hover:scale-105"
+                    />
+                  </div>
+                  <CardHeader className="pb-6">
+                    <CardTitle className="text-xl">{item.title}</CardTitle>
+                    <CardDescription className="text-base">{item.description}</CardDescription>
+                  </CardHeader>
+                </Card>
+              ))}
+            </div>
           </div>
         </section>
       </main>

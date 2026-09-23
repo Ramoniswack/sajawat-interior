@@ -2,15 +2,85 @@
 
 import { Header } from "@/components/header"
 import { FooterSection } from "@/components/sections/footer-section"
-import { AsymmetricGrid } from "@/components/ui/asymmetric-grid"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 
 const bathroomImages = [
-  "https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?q=80&w=800&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1552321557-5fefe8c9ef14?q=80&w=800&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?q=80&w=800&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?q=80&w=800&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?q=80&w=800&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1552321557-5fefe8c9ef14?q=80&w=800&auto=format&fit=crop",
+  {
+    url: "https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?q=80&w=800&auto=format&fit=crop",
+    title: "Nepali Traditional",
+    description: "Warm earthy tones with traditional Nepali patterns and handcrafted stone elements."
+  },
+  {
+    url: "https://images.unsplash.com/photo-1552321557-5fefe8c9ef14?q=80&w=800&auto=format&fit=crop",
+    title: "Himalayan Spa",
+    description: "Calming colors inspired by mountain hot springs with natural materials for rejuvenation."
+  },
+  {
+    url: "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?q=80&w=800&auto=format&fit=crop",
+    title: "Newari Heritage",
+    description: "Traditional Newari bathroom design with intricate stone carvings and rich cultural motifs."
+  },
+  {
+    url: "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?q=80&w=800&auto=format&fit=crop",
+    title: "Kathmandu Contemporary",
+    description: "Modern design blended with traditional Nepali textiles and vibrant cultural colors."
+  },
+  {
+    url: "https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?q=80&w=800&auto=format&fit=crop",
+    title: "Mountain Retreat",
+    description: "Cozy atmosphere inspired by Himalayan homes with warm lighting and natural textures."
+  },
+  {
+    url: "https://images.unsplash.com/photo-1552321557-5fefe8c9ef14?q=80&w=800&auto=format&fit=crop",
+    title: "Royal Tharu Style",
+    description: "Traditional Tharu tribal patterns with earthy colors and handcrafted decorative elements."
+  },
+]
+
+const byStyleImages = [
+  {
+    url: "https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?q=80&w=800&auto=format&fit=crop",
+    title: "Nepali Traditional",
+    description: "Warm earthy tones with traditional Nepali patterns and handcrafted stone elements."
+  },
+  {
+    url: "https://images.unsplash.com/photo-1552321557-5fefe8c9ef14?q=80&w=800&auto=format&fit=crop",
+    title: "Himalayan Spa",
+    description: "Calming colors inspired by mountain hot springs with natural materials for rejuvenation."
+  },
+  {
+    url: "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?q=80&w=800&auto=format&fit=crop",
+    title: "Newari Heritage",
+    description: "Traditional Newari bathroom design with intricate stone carvings and rich cultural motifs."
+  },
+  {
+    url: "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?q=80&w=800&auto=format&fit=crop",
+    title: "Kathmandu Contemporary",
+    description: "Modern design blended with traditional Nepali textiles and vibrant cultural colors."
+  },
+]
+
+const byLocationImages = [
+  {
+    url: "https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?q=80&w=800&auto=format&fit=crop",
+    title: "Kathmandu City",
+    description: "Space-efficient design perfect for Kathmandu living with smart storage solutions."
+  },
+  {
+    url: "https://images.unsplash.com/photo-1552321557-5fefe8c9ef14?q=80&w=800&auto=format&fit=crop",
+    title: "Lalitpur Residence",
+    description: "Spacious layout with luxurious fixtures and traditional Newari elements."
+  },
+  {
+    url: "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?q=80&w=800&auto=format&fit=crop",
+    title: "Pokhara Lakeside",
+    description: "Breezy, light-filled spaces inspired by lakeside living with natural materials."
+  },
+  {
+    url: "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?q=80&w=800&auto=format&fit=crop",
+    title: "Chitwan Jungle",
+    description: "Rustic charm with natural materials and earthy colors inspired by Terai region."
+  },
 ]
 
 export default function BathroomPage() {
@@ -50,7 +120,70 @@ export default function BathroomPage() {
 
         <section className="py-24 bg-white">
           <div className="mx-auto max-w-7xl px-6 md:px-10">
-            <AsymmetricGrid images={bathroomImages} />
+            <h2 className="mb-12 text-3xl font-light text-foreground">Bathroom Gallery</h2>
+            <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+              {bathroomImages.map((item, index) => (
+                <Card key={index} className="overflow-hidden">
+                  <div className="relative h-80 overflow-hidden">
+                    <img
+                      src={item.url}
+                      alt={item.title}
+                      className="h-full w-full object-cover transition-transform duration-300 hover:scale-105"
+                    />
+                  </div>
+                  <CardHeader className="pb-6">
+                    <CardTitle className="text-xl">{item.title}</CardTitle>
+                    <CardDescription className="text-base">{item.description}</CardDescription>
+                  </CardHeader>
+                </Card>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="py-24 bg-gray-50">
+          <div className="mx-auto max-w-7xl px-6 md:px-10">
+            <h2 className="mb-12 text-3xl font-light text-foreground">By Style</h2>
+            <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+              {byStyleImages.map((item, index) => (
+                <Card key={index} className="overflow-hidden">
+                  <div className="relative h-80 overflow-hidden">
+                    <img
+                      src={item.url}
+                      alt={item.title}
+                      className="h-full w-full object-cover transition-transform duration-300 hover:scale-105"
+                    />
+                  </div>
+                  <CardHeader className="pb-6">
+                    <CardTitle className="text-xl">{item.title}</CardTitle>
+                    <CardDescription className="text-base">{item.description}</CardDescription>
+                  </CardHeader>
+                </Card>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="py-24 bg-white">
+          <div className="mx-auto max-w-7xl px-6 md:px-10">
+            <h2 className="mb-12 text-3xl font-light text-foreground">By Location</h2>
+            <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+              {byLocationImages.map((item, index) => (
+                <Card key={index} className="overflow-hidden">
+                  <div className="relative h-80 overflow-hidden">
+                    <img
+                      src={item.url}
+                      alt={item.title}
+                      className="h-full w-full object-cover transition-transform duration-300 hover:scale-105"
+                    />
+                  </div>
+                  <CardHeader className="pb-6">
+                    <CardTitle className="text-xl">{item.title}</CardTitle>
+                    <CardDescription className="text-base">{item.description}</CardDescription>
+                  </CardHeader>
+                </Card>
+              ))}
+            </div>
           </div>
         </section>
       </main>

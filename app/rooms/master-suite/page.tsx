@@ -2,19 +2,105 @@
 
 import { Header } from "@/components/header"
 import { FooterSection } from "@/components/sections/footer-section"
-import { AsymmetricGrid } from "@/components/ui/asymmetric-grid"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 
 const masterSuiteImages = [
-  "https://images.unsplash.com/photo-1616594039964-ae9021a400a0?q=80&w=800&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?q=80&w=800&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1616137466211-f939a420be84?q=80&w=800&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?q=80&w=800&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1556911220-e15b29be8c8f?q=80&w=800&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?q=80&w=800&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=80&w=800&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?q=80&w=800&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1616594039964-ae9021a400a0?q=80&w=800&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?q=80&w=800&auto=format&fit=crop",
+  {
+    url: "https://images.unsplash.com/photo-1616594039964-ae9021a400a0?q=80&w=800&auto=format&fit=crop",
+    title: "Nepali Traditional",
+    description: "Warm earthy tones with traditional Nepali patterns and handcrafted wooden bed frames."
+  },
+  {
+    url: "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?q=80&w=800&auto=format&fit=crop",
+    title: "Himalayan Minimalist",
+    description: "Clean lines inspired by mountain landscapes with natural materials and serene colors."
+  },
+  {
+    url: "https://images.unsplash.com/photo-1616137466211-f939a420be84?q=80&w=800&auto=format&fit=crop",
+    title: "Newari Heritage",
+    description: "Traditional Newari master suite with intricate wood carvings and rich cultural motifs."
+  },
+  {
+    url: "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?q=80&w=800&auto=format&fit=crop",
+    title: "Kathmandu Contemporary",
+    description: "Modern design blended with traditional Nepali textiles and vibrant cultural colors."
+  },
+  {
+    url: "https://images.unsplash.com/photo-1556911220-e15b29be8c8f?q=80&w=800&auto=format&fit=crop",
+    title: "Mountain Retreat",
+    description: "Cozy atmosphere inspired by Himalayan homes with warm lighting and natural textures."
+  },
+  {
+    url: "https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?q=80&w=800&auto=format&fit=crop",
+    title: "Tibetan Influence",
+    description: "Buddhist-inspired design with mandala patterns and spiritual color palettes."
+  },
+  {
+    url: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=80&w=800&auto=format&fit=crop",
+    title: "Pokhara Lakeside",
+    description: "Breezy, light-filled spaces inspired by lakeside living with natural materials."
+  },
+  {
+    url: "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?q=80&w=800&auto=format&fit=crop",
+    title: "Royal Tharu Style",
+    description: "Traditional Tharu tribal patterns with earthy colors and handcrafted decorative elements."
+  },
+  {
+    url: "https://images.unsplash.com/photo-1616594039964-ae9021a400a0?q=80&w=800&auto=format&fit=crop",
+    title: "Sherpa Luxury",
+    description: "Mountain-inspired luxury with Sherpa cultural elements and premium natural materials."
+  },
+  {
+    url: "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?q=80&w=800&auto=format&fit=crop",
+    title: "Gurung Heritage",
+    description: "Traditional Gurung patterns with warm colors and cultural significance."
+  },
+]
+
+const byStyleImages = [
+  {
+    url: "https://images.unsplash.com/photo-1616594039964-ae9021a400a0?q=80&w=800&auto=format&fit=crop",
+    title: "Nepali Traditional",
+    description: "Warm earthy tones with traditional Nepali patterns and handcrafted wooden bed frames."
+  },
+  {
+    url: "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?q=80&w=800&auto=format&fit=crop",
+    title: "Himalayan Minimalist",
+    description: "Clean lines inspired by mountain landscapes with natural materials and serene colors."
+  },
+  {
+    url: "https://images.unsplash.com/photo-1616137466211-f939a420be84?q=80&w=800&auto=format&fit=crop",
+    title: "Newari Heritage",
+    description: "Traditional Newari master suite with intricate wood carvings and rich cultural motifs."
+  },
+  {
+    url: "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?q=80&w=800&auto=format&fit=crop",
+    title: "Kathmandu Contemporary",
+    description: "Modern design blended with traditional Nepali textiles and vibrant cultural colors."
+  },
+]
+
+const byLocationImages = [
+  {
+    url: "https://images.unsplash.com/photo-1556911220-e15b29be8c8f?q=80&w=800&auto=format&fit=crop",
+    title: "Kathmandu City",
+    description: "Space-efficient design perfect for Kathmandu living with smart storage solutions."
+  },
+  {
+    url: "https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?q=80&w=800&auto=format&fit=crop",
+    title: "Lalitpur Residence",
+    description: "Spacious layout with luxurious amenities and traditional Newari elements."
+  },
+  {
+    url: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=80&w=800&auto=format&fit=crop",
+    title: "Pokhara Lakeside",
+    description: "Breezy, light-filled spaces inspired by lakeside living with natural materials."
+  },
+  {
+    url: "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?q=80&w=800&auto=format&fit=crop",
+    title: "Chitwan Jungle",
+    description: "Rustic charm with natural materials and earthy colors inspired by Terai region."
+  },
 ]
 
 export default function MasterSuitePage() {
@@ -54,7 +140,70 @@ export default function MasterSuitePage() {
 
         <section className="py-24 bg-white">
           <div className="mx-auto max-w-7xl px-6 md:px-10">
-            <AsymmetricGrid images={masterSuiteImages} />
+            <h2 className="mb-12 text-3xl font-light text-foreground">Master Suite Gallery</h2>
+            <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+              {masterSuiteImages.map((item, index) => (
+                <Card key={index} className="overflow-hidden">
+                  <div className="relative h-80 overflow-hidden">
+                    <img
+                      src={item.url}
+                      alt={item.title}
+                      className="h-full w-full object-cover transition-transform duration-300 hover:scale-105"
+                    />
+                  </div>
+                  <CardHeader className="pb-6">
+                    <CardTitle className="text-xl">{item.title}</CardTitle>
+                    <CardDescription className="text-base">{item.description}</CardDescription>
+                  </CardHeader>
+                </Card>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="py-24 bg-gray-50">
+          <div className="mx-auto max-w-7xl px-6 md:px-10">
+            <h2 className="mb-12 text-3xl font-light text-foreground">By Style</h2>
+            <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+              {byStyleImages.map((item, index) => (
+                <Card key={index} className="overflow-hidden">
+                  <div className="relative h-80 overflow-hidden">
+                    <img
+                      src={item.url}
+                      alt={item.title}
+                      className="h-full w-full object-cover transition-transform duration-300 hover:scale-105"
+                    />
+                  </div>
+                  <CardHeader className="pb-6">
+                    <CardTitle className="text-xl">{item.title}</CardTitle>
+                    <CardDescription className="text-base">{item.description}</CardDescription>
+                  </CardHeader>
+                </Card>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="py-24 bg-white">
+          <div className="mx-auto max-w-7xl px-6 md:px-10">
+            <h2 className="mb-12 text-3xl font-light text-foreground">By Location</h2>
+            <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+              {byLocationImages.map((item, index) => (
+                <Card key={index} className="overflow-hidden">
+                  <div className="relative h-80 overflow-hidden">
+                    <img
+                      src={item.url}
+                      alt={item.title}
+                      className="h-full w-full object-cover transition-transform duration-300 hover:scale-105"
+                    />
+                  </div>
+                  <CardHeader className="pb-6">
+                    <CardTitle className="text-xl">{item.title}</CardTitle>
+                    <CardDescription className="text-base">{item.description}</CardDescription>
+                  </CardHeader>
+                </Card>
+              ))}
+            </div>
           </div>
         </section>
       </main>

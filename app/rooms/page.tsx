@@ -1,11 +1,11 @@
 "use client"
 
 import { useState } from "react"
+import { useRouter } from "next/navigation"
 import { Header } from "@/components/header"
 import { FooterSection } from "@/components/sections/footer-section"
 import { RoomsHero } from "@/components/rooms/rooms-hero"
 import { RoomCard } from "@/components/rooms/room-card"
-import { RoomModal } from "@/components/rooms/room-modal"
 import { rooms } from "@/lib/rooms-data-custom"
 
 const roomCategories = [
@@ -19,27 +19,39 @@ const roomCategories = [
 ]
 
 export default function RoomsPage() {
-  const [selectedRoom, setSelectedRoom] = useState<any>(null)
-  const [isModalOpen, setIsModalOpen] = useState(false)
+  const router = useRouter()
   const [activeCategory, setActiveCategory] = useState("all")
 
   const handleLearnMore = (room: any) => {
-    setSelectedRoom(room)
-    setIsModalOpen(true)
-  }
+    // Map room IDs to their dedicated page routes
+    const routeMap: Record<string, string> = {
+      'living-room': '/rooms/living-room',
+      'dining-room': '/rooms/dining-room',
+      'family-room': '/rooms/family-room',
+      'bedroom': '/rooms/bedroom',
+      'master-suite': '/rooms/master-suite',
+      'home-office': '/rooms/home-office',
+      'kitchen': '/rooms/kitchen',
+      'bathroom': '/rooms/bathroom',
+      'laundry-room': '/rooms/laundry-room',
+      'cafe': '/rooms/cafe',
+      'restaurant': '/rooms/restaurant',
+      'office-space': '/rooms/office-space',
+    }
 
-  const handleCloseModal = () => {
-    setIsModalOpen(false)
-    setTimeout(() => setSelectedRoom(null), 300)
+    const route = routeMap[room.id]
+    if (route) {
+      router.push(route)
+    }
   }
 
   const filteredRooms = activeCategory === "all"
     ? rooms
     : rooms.filter((room) => {
-        if (activeCategory === "living") return room.id === "living-room"
-        if (activeCategory === "bedroom") return room.id === "bedroom"
+        if (activeCategory === "living") return room.id === "living-room" || room.id === "dining-room" || room.id === "family-room"
+        if (activeCategory === "bedroom") return room.id === "bedroom" || room.id === "master-suite"
         if (activeCategory === "kitchen") return room.id === "kitchen" || room.id === "dining-room"
-        if (activeCategory === "bathroom") return room.id === "bathroom"
+        if (activeCategory === "bathroom") return room.id === "bathroom" || room.id === "laundry-room"
         if (activeCategory === "office") return room.id === "home-office" || room.id === "office-space"
         if (activeCategory === "commercial") return room.id === "cafe" || room.id === "restaurant"
         return true
@@ -84,7 +96,8 @@ export default function RoomsPage() {
                   'large', 'medium', 'tall',
                   'medium', 'wide', 'small',
                   'tall', 'medium', 'large',
-                  'small', 'medium', 'wide'
+                  'small', 'medium', 'wide',
+                  'tall', 'medium', 'large'
                 ]
                 const size = sizes[index % sizes.length]
                 
@@ -210,12 +223,6 @@ export default function RoomsPage() {
       </main>
 
       <FooterSection />
-
-      <RoomModal
-        room={selectedRoom}
-        isOpen={isModalOpen}
-        onClose={handleCloseModal}
-      />
     </div>
   )
 }

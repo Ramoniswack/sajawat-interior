@@ -6,10 +6,34 @@ export const rooms = [
     image: '/images/luxury-living-room.png'
   },
   {
+    id: 'dining-room',
+    title: 'Dining Room',
+    description: 'Elevate your dining experience with elegant dining room designs. From intimate family dinners to grand entertaining, create memorable spaces for every occasion.',
+    image: '/images/luxury-dining-room.png'
+  },
+  {
+    id: 'family-room',
+    title: 'Family Room',
+    description: 'Design comfortable and inviting family rooms for quality time together. Create spaces that bring families together in comfort and style.',
+    image: '/images/luxury-living-room.png'
+  },
+  {
     id: 'bedroom',
     title: 'Bedroom',
     description: 'Create your personal sanctuary with bedroom designs that prioritize comfort, tranquility, and personal style. From serene retreats to dramatic master suites.',
     image: '/images/luxury-bedroom.png'
+  },
+  {
+    id: 'master-suite',
+    title: 'Master Suite',
+    description: 'Luxurious master suites designed for ultimate comfort and sophistication. Create spa-like retreats with premium amenities and elegant design.',
+    image: '/images/luxury-bedroom.png'
+  },
+  {
+    id: 'home-office',
+    title: 'Home Office',
+    description: 'Create productive, inspiring workspaces at home. Ergonomic design, natural lighting, and organizational solutions for the modern professional.',
+    image: '/images/hero-living-room.jpg'
   },
   {
     id: 'kitchen',
@@ -18,22 +42,16 @@ export const rooms = [
     image: '/images/luxury-kitchen.png'
   },
   {
-    id: 'dining-room',
-    title: 'Dining Room',
-    description: 'Elevate your dining experience with elegant dining room designs. From intimate family dinners to grand entertaining, create memorable spaces for every occasion.',
-    image: '/images/luxury-dining-room.png'
-  },
-  {
     id: 'bathroom',
     title: 'Bathroom',
     description: 'Transform your bathroom into a spa-like retreat. Luxurious fixtures, calming colors, and smart design for ultimate relaxation and functionality.',
     image: '/images/interior-view.png'
   },
   {
-    id: 'home-office',
-    title: 'Home Office',
-    description: 'Create productive, inspiring workspaces at home. Ergonomic design, natural lighting, and organizational solutions for the modern professional.',
-    image: '/images/hero-living-room.jpg'
+    id: 'laundry-room',
+    title: 'Laundry Room',
+    description: 'Efficient and organized laundry spaces for household management. Functional design with smart storage and workflow optimization.',
+    image: '/images/interior-view.png'
   },
   {
     id: 'cafe',
