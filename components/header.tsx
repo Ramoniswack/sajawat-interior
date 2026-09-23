@@ -2,15 +2,22 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { Menu, X, User, LogOut } from "lucide-react";
 
 const logoUrl = "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/logo-BXFvUsoRqPfmQg9wVzT7VpQnkxJzMn.png";
 
 export function Header() {
+  const pathname = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [isSignedIn, setIsSignedIn] = useState(false);
   const [isProfileOpen, setIsProfileOpen] = useState(false);
+
+  const isActive = (path: string) => {
+    if (path === "/") return pathname === "/";
+    return pathname?.startsWith(path);
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -42,7 +49,11 @@ export function Header() {
           <div className="group flex h-full items-center">
             <Link
               href="/design-ideas"
-              className="py-6 text-sm text-black/80 transition-colors hover:text-black group-hover:text-black group-hover:border-b-2 group-hover:border-[#38bdf8]"
+              className={`py-6 text-sm transition-colors group-hover:text-black group-hover:border-b-2 group-hover:border-[#38bdf8] ${
+                isActive("/design-ideas") 
+                  ? "text-black border-b-2 border-[#38bdf8]" 
+                  : "text-black/80 hover:text-black"
+              }`}
             >
               Design Idea
             </Link>
@@ -103,7 +114,11 @@ export function Header() {
           <div className="group flex h-full items-center">
             <Link
               href="/services"
-              className="py-6 text-sm text-black/80 transition-colors hover:text-black group-hover:text-black group-hover:border-b-2 group-hover:border-[#e99816]"
+              className={`py-6 text-sm transition-colors group-hover:text-black group-hover:border-b-2 group-hover:border-[#e99816] ${
+                isActive("/services") 
+                  ? "text-black border-b-2 border-[#e99816]" 
+                  : "text-black/80 hover:text-black"
+              }`}
             >
               Services
             </Link>
@@ -164,7 +179,11 @@ export function Header() {
           <div className="group flex h-full items-center">
             <Link
               href="/rooms"
-              className="py-6 text-sm text-black/80 transition-colors hover:text-black group-hover:text-black group-hover:border-b-2 group-hover:border-[#e99816]"
+              className={`py-6 text-sm transition-colors group-hover:text-black group-hover:border-b-2 group-hover:border-[#e99816] ${
+                isActive("/rooms") 
+                  ? "text-black border-b-2 border-[#e99816]" 
+                  : "text-black/80 hover:text-black"
+              }`}
             >
               Rooms
             </Link>
@@ -234,7 +253,11 @@ export function Header() {
           </div>
           <Link
             href="/#about"
-            className="text-sm text-black/80 transition-colors hover:text-black"
+            className={`text-sm transition-colors hover:text-black ${
+              isActive("/#about") || pathname === "/" 
+                ? "text-black" 
+                : "text-black/80"
+            }`}
           >
             About
           </Link>
@@ -303,28 +326,28 @@ export function Header() {
           <nav className="flex flex-col gap-6">
             <Link
               href="/design-ideas"
-              className="text-lg text-foreground"
+              className={`text-lg ${isActive("/design-ideas") ? "text-black font-medium" : "text-foreground"}`}
               onClick={() => setIsMenuOpen(false)}
             >
               Design Idea
             </Link>
             <Link
               href="/services"
-              className="text-lg text-foreground"
+              className={`text-lg ${isActive("/services") ? "text-black font-medium" : "text-foreground"}`}
               onClick={() => setIsMenuOpen(false)}
             >
               Services
             </Link>
             <Link
               href="/rooms"
-              className="text-lg text-foreground"
+              className={`text-lg ${isActive("/rooms") ? "text-black font-medium" : "text-foreground"}`}
               onClick={() => setIsMenuOpen(false)}
             >
               Rooms
             </Link>
             <Link
               href="/#about"
-              className="text-lg text-foreground"
+              className={`text-lg ${isActive("/#about") || pathname === "/" ? "text-black font-medium" : "text-foreground"}`}
               onClick={() => setIsMenuOpen(false)}
             >
               About
