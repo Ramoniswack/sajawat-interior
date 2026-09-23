@@ -132,33 +132,13 @@ export function Header() {
               <div className="mx-auto flex max-w-7xl justify-between px-6 md:px-10">
                 {/* Links Section */}
                 <div className="flex gap-16">
-                  {/* Column 1 */}
+                  {/* Single Column */}
                   <div className="flex flex-col">
-                    <h3 className="mb-4 text-xs font-bold uppercase tracking-wider text-gray-500">Residential</h3>
-                    <ul className="flex flex-col gap-3">
-                      <li><Link href="/services" className="text-sm text-gray-700 hover:text-black">Residential Interior</Link></li>
-                      <li><Link href="/services" className="text-sm text-gray-700 hover:text-black">Custom Design</Link></li>
-                      <li><Link href="/services" className="text-sm text-gray-700 hover:text-black">Space Planning</Link></li>
-                    </ul>
-                  </div>
-
-                  {/* Column 2 */}
-                  <div className="flex flex-col">
-                    <h3 className="mb-4 text-xs font-bold uppercase tracking-wider text-gray-500">Commercial</h3>
-                    <ul className="flex flex-col gap-3">
-                      <li><Link href="/services" className="text-sm text-gray-700 hover:text-black">Office or Workspace</Link></li>
-                      <li><Link href="/services" className="text-sm text-gray-700 hover:text-black">Hospitality or Café</Link></li>
-                      <li><Link href="/services" className="text-sm text-gray-700 hover:text-black">Retail Design</Link></li>
-                    </ul>
-                  </div>
-
-                  {/* Column 3 */}
-                  <div className="flex flex-col">
-                    <h3 className="mb-4 text-xs font-bold uppercase tracking-wider text-gray-500">Styling</h3>
-                    <ul className="flex flex-col gap-3">
-                      <li><Link href="/services" className="text-sm text-gray-700 hover:text-black">Furniture and Styling</Link></li>
-                      <li><Link href="/services" className="text-sm text-gray-700 hover:text-black">Art Selection</Link></li>
-                      <li><Link href="/services" className="text-sm text-gray-700 hover:text-black">Accessory Styling</Link></li>
+                    <h3 className="mb-4 text-xs font-bold uppercase tracking-wider text-gray-500">Service Information</h3>
+                    <ul className="flex flex-row gap-8">
+                      <li><Link href="/timing" className="text-sm text-gray-700 hover:text-black">Timing</Link></li>
+                      <li><Link href="/field-visit" className="text-sm text-gray-700 hover:text-black">Field Visit</Link></li>
+                      <li><Link href="/payment" className="text-sm text-gray-700 hover:text-black">Payment Options</Link></li>
                     </ul>
                   </div>
                 </div>
@@ -357,12 +337,11 @@ export function Header() {
               About
             </Link>
             <div className="mt-4 pt-4 border-t border-gray-200">
-              <p className="text-sm text-gray-500 mb-3">Plan Your Project</p>
+              <p className="text-sm text-gray-500 mb-3">Service Information</p>
               <ul className="flex flex-col gap-2">
-                <li><Link href="/pricing" className="text-sm text-gray-700 hover:text-black">Pricing & Packages</Link></li>
-                <li><Link href="#" className="text-sm text-gray-700 hover:text-black">Interior Design Cost Guide</Link></li>
-                <li><Link href="#" className="text-sm text-gray-700 hover:text-black">Interior Design Style Quiz</Link></li>
-                <li><Link href="#" className="text-sm text-gray-700 hover:text-black">Gift Cards</Link></li>
+                <li><Link href="/timing" className="text-sm text-gray-700 hover:text-black">Timing</Link></li>
+                <li><Link href="/field-visit" className="text-sm text-gray-700 hover:text-black">Field Visit</Link></li>
+                <li><Link href="/payment" className="text-sm text-gray-700 hover:text-black">Payment Options</Link></li>
               </ul>
             </div>
             <Link

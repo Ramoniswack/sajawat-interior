@@ -1,34 +1,11 @@
 "use client"
 
-import { useRouter } from "next/navigation"
+import Link from "next/link"
 import { Header } from "@/components/header"
 import { FooterSection } from "@/components/sections/footer-section"
 import { ServicesHero } from "@/components/services/services-hero"
-import { ServiceCard } from "@/components/services/service-card"
-import { services } from "@/lib/services-data-custom"
 
 export default function ServicesPage() {
-  const router = useRouter()
-
-  const handleLearnMore = (service: any) => {
-    // Map service IDs to their dedicated page routes
-    const routeMap: Record<string, string> = {
-      'residential-interior': '/services/residential-interior',
-      'custom-design': '/services/custom-design',
-      'space-planning': '/services/space-planning',
-      'office-workspace': '/services/office-workspace',
-      'hospitality-cafe': '/services/hospitality-cafe',
-      'retail-design': '/services/retail-design',
-      'furniture-styling': '/services/furniture-styling',
-      'art-selection': '/services/art-selection',
-      'accessory-styling': '/services/accessory-styling',
-    }
-
-    const route = routeMap[service.id]
-    if (route) {
-      router.push(route)
-    }
-  }
 
   return (
     <div className="flex min-h-screen flex-col">
@@ -61,19 +38,64 @@ export default function ServicesPage() {
                   fontWeight: 300,
                 }}
               >
-                Discover our comprehensive range of interior design services, each crafted to transform your space into something extraordinary.
+                Learn about our timing, field visit process, and payment options for your interior design project.
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {services.map((service, index) => (
-                <ServiceCard
-                  key={service.id}
-                  service={service}
-                  index={index}
-                  onLearnMore={handleLearnMore}
-                />
-              ))}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              <Link href="/timing" className="group">
+                <div className="border border-border bg-card p-8 transition-all hover:border-[#e99816] hover:shadow-lg" style={{ borderRadius: "0" }}>
+                  <div className="mb-4 text-4xl font-light text-[#e99816] transition-colors">01</div>
+                  <h3 className="mb-3 text-xl font-medium text-foreground" style={{
+                    fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", sans-serif',
+                    WebkitFontSmoothing: 'antialiased',
+                    MozOsxFontSmoothing: 'grayscale',
+                    letterSpacing: '0.02em',
+                  }}>Timing</h3>
+                  <p className="text-sm text-muted-foreground" style={{
+                    fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", sans-serif',
+                    WebkitFontSmoothing: 'antialiased',
+                    MozOsxFontSmoothing: 'grayscale',
+                    fontWeight: 300,
+                  }}>Learn about our project timelines and scheduling process.</p>
+                </div>
+              </Link>
+
+              <Link href="/field-visit" className="group">
+                <div className="border border-border bg-card p-8 transition-all hover:border-[#e99816] hover:shadow-lg" style={{ borderRadius: "0" }}>
+                  <div className="mb-4 text-4xl font-light text-[#e99816] transition-colors">02</div>
+                  <h3 className="mb-3 text-xl font-medium text-foreground" style={{
+                    fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", sans-serif',
+                    WebkitFontSmoothing: 'antialiased',
+                    MozOsxFontSmoothing: 'grayscale',
+                    letterSpacing: '0.02em',
+                  }}>Field Visit</h3>
+                  <p className="text-sm text-muted-foreground" style={{
+                    fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", sans-serif',
+                    WebkitFontSmoothing: 'antialiased',
+                    MozOsxFontSmoothing: 'grayscale',
+                    fontWeight: 300,
+                  }}>Understand our on-site consultation and assessment process.</p>
+                </div>
+              </Link>
+
+              <Link href="/payment" className="group">
+                <div className="border border-border bg-card p-8 transition-all hover:border-[#e99816] hover:shadow-lg" style={{ borderRadius: "0" }}>
+                  <div className="mb-4 text-4xl font-light text-[#e99816] transition-colors">03</div>
+                  <h3 className="mb-3 text-xl font-medium text-foreground" style={{
+                    fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", sans-serif',
+                    WebkitFontSmoothing: 'antialiased',
+                    MozOsxFontSmoothing: 'grayscale',
+                    letterSpacing: '0.02em',
+                  }}>Payment Options</h3>
+                  <p className="text-sm text-muted-foreground" style={{
+                    fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", sans-serif',
+                    WebkitFontSmoothing: 'antialiased',
+                    MozOsxFontSmoothing: 'grayscale',
+                    fontWeight: 300,
+                  }}>Explore our flexible payment plans and pricing structure.</p>
+                </div>
+              </Link>
             </div>
           </div>
         </section>

@@ -1,0 +1,395 @@
+"use client"
+
+import Link from "next/link"
+import { motion, useScroll, useTransform } from "framer-motion"
+import { Header } from "@/components/header"
+import { FooterSection } from "@/components/sections/footer-section"
+
+export default function TimingPage() {
+  const { scrollYProgress } = useScroll()
+
+  return (
+    <div className="flex min-h-screen flex-col">
+      <Header />
+
+      {/* Scroll Progress Bar */}
+      <motion.div
+        className="fixed top-0 left-0 right-0 h-1 bg-[#e99816] z-50 origin-left"
+        style={{ scaleX: scrollYProgress }}
+      />
+
+      <main className="flex-grow">
+        {/* Hero Section */}
+        <motion.section
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.8 }}
+          className="relative overflow-hidden bg-gradient-to-br from-background via-background to-muted/30"
+        >
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1, delay: 0.2 }}
+            className="absolute inset-0 overflow-hidden"
+          >
+            <motion.div
+              animate={{
+                x: [0, 100, 0],
+                y: [0, -100, 0],
+              }}
+              transition={{
+                duration: 20,
+                repeat: Infinity,
+                repeatType: "reverse",
+              }}
+              className="absolute -right-20 top-20 h-96 w-96 rounded-full bg-[#e99816]/5 blur-3xl"
+            />
+            <motion.div
+              animate={{
+                x: [0, -100, 0],
+                y: [0, 100, 0],
+              }}
+              transition={{
+                duration: 15,
+                repeat: Infinity,
+                repeatType: "reverse",
+              }}
+              className="absolute -left-20 bottom-20 h-96 w-96 rounded-full bg-[#e99816]/5 blur-3xl"
+            />
+          </motion.div>
+
+          <div className="relative mx-auto max-w-7xl px-6 py-24 md:px-10 md:py-32">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.3 }}
+              className="text-center"
+            >
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.6, delay: 0.4 }}
+                className="mb-6"
+              >
+                <span
+                  className="inline-block rounded-none border border-[#e99816] px-4 py-2 text-xs font-medium uppercase tracking-wider text-[#e99816]"
+                  style={{
+                    fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", sans-serif',
+                    WebkitFontSmoothing: 'antialiased',
+                    MozOsxFontSmoothing: 'grayscale',
+                    letterSpacing: '0.05em',
+                  }}
+                >
+                  Project Timeline
+                </span>
+              </motion.div>
+
+              <motion.h1
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.5 }}
+                className="mb-6 text-4xl font-light leading-tight text-foreground md:text-5xl lg:text-6xl"
+                style={{
+                  fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", sans-serif',
+                  WebkitFontSmoothing: 'antialiased',
+                  MozOsxFontSmoothing: 'grayscale',
+                  letterSpacing: '0.02em',
+                }}
+              >
+                Timing & Schedule
+                <motion.span
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.8, delay: 0.7 }}
+                  className="block text-[#e99816]"
+                >
+                  Your Project Timeline
+                </motion.span>
+              </motion.h1>
+
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.6 }}
+                className="mx-auto max-w-2xl text-lg text-muted-foreground leading-relaxed"
+                style={{
+                  fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", sans-serif',
+                  WebkitFontSmoothing: 'antialiased',
+                  MozOsxFontSmoothing: 'grayscale',
+                  fontWeight: 300,
+                }}
+              >
+                Understanding our project timeline helps you plan effectively. We provide clear schedules and milestones for every phase of your interior design journey.
+              </motion.p>
+            </motion.div>
+          </div>
+        </motion.section>
+
+        {/* Timeline Section */}
+        <motion.section
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.8 }}
+          className="py-24 bg-background"
+        >
+          <div className="mx-auto max-w-7xl px-6 md:px-10">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.6 }}
+              className="mb-16 text-center"
+            >
+              <h2
+                className="mb-4 text-3xl font-light text-foreground md:text-4xl"
+                style={{
+                  fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", sans-serif',
+                  WebkitFontSmoothing: 'antialiased',
+                  MozOsxFontSmoothing: 'grayscale',
+                  letterSpacing: '0.02em',
+                }}
+              >
+                Project Phases
+              </h2>
+              <motion.p
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                className="mx-auto max-w-2xl text-base text-muted-foreground"
+                style={{
+                  fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", sans-serif',
+                  WebkitFontSmoothing: 'antialiased',
+                  MozOsxFontSmoothing: 'grayscale',
+                  fontWeight: 300,
+                }}
+              >
+                Each phase is carefully planned to ensure quality and timely delivery
+              </motion.p>
+            </motion.div>
+
+            <div className="relative">
+              {/* Animated Timeline Line */}
+              <motion.div
+                initial={{ scaleY: 0 }}
+                whileInView={{ scaleY: 1 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ duration: 1, ease: "easeOut" }}
+                className="absolute left-8 md:left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-[#e99816] to-[#e99816]/20 origin-top"
+              />
+
+              <div className="space-y-12">
+                {[
+                  {
+                    phase: "Phase 1",
+                    title: "Initial Consultation",
+                    duration: "1-2 weeks",
+                    description: "Initial meeting, site assessment, and requirement gathering. We understand your vision and establish project scope."
+                  },
+                  {
+                    phase: "Phase 2",
+                    title: "Design Development",
+                    duration: "3-4 weeks",
+                    description: "Concept development, mood boards, space planning, and detailed design presentations. Multiple iterations until approval."
+                  },
+                  {
+                    phase: "Phase 3",
+                    title: "Documentation & Procurement",
+                    duration: "2-3 weeks",
+                    description: "Final drawings, material selection, vendor coordination, and procurement planning. All specifications documented."
+                  },
+                  {
+                    phase: "Phase 4",
+                    title: "Implementation",
+                    duration: "6-12 weeks",
+                    description: "Construction, installation, and project management. Regular site visits and progress updates throughout execution."
+                  },
+                  {
+                    phase: "Phase 5",
+                    title: "Final Handover",
+                    duration: "1 week",
+                    description: "Final inspection, snag list completion, styling, and project handover. Training on maintenance if required."
+                  }
+                ].map((item, index) => (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true, margin: "-100px" }}
+                    transition={{ duration: 0.6, delay: index * 0.1 }}
+                    className={`relative flex items-center ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'}`}
+                  >
+                    {/* Timeline Dot */}
+                    <motion.div
+                      initial={{ scale: 0 }}
+                      whileInView={{ scale: 1 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.4, delay: index * 0.1 + 0.2 }}
+                      whileHover={{ scale: 1.2 }}
+                      className="absolute left-8 md:left-1/2 w-4 h-4 bg-[#e99816] rounded-full border-4 border-background z-10 -translate-x-1/2 cursor-pointer"
+                    />
+
+                    {/* Content Card */}
+                    <div className={`ml-16 md:ml-0 w-full md:w-5/12 ${index % 2 === 0 ? 'md:pr-12' : 'md:pl-12'}`}>
+                      <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.5, delay: index * 0.1 + 0.3 }}
+                        whileHover={{ scale: 1.02, y: -5 }}
+                        className="border border-border bg-card p-6 transition-all hover:border-[#e99816] hover:shadow-lg"
+                        style={{ borderRadius: "0" }}
+                      >
+                        <div className="mb-2 text-sm font-medium text-[#e99816] uppercase tracking-wider">{item.phase}</div>
+                        <h3
+                          className="mb-3 text-xl font-medium text-foreground"
+                          style={{
+                            fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", sans-serif',
+                            WebkitFontSmoothing: 'antialiased',
+                            MozOsxFontSmoothing: 'grayscale',
+                            letterSpacing: '0.02em',
+                          }}
+                        >
+                          {item.title}
+                        </h3>
+                        <p
+                          className="text-sm text-muted-foreground leading-relaxed mb-4"
+                          style={{
+                            fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", sans-serif',
+                            WebkitFontSmoothing: 'antialiased',
+                            MozOsxFontSmoothing: 'grayscale',
+                            fontWeight: 300,
+                          }}
+                        >
+                          {item.description}
+                        </p>
+                        <motion.div
+                          whileHover={{ scale: 1.05 }}
+                          className="inline-block bg-[#e99816]/10 px-3 py-1"
+                        >
+                          <span className="text-sm font-medium text-[#e99816]">{item.duration}</span>
+                        </motion.div>
+                      </motion.div>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </motion.section>
+
+        {/* Important Notes */}
+        <section className="py-24 bg-muted/30">
+          <div className="mx-auto max-w-7xl px-6 md:px-10">
+            <div className="mb-16 text-center">
+              <h2
+                className="mb-4 text-3xl font-light text-foreground md:text-4xl"
+                style={{
+                  fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", sans-serif',
+                  WebkitFontSmoothing: 'antialiased',
+                  MozOsxFontSmoothing: 'grayscale',
+                  letterSpacing: '0.02em',
+                }}
+              >
+                Important Notes
+              </h2>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <div className="border border-border bg-card p-6" style={{ borderRadius: "0" }}>
+                <h3 className="mb-3 text-lg font-medium text-foreground">Timeline Variations</h3>
+                <p className="text-sm text-muted-foreground" style={{
+                  fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", sans-serif',
+                  WebkitFontSmoothing: 'antialiased',
+                  MozOsxFontSmoothing: 'grayscale',
+                  fontWeight: 300,
+                }}>
+                  Timelines may vary based on project complexity, size, and client response time. We provide realistic estimates and keep you informed of any changes.
+                </p>
+              </div>
+
+              <div className="border border-border bg-card p-6" style={{ borderRadius: "0" }}>
+                <h3 className="mb-3 text-lg font-medium text-foreground">Client Availability</h3>
+                <p className="text-sm text-muted-foreground" style={{
+                  fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", sans-serif',
+                  WebkitFontSmoothing: 'antialiased',
+                  MozOsxFontSmoothing: 'grayscale',
+                  fontWeight: 300,
+                }}>
+                  Your timely feedback and approvals are crucial for maintaining the schedule. We schedule regular check-ins to ensure smooth progress.
+                </p>
+              </div>
+
+              <div className="border border-border bg-card p-6" style={{ borderRadius: "0" }}>
+                <h3 className="mb-3 text-lg font-medium text-foreground">Material Lead Times</h3>
+                <p className="text-sm text-muted-foreground" style={{
+                  fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", sans-serif',
+                  WebkitFontSmoothing: 'antialiased',
+                  MozOsxFontSmoothing: 'grayscale',
+                  fontWeight: 300,
+                }}>
+                  Custom materials and furniture may have longer lead times. We factor these into our planning and offer alternatives when needed.
+                </p>
+              </div>
+
+              <div className="border border-border bg-card p-6" style={{ borderRadius: "0" }}>
+                <h3 className="mb-3 text-lg font-medium text-foreground">Quality Assurance</h3>
+                <p className="text-sm text-muted-foreground" style={{
+                  fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", sans-serif',
+                  WebkitFontSmoothing: 'antialiased',
+                  MozOsxFontSmoothing: 'grayscale',
+                  fontWeight: 300,
+                }}>
+                  We never compromise quality for speed. Our timelines include adequate time for quality checks and refinements at each stage.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* CTA Section */}
+        <section className="py-24 bg-[#e99816]">
+          <div className="mx-auto max-w-4xl px-6 text-center">
+            <h2
+              className="mb-6 text-3xl font-light text-white md:text-4xl"
+              style={{
+                fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", sans-serif',
+                WebkitFontSmoothing: 'antialiased',
+                MozOsxFontSmoothing: 'grayscale',
+                letterSpacing: '0.02em',
+              }}
+            >
+              Ready to Start Your Project?
+            </h2>
+            <p
+              className="mb-8 text-lg text-white/90"
+              style={{
+                fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", sans-serif',
+                WebkitFontSmoothing: 'antialiased',
+                MozOsxFontSmoothing: 'grayscale',
+                fontWeight: 300,
+              }}
+            >
+              Contact us to discuss your timeline and get a personalized project schedule.
+            </p>
+            <Link
+              href="/contact"
+              className="button-hover inline-block rounded-none bg-white px-8 py-4 text-sm font-medium text-[#e99816] transition-colors hover:bg-gray-100"
+              style={{
+                fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", sans-serif',
+                WebkitFontSmoothing: 'antialiased',
+                MozOsxFontSmoothing: 'grayscale',
+                letterSpacing: '0.02em',
+              }}
+            >
+              Contact Us Today
+            </Link>
+          </div>
+        </section>
+      </main>
+
+      <FooterSection />
+    </div>
+  )
+}
