@@ -1,10 +1,12 @@
 "use client"
 
 import { useState } from "react"
+import { useRouter } from "next/navigation"
 import { Header } from "@/components/header"
 import { FooterSection } from "@/components/sections/footer-section"
 import { RoomModal } from "@/components/rooms/room-modal"
 import { FluidCardStack } from "@/components/ui/fluid-card-stack"
+import { livingRoomStyles } from "@/components/rooms/living-room-styles"
 
 const livingRoomImages = [
   {
@@ -49,28 +51,6 @@ const livingRoomImages = [
   },
 ]
 
-const byStyleCards = [
-  {
-    title: "Nepali Traditional",
-    image: "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?q=80&w=800&auto=format&fit=crop",
-    detail: "Warm earthy tones with traditional Nepali patterns and handcrafted wooden elements."
-  },
-  {
-    title: "Himalayan Minimalist",
-    image: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=800&auto=format&fit=crop",
-    detail: "Clean lines inspired by mountain landscapes with natural materials and serene colors."
-  },
-  {
-    title: "Newari Heritage",
-    image: "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?q=80&w=800&auto=format&fit=crop",
-    detail: "Traditional Newari architecture with intricate wood carvings and rich cultural motifs."
-  },
-  {
-    title: "Kathmandu Contemporary",
-    image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=800&auto=format&fit=crop",
-    detail: "Modern design blended with traditional Nepali textiles and vibrant cultural colors."
-  },
-]
 
 const byLocationCards = [
   {
@@ -96,6 +76,7 @@ const byLocationCards = [
 ]
 
 export default function LivingRoomPage() {
+  const router = useRouter()
   const [selectedRoom, setSelectedRoom] = useState<any>(null)
   const [isModalOpen, setIsModalOpen] = useState(false)
 
@@ -177,7 +158,13 @@ export default function LivingRoomPage() {
               </p>
             </div>
             <div className="flex justify-center">
-              <FluidCardStack cards={byStyleCards} onCardClick={(card) => handleExplore({ title: card.title, description: card.detail, url: '' })} />
+              <FluidCardStack
+                cards={livingRoomStyles.map(({ title, image, detail }) => ({ title, image, detail }))}
+                onCardClick={(card) => {
+                  const style = livingRoomStyles.find((item) => item.title === card.title)
+                  if (style) router.push(`/rooms/living-room/style/${style.slug}`)
+                }}
+              />
             </div>
           </div>
         </section>
