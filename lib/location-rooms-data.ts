@@ -1,15 +1,15 @@
-import { bathroomLocations } from "@/components/rooms/bathroom-styles"
-import { bedroomLocations } from "@/components/rooms/bedroom-styles"
-import { cafeLocations } from "@/components/rooms/cafe-styles"
-import { diningRoomLocations } from "@/components/rooms/dining-room-styles"
-import { familyRoomLocations } from "@/components/rooms/family-room-styles"
-import { homeOfficeLocations } from "@/components/rooms/home-office-styles"
-import { kitchenLocations } from "@/components/rooms/kitchen-styles"
-import { laundryRoomLocations } from "@/components/rooms/laundry-room-styles"
-import { livingRoomLocations } from "@/components/rooms/living-room-styles"
-import { masterSuiteLocations } from "@/components/rooms/master-suite-styles"
-import { officeSpaceLocations } from "@/components/rooms/office-space-styles"
-import { restaurantLocations } from "@/components/rooms/restaurant-styles"
+import { bathroomStyles, bathroomLocations } from "@/components/rooms/bathroom-styles"
+import { bedroomStyles, bedroomLocations } from "@/components/rooms/bedroom-styles"
+import { cafeStyles, cafeLocations } from "@/components/rooms/cafe-styles"
+import { diningRoomStyles, diningRoomLocations } from "@/components/rooms/dining-room-styles"
+import { familyRoomStyles, familyRoomLocations } from "@/components/rooms/family-room-styles"
+import { homeOfficeStyles, homeOfficeLocations } from "@/components/rooms/home-office-styles"
+import { kitchenStyles, kitchenLocations } from "@/components/rooms/kitchen-styles"
+import { laundryRoomStyles, laundryRoomLocations } from "@/components/rooms/laundry-room-styles"
+import { livingRoomStyles, livingRoomLocations } from "@/components/rooms/living-room-styles"
+import { masterSuiteStyles, masterSuiteLocations } from "@/components/rooms/master-suite-styles"
+import { officeSpaceStyles, officeSpaceLocations } from "@/components/rooms/office-space-styles"
+import { restaurantStyles, restaurantLocations } from "@/components/rooms/restaurant-styles"
 
 export type RoomDesign = {
   roomType: string
@@ -19,6 +19,13 @@ export type RoomDesign = {
 }
 
 export type LocationData = {
+  slug: string
+  title: string
+  description: string
+  designs: RoomDesign[]
+}
+
+export type StyleData = {
   slug: string
   title: string
   description: string
@@ -121,7 +128,61 @@ function aggregateDesignsByLocation(): Record<string, LocationData> {
   return locationData
 }
 
+function aggregateDesignsByStyle(): Record<string, StyleData> {
+  const allRooms = [
+    { type: "bathroom", styles: bathroomStyles },
+    { type: "bedroom", styles: bedroomStyles },
+    { type: "cafe", styles: cafeStyles },
+    { type: "dining-room", styles: diningRoomStyles },
+    { type: "family-room", styles: familyRoomStyles },
+    { type: "home-office", styles: homeOfficeStyles },
+    { type: "kitchen", styles: kitchenStyles },
+    { type: "laundry-room", styles: laundryRoomStyles },
+    { type: "living-room", styles: livingRoomStyles },
+    { type: "master-suite", styles: masterSuiteStyles },
+    { type: "office-space", styles: officeSpaceStyles },
+    { type: "restaurant", styles: restaurantStyles },
+  ]
+
+  const styleData: Record<string, StyleData> = {}
+
+  allRooms.forEach(({ type, styles }) => {
+    styles.forEach((style) => {
+      const key = style.slug
+
+      if (!styleData[key]) {
+        styleData[key] = {
+          slug: key,
+          title: style.title,
+          description: style.description,
+          designs: [],
+        }
+      }
+
+      // Add designs from this room type for this style
+      style.gallery.forEach((item) => {
+        styleData[key].designs.push({
+          roomType: type,
+          roomName: roomTypeNames[type] || type,
+          image: item.image,
+          alt: item.alt,
+        })
+      })
+    })
+  })
+
+  // Filter out styles with no designs
+  Object.keys(styleData).forEach(key => {
+    if (styleData[key].designs.length === 0) {
+      delete styleData[key]
+    }
+  })
+
+  return styleData
+}
+
 export const locationRoomsData = aggregateDesignsByLocation()
+export const styleRoomsData = aggregateDesignsByStyle()
 
 export const locationDescriptions: Record<string, { title: string; description: string }> = {
   "kathmandu": {
@@ -139,5 +200,28 @@ export const locationDescriptions: Record<string, { title: string; description: 
   "lalitpur": {
     title: "Lalitpur Residence",
     description: "Traditional Newari craftsmanship meets modern luxury in Lalitpur homes. Features intricate woodwork, traditional patterns, and contemporary amenities across all room types from dining spaces to offices."
+  },
+}
+
+export const styleDescriptions: Record<string, { title: string; description: string }> = {
+  "nepali-traditional": {
+    title: "Nepali Traditional",
+    description: "Warm earthy tones with traditional Nepali patterns and handcrafted elements across all room types."
+  },
+  "himalayan-spa": {
+    title: "Himalayan Spa",
+    description: "Calming colors inspired by mountain hot springs with natural materials for rejuvenation."
+  },
+  "himalayan-minimalist": {
+    title: "Himalayan Minimalist",
+    description: "Clean lines inspired by mountain landscapes with natural materials and serene colors."
+  },
+  "newari-heritage": {
+    title: "Newari Heritage",
+    description: "Traditional Newari design with intricate carvings and rich cultural motifs."
+  },
+  "kathmandu-contemporary": {
+    title: "Kathmandu Contemporary",
+    description: "Modern design blended with traditional Nepali textiles and vibrant cultural colors."
   },
 }

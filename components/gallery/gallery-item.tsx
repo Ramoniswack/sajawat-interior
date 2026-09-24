@@ -134,6 +134,15 @@ export function GalleryItem({ item, onSelect }: GalleryItemProps) {
     if (item.category === "location" && item.location) {
       return `/design-ideas/location/${item.location}`
     }
+    // For featured items, navigate to style gallery if available, otherwise location
+    if (item.category === "featured") {
+      if (item.style) {
+        return `/design-ideas/style/${item.style}`
+      }
+      if (item.location) {
+        return `/design-ideas/location/${item.location}`
+      }
+    }
     return `/design-ideas/${item.id}`
   }
 

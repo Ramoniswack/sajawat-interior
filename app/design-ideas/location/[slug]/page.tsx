@@ -1,9 +1,9 @@
 import { notFound } from "next/navigation"
 import { RoomGallery } from "@/components/rooms/room-gallery"
-import { designIdeasItems, locationDescriptions } from "@/lib/design-ideas-data"
+import { locationRoomsData } from "@/lib/location-rooms-data"
 
 export function generateStaticParams() {
-  return Object.keys(locationDescriptions).map((slug) => ({ slug }))
+  return Object.keys(locationRoomsData).map((slug) => ({ slug }))
 }
 
 export default async function DesignIdeasLocationGallery({
@@ -12,31 +12,28 @@ export default async function DesignIdeasLocationGallery({
   params: Promise<{ slug: string }>
 }) {
   const { slug } = await params
-  const locationData = locationDescriptions[slug]
+  const roomData = locationRoomsData[slug]
 
-  if (!locationData) notFound()
+  if (!roomData) notFound()
 
-  // Filter items by this location - only show related designs
-  const galleryItems = designIdeasItems
-    .filter(item => item.location === slug)
-    .map(item => ({
-      image: item.src,
-      alt: item.alt || item.title,
-      category: item.category,
-      style: item.style,
-    }))
+  // Get all designs from all room types for this location
+  const galleryItems = roomData.designs.map(design => ({
+    image: design.image,
+    alt: `${design.roomName} - ${design.alt}`,
+    category: design.roomType,
+  }))
 
   return (
     <RoomGallery
-      title={locationData.title}
-      description={locationData.description}
+      title={roomData.title}
+      description={roomData.description}
       gallery={galleryItems}
       backHref="/design-ideas#by-location"
       backLabel="All locations"
       collectionLabel="location collection"
-      galleryTitle={`${locationData.title} Gallery`}
-      galleryDescription={`Explore the unique design characteristics and cultural influences that define ${locationData.title.toLowerCase()} interiors.`}
-      showFilters={false}
+      galleryTitle={`${roomData.title} Gallery`}
+      galleryDescription={`Explore the unique design characteristics and cultural influences that define ${roomData.title.toLowerCase()} interiors across all room types.`}
+      showFilters={true}
     />
   )
 }

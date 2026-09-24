@@ -8,68 +8,58 @@ export const designIdeasCategories: { id: string; label: string }[] = [
 ]
 
 export const designIdeasItems: GalleryItem[] = [
-  // Styles
+  // Styles - using room style slugs
   {
     id: "1",
-    title: "Newari Contemporary Fusion",
-    description: "Experience the perfect harmony of traditional Newari architecture and contemporary design. This style features exposed red brick walls, intricately carved wooden elements, paired with modern minimalist furniture.",
+    title: "Nepali Traditional",
+    description: "Warm earthy tones with traditional Nepali patterns and handcrafted elements across all room types.",
     category: "style",
-    style: "newari-contemporary",
+    style: "nepali-traditional",
     type: "image",
     src: "/images/luxury-living-room.png",
     span: "large",
   },
   {
     id: "2",
-    title: "Nepali Mongolian Modern",
-    description: "Drawing inspiration from the rich heritage of Gurung, Magar, and Tamang cultures, this modern style incorporates traditional geometric rugs, cultural artifacts, and elegant wooden furniture.",
+    title: "Himalayan Spa",
+    description: "Calming colors inspired by mountain hot springs with natural materials for rejuvenation.",
     category: "style",
-    style: "mongolian-modern",
+    style: "himalayan-spa",
     type: "image",
     src: "/images/luxury-bedroom.png",
     span: "tall",
   },
   {
     id: "3",
-    title: "Modern Nepali Minimalist",
-    description: "Embracing the 'less is more' philosophy, the Modern Nepali Minimalist style focuses on clean lines, natural materials, and uncluttered spaces. Subtle traditional motifs are integrated thoughtfully.",
+    title: "Himalayan Minimalist",
+    description: "Clean lines inspired by mountain landscapes with natural materials and serene colors.",
     category: "style",
-    style: "nepali-minimalist",
+    style: "himalayan-minimalist",
     type: "image",
     src: "/images/luxury-kitchen.png",
     span: "wide",
   },
   {
     id: "4",
-    title: "Nepali Rustic",
-    description: "Capture the charm of a mountain cabin with the Nepali Rustic aesthetic. This style highlights exposed stone walls, raw timber beams, and mud-plastered effects, complemented by warm textiles.",
+    title: "Newari Heritage",
+    description: "Traditional Newari design with intricate carvings and rich cultural motifs.",
     category: "style",
-    style: "nepali-rustic",
+    style: "newari-heritage",
     type: "image",
     src: "/images/luxury-dining-room.png",
     span: "tall",
   },
   {
     id: "5",
-    title: "Nepali Biophilic",
-    description: "Connect with nature through the Nepali Biophilic design. By incorporating abundant indoor plants, bamboo elements, and traditional Dhaka fabric accents, this style blurs the lines between indoor and outdoor.",
+    title: "Kathmandu Contemporary",
+    description: "Modern design blended with traditional Nepali textiles and vibrant cultural colors.",
     category: "style",
-    style: "nepali-biophilic",
+    style: "kathmandu-contemporary",
     type: "image",
     src: "/images/luxury-living-room.png",
     span: "tall",
   },
-  {
-    id: "12",
-    title: "Himalayan Spa",
-    description: "Calming colors inspired by mountain hot springs with natural materials for rejuvenation. Features stone elements, warm lighting, and therapeutic water features.",
-    category: "style",
-    style: "himalayan-spa",
-    type: "image",
-    src: "/images/luxury-bedroom.png",
-    span: "wide",
-  },
-  // Locations
+  // Locations - using room location slugs
   {
     id: "6",
     title: "Kathmandu City",
@@ -110,12 +100,14 @@ export const designIdeasItems: GalleryItem[] = [
     src: "/images/luxury-living-room.png",
     span: "large",
   },
-  // Featured
+  // Featured - navigate to style galleries
   {
     id: "9",
     title: "Modern Living Room",
     description: "A stunning modern living room design that combines comfort with contemporary aesthetics, perfect for urban living in Kathmandu.",
     category: "featured",
+    style: "kathmandu-contemporary",
+    location: "kathmandu",
     type: "image",
     src: "/images/luxury-living-room.png",
     span: "large",
@@ -125,6 +117,8 @@ export const designIdeasItems: GalleryItem[] = [
     title: "Serene Bedroom",
     description: "A peaceful bedroom retreat inspired by Pokhara's lakeside tranquility, featuring natural materials and calming colors.",
     category: "featured",
+    style: "himalayan-minimalist",
+    location: "pokhara",
     type: "image",
     src: "/images/luxury-bedroom.png",
     span: "tall",
@@ -134,56 +128,10 @@ export const designIdeasItems: GalleryItem[] = [
     title: "Contemporary Kitchen",
     description: "A modern kitchen design from Lalitpur that blends functionality with elegant aesthetics, perfect for the contemporary home.",
     category: "featured",
+    style: "newari-heritage",
+    location: "lalitpur",
     type: "image",
     src: "/images/luxury-kitchen.png",
     span: "wide",
   },
 ]
-
-// Style descriptions for gallery pages
-export const styleDescriptions: Record<string, { title: string; description: string }> = {
-  "newari-contemporary": {
-    title: "Newari Contemporary Fusion",
-    description: "Experience the perfect harmony of traditional Newari architecture and contemporary design. This style features exposed red brick walls, intricately carved wooden elements, paired with modern minimalist furniture."
-  },
-  "mongolian-modern": {
-    title: "Nepali Mongolian Modern",
-    description: "Drawing inspiration from the rich heritage of Gurung, Magar, and Tamang cultures, this modern style incorporates traditional geometric rugs, cultural artifacts, and elegant wooden furniture."
-  },
-  "nepali-minimalist": {
-    title: "Modern Nepali Minimalist",
-    description: "Embracing the 'less is more' philosophy, the Modern Nepali Minimalist style focuses on clean lines, natural materials, and uncluttered spaces. Subtle traditional motifs are integrated thoughtfully."
-  },
-  "nepali-rustic": {
-    title: "Nepali Rustic",
-    description: "Capture the charm of a mountain cabin with the Nepali Rustic aesthetic. This style highlights exposed stone walls, raw timber beams, and mud-plastered effects, complemented by warm textiles."
-  },
-  "nepali-biophilic": {
-    title: "Nepali Biophilic",
-    description: "Connect with nature through the Nepali Biophilic design. By incorporating abundant indoor plants, bamboo elements, and traditional Dhaka fabric accents, this style blurs the lines between indoor and outdoor."
-  },
-  "himalayan-spa": {
-    title: "Himalayan Spa",
-    description: "Calming colors inspired by mountain hot springs with natural materials for rejuvenation. Features stone elements, warm lighting, and therapeutic water features."
-  },
-}
-
-// Location descriptions for gallery pages
-export const locationDescriptions: Record<string, { title: string; description: string }> = {
-  "kathmandu": {
-    title: "Kathmandu City",
-    description: "Urban sophistication meets traditional charm in Kathmandu interiors. Perfect for city living with a blend of modern amenities and cultural heritage."
-  },
-  "pokhara": {
-    title: "Pokhara Lakeside",
-    description: "Lakeside tranquility inspires Pokhara interiors. Natural light, panoramic views, and relaxed elegance define this serene style."
-  },
-  "chitwan": {
-    title: "Chitwan Jungle",
-    description: "Jungle-inspired elegance for Chitwan interiors. Earthy tones, natural materials, and wildlife motifs create a unique connection to nature."
-  },
-  "lalitpur": {
-    title: "Lalitpur Residence",
-    description: "Traditional Newari craftsmanship meets modern luxury in Lalitpur homes. Features intricate woodwork, traditional patterns, and contemporary amenities."
-  },
-}
