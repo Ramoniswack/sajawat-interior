@@ -1,26 +1,69 @@
 "use client"
 
 import Link from "next/link"
+import { motion } from "framer-motion"
 import { Ruler, Search, Lightbulb, Camera, Target, Clipboard } from "lucide-react"
-import { Header } from "@/components/header"
-import { FooterSection } from "@/components/sections/footer-section"
 
-export default function FieldVisitPage() {
+
+
+export function FieldVisitSection() {
   return (
-    <div className="flex min-h-screen flex-col">
-      <Header />
+    
+      
 
-      <main className="flex-grow">
+      <div id="field-visit" className="w-full pt-20">
         {/* Hero Section */}
-        <section className="relative overflow-hidden bg-gradient-to-br from-background via-background to-muted/30">
-          <div className="absolute inset-0 overflow-hidden">
-            <div className="absolute -right-20 top-20 h-96 w-96 rounded-full bg-[#e99816]/5 blur-3xl" />
-            <div className="absolute -left-20 bottom-20 h-96 w-96 rounded-full bg-[#e99816]/5 blur-3xl" />
-          </div>
+        <motion.section
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.8 }}
+          className="relative overflow-hidden bg-gradient-to-br from-background via-background to-muted/30"
+        >
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1, delay: 0.2 }}
+            className="absolute inset-0 overflow-hidden"
+          >
+            <motion.div
+              animate={{
+                x: [0, 100, 0],
+                y: [0, -100, 0],
+              }}
+              transition={{
+                duration: 20,
+                repeat: Infinity,
+                repeatType: "reverse",
+              }}
+              className="absolute -right-20 top-20 h-96 w-96 rounded-full bg-[#e99816]/5 blur-3xl"
+            />
+            <motion.div
+              animate={{
+                x: [0, -100, 0],
+                y: [0, 100, 0],
+              }}
+              transition={{
+                duration: 15,
+                repeat: Infinity,
+                repeatType: "reverse",
+              }}
+              className="absolute -left-20 bottom-20 h-96 w-96 rounded-full bg-[#e99816]/5 blur-3xl"
+            />
+          </motion.div>
 
           <div className="relative mx-auto max-w-7xl px-6 py-24 md:px-10 md:py-32">
-            <div className="text-center">
-              <div className="mb-6">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.3 }}
+              className="text-center"
+            >
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.6, delay: 0.4 }}
+                className="mb-6"
+              >
                 <span
                   className="inline-block rounded-none border border-[#e99816] px-4 py-2 text-xs font-medium uppercase tracking-wider text-[#e99816]"
                   style={{
@@ -32,9 +75,12 @@ export default function FieldVisitPage() {
                 >
                   On-Site Assessment
                 </span>
-              </div>
+              </motion.div>
 
-              <h1
+              <motion.h1
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.5 }}
                 className="mb-6 text-4xl font-light leading-tight text-foreground md:text-5xl lg:text-6xl"
                 style={{
                   fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", sans-serif',
@@ -44,10 +90,20 @@ export default function FieldVisitPage() {
                 }}
               >
                 Field Visit
-                <span className="block text-[#e99816]">On-Site Consultation</span>
-              </h1>
+                <motion.span
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.8, delay: 0.7 }}
+                  className="block text-[#e99816]"
+                >
+                  On-Site Consultation
+                </motion.span>
+              </motion.h1>
 
-              <p
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.6 }}
                 className="mx-auto max-w-2xl text-lg text-muted-foreground leading-relaxed"
                 style={{
                   fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", sans-serif',
@@ -57,15 +113,27 @@ export default function FieldVisitPage() {
                 }}
               >
                 Our field visits are essential for understanding your space, assessing requirements, and creating accurate design solutions tailored to your needs.
-              </p>
-            </div>
+              </motion.p>
+            </motion.div>
           </div>
-        </section>
+        </motion.section>
 
         {/* What to Expect Section */}
-        <section className="py-24 bg-background">
+        <motion.section
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.8 }}
+          className="py-24 bg-background"
+        >
           <div className="mx-auto max-w-7xl px-6 md:px-10">
-            <div className="mb-16 text-center">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.6 }}
+              className="mb-16 text-center"
+            >
               <h2
                 className="mb-4 text-3xl font-light text-foreground md:text-4xl"
                 style={{
@@ -77,7 +145,11 @@ export default function FieldVisitPage() {
               >
                 What to Expect
               </h2>
-              <p
+              <motion.p
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ duration: 0.6, delay: 0.2 }}
                 className="mx-auto max-w-2xl text-base text-muted-foreground"
                 style={{
                   fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", sans-serif',
@@ -87,8 +159,8 @@ export default function FieldVisitPage() {
                 }}
               >
                 A comprehensive on-site assessment to ensure perfect design planning
-              </p>
-            </div>
+              </motion.p>
+            </motion.div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {[
@@ -123,12 +195,25 @@ export default function FieldVisitPage() {
                   description: "Preliminary suggestions and design direction based on site assessment."
                 }
               ].map((item, index) => (
-                <div
+                <motion.div
                   key={index}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-100px" }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  whileHover={{ scale: 1.02, y: -5 }}
                   className="border border-border bg-card p-6 transition-all hover:border-[#e99816]"
                   style={{ borderRadius: "0" }}
                 >
-                  <div className="mb-4">{item.icon}</div>
+                  <motion.div
+                    initial={{ scale: 0 }}
+                    whileInView={{ scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.4, delay: index * 0.1 + 0.2 }}
+                    className="mb-4"
+                  >
+                    {item.icon}
+                  </motion.div>
                   <h3
                     className="mb-3 text-lg font-medium text-foreground"
                     style={{
@@ -151,16 +236,28 @@ export default function FieldVisitPage() {
                   >
                     {item.description}
                   </p>
-                </div>
+                </motion.div>
               ))}
             </div>
           </div>
-        </section>
+        </motion.section>
 
         {/* Process Section */}
-        <section className="py-24 bg-muted/30">
+        <motion.section
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.8 }}
+          className="py-24 bg-muted/30"
+        >
           <div className="mx-auto max-w-7xl px-6 md:px-10">
-            <div className="mb-16 text-center">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.6 }}
+              className="mb-16 text-center"
+            >
               <h2
                 className="mb-4 text-3xl font-light text-foreground md:text-4xl"
                 style={{
@@ -172,7 +269,7 @@ export default function FieldVisitPage() {
               >
                 Visit Process
               </h2>
-            </div>
+            </motion.div>
 
             <div className="space-y-8">
               {[
@@ -197,15 +294,26 @@ export default function FieldVisitPage() {
                   description: "Receive a detailed report with findings, measurements, and initial recommendations within 3-5 days."
                 }
               ].map((item, index) => (
-                <div
+                <motion.div
                   key={index}
+                  initial={{ opacity: 0, x: -50 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true, margin: "-100px" }}
+                  transition={{ duration: 0.6, delay: index * 0.1 }}
+                  whileHover={{ scale: 1.02, x: 5 }}
                   className="relative border border-border bg-card p-8 transition-all hover:border-[#e99816]"
                   style={{ borderRadius: "0" }}
                 >
                   <div className="flex items-start gap-6">
-                    <div className="flex-shrink-0">
+                    <motion.div
+                      initial={{ scale: 0 }}
+                      whileInView={{ scale: 1 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.4, delay: index * 0.1 + 0.2 }}
+                      className="flex-shrink-0"
+                    >
                       <div className="text-4xl font-light text-[#e99816]">{item.step}</div>
-                    </div>
+                    </motion.div>
                     <div className="flex-1">
                       <h3
                         className="mb-3 text-xl font-medium text-foreground"
@@ -231,16 +339,28 @@ export default function FieldVisitPage() {
                       </p>
                     </div>
                   </div>
-                </div>
+                </motion.div>
               ))}
             </div>
           </div>
-        </section>
+        </motion.section>
 
         {/* Tips Section */}
-        <section className="py-24 bg-background">
+        <motion.section
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.8 }}
+          className="py-24 bg-background"
+        >
           <div className="mx-auto max-w-7xl px-6 md:px-10">
-            <div className="mb-16 text-center">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.6 }}
+              className="mb-16 text-center"
+            >
               <h2
                 className="mb-4 text-3xl font-light text-foreground md:text-4xl"
                 style={{
@@ -252,64 +372,66 @@ export default function FieldVisitPage() {
               >
                 Tips for a Successful Visit
               </h2>
-            </div>
+            </motion.div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              <div className="border border-border bg-card p-6" style={{ borderRadius: "0" }}>
-                <h3 className="mb-3 text-lg font-medium text-foreground">Be Prepared</h3>
-                <p className="text-sm text-muted-foreground" style={{
-                  fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", sans-serif',
-                  WebkitFontSmoothing: 'antialiased',
-                  MozOsxFontSmoothing: 'grayscale',
-                  fontWeight: 300,
-                }}>
-                  Have your budget range, timeline, and any specific requirements ready. Share inspiration images or Pinterest boards.
-                </p>
-              </div>
-
-              <div className="border border-border bg-card p-6" style={{ borderRadius: "0" }}>
-                <h3 className="mb-3 text-lg font-medium text-foreground">Clear Access</h3>
-                <p className="text-sm text-muted-foreground" style={{
-                  fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", sans-serif',
-                  WebkitFontSmoothing: 'antialiased',
-                  MozOsxFontSmoothing: 'grayscale',
-                  fontWeight: 300,
-                }}>
-                  Ensure all areas to be designed are accessible. Clear any clutter that might obstruct measurements or assessment.
-                </p>
-              </div>
-
-              <div className="border border-border bg-card p-6" style={{ borderRadius: "0" }}>
-                <h3 className="mb-3 text-lg font-medium text-foreground">Ask Questions</h3>
-                <p className="text-sm text-muted-foreground" style={{
-                  fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", sans-serif',
-                  WebkitFontSmoothing: 'antialiased',
-                  MozOsxFontSmoothing: 'grayscale',
-                  fontWeight: 300,
-                }}>
-                  This is your opportunity to understand our process. Don't hesitate to ask about our approach, timeline, or any concerns.
-                </p>
-              </div>
-
-              <div className="border border-border bg-card p-6" style={{ borderRadius: "0" }}>
-                <h3 className="mb-3 text-lg font-medium text-foreground">Take Notes</h3>
-                <p className="text-sm text-muted-foreground" style={{
-                  fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", sans-serif',
-                  WebkitFontSmoothing: 'antialiased',
-                  MozOsxFontSmoothing: 'grayscale',
-                  fontWeight: 300,
-                }}>
-                  Feel free to take notes during the visit. We'll also provide a written summary after the assessment for your reference.
-                </p>
-              </div>
+              {[
+                {
+                  title: "Be Prepared",
+                  description: "Have your budget range, timeline, and any specific requirements ready. Share inspiration images or Pinterest boards."
+                },
+                {
+                  title: "Clear Access",
+                  description: "Ensure all areas to be designed are accessible. Clear any clutter that might obstruct measurements or assessment."
+                },
+                {
+                  title: "Ask Questions",
+                  description: "This is your opportunity to understand our process. Don't hesitate to ask about our approach, timeline, or any concerns."
+                },
+                {
+                  title: "Take Notes",
+                  description: "Feel free to take notes during the visit. We'll also provide a written summary after the assessment for your reference."
+                }
+              ].map((tip, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-100px" }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  whileHover={{ scale: 1.02, y: -5 }}
+                  className="border border-border bg-card p-6 transition-all hover:border-[#e99816]"
+                  style={{ borderRadius: "0" }}
+                >
+                  <h3 className="mb-3 text-lg font-medium text-foreground">{tip.title}</h3>
+                  <p className="text-sm text-muted-foreground" style={{
+                    fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", sans-serif',
+                    WebkitFontSmoothing: 'antialiased',
+                    MozOsxFontSmoothing: 'grayscale',
+                    fontWeight: 300,
+                  }}>
+                    {tip.description}
+                  </p>
+                </motion.div>
+              ))}
             </div>
           </div>
-        </section>
+        </motion.section>
 
         {/* CTA Section */}
-        <section className="py-24 bg-[#e99816]">
+        <motion.section
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.8 }}
+          className="py-24 bg-[#e99816]"
+        >
           <div className="mx-auto max-w-4xl px-6 text-center">
-            <h2
+            <motion.h2
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.6 }}
               className="mb-6 text-3xl font-light text-white md:text-4xl"
               style={{
                 fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", sans-serif',
@@ -319,8 +441,12 @@ export default function FieldVisitPage() {
               }}
             >
               Schedule Your Field Visit
-            </h2>
-            <p
+            </motion.h2>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.6, delay: 0.2 }}
               className="mb-8 text-lg text-white/90"
               style={{
                 fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", sans-serif',
@@ -330,24 +456,32 @@ export default function FieldVisitPage() {
               }}
             >
               Let us visit your space and create a design plan that transforms it into something extraordinary.
-            </p>
-            <Link
-              href="/contact"
-              className="button-hover inline-block rounded-none bg-white px-8 py-4 text-sm font-medium text-[#e99816] transition-colors hover:bg-gray-100"
-              style={{
-                fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", sans-serif',
-                WebkitFontSmoothing: 'antialiased',
-                MozOsxFontSmoothing: 'grayscale',
-                letterSpacing: '0.02em',
-              }}
+            </motion.p>
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.5, delay: 0.4 }}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
             >
-              Book Your Visit
-            </Link>
+              <Link
+                href="/contact"
+                className="button-hover inline-block rounded-none bg-white px-8 py-4 text-sm font-medium text-[#e99816] transition-colors hover:bg-gray-100"
+                style={{
+                  fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", sans-serif',
+                  WebkitFontSmoothing: 'antialiased',
+                  MozOsxFontSmoothing: 'grayscale',
+                  letterSpacing: '0.02em',
+                }}
+              >
+                Book Your Visit
+              </Link>
+            </motion.div>
           </div>
-        </section>
-      </main>
+        </motion.section>
+      </div>
 
-      <FooterSection />
-    </div>
-  )
+      
+    )
 }

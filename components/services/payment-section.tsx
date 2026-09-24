@@ -1,24 +1,13 @@
 "use client"
 
 import Link from "next/link"
-import { motion, useScroll, useTransform } from "framer-motion"
-import { Header } from "@/components/header"
-import { FooterSection } from "@/components/sections/footer-section"
+import { motion } from "framer-motion"
 
-export default function TimingPage() {
-  const { scrollYProgress } = useScroll()
 
+
+export function PaymentSection() {
   return (
-    <div className="flex min-h-screen flex-col">
-      <Header />
-
-      {/* Scroll Progress Bar */}
-      <motion.div
-        className="fixed top-0 left-0 right-0 h-1 bg-[#e99816] z-50 origin-left"
-        style={{ scaleX: scrollYProgress }}
-      />
-
-      <main className="flex-grow">
+      <div id="payment" className="w-full pt-20">
         {/* Hero Section */}
         <motion.section
           initial={{ opacity: 0 }}
@@ -80,7 +69,7 @@ export default function TimingPage() {
                     letterSpacing: '0.05em',
                   }}
                 >
-                  Project Timeline
+                  Flexible Payment
                 </span>
               </motion.div>
 
@@ -96,14 +85,14 @@ export default function TimingPage() {
                   letterSpacing: '0.02em',
                 }}
               >
-                Timing & Schedule
+                Payment Options
                 <motion.span
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ duration: 0.8, delay: 0.7 }}
                   className="block text-[#e99816]"
                 >
-                  Your Project Timeline
+                  Flexible & Transparent
                 </motion.span>
               </motion.h1>
 
@@ -119,13 +108,13 @@ export default function TimingPage() {
                   fontWeight: 300,
                 }}
               >
-                Understanding our project timeline helps you plan effectively. We provide clear schedules and milestones for every phase of your interior design journey.
+                We offer flexible payment plans designed to fit your budget. Transparent pricing with no hidden costs, making quality interior design accessible.
               </motion.p>
             </motion.div>
           </div>
         </motion.section>
 
-        {/* Timeline Section */}
+        {/* Payment Plans Section */}
         <motion.section
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
@@ -150,7 +139,7 @@ export default function TimingPage() {
                   letterSpacing: '0.02em',
                 }}
               >
-                Project Phases
+                Payment Plans
               </h2>
               <motion.p
                 initial={{ opacity: 0 }}
@@ -165,127 +154,139 @@ export default function TimingPage() {
                   fontWeight: 300,
                 }}
               >
-                Each phase is carefully planned to ensure quality and timely delivery
+                Choose a plan that works best for your project and budget
               </motion.p>
             </motion.div>
 
-            <div className="relative">
-              {/* Animated Timeline Line */}
-              <motion.div
-                initial={{ scaleY: 0 }}
-                whileInView={{ scaleY: 1 }}
-                viewport={{ once: true, margin: "-100px" }}
-                transition={{ duration: 1, ease: "easeOut" }}
-                className="absolute left-8 md:left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-[#e99816] to-[#e99816]/20 origin-top"
-              />
-
-              <div className="space-y-12">
-                {[
-                  {
-                    phase: "Phase 1",
-                    title: "Initial Consultation",
-                    duration: "1-2 weeks",
-                    description: "Initial meeting, site assessment, and requirement gathering. We understand your vision and establish project scope."
-                  },
-                  {
-                    phase: "Phase 2",
-                    title: "Design Development",
-                    duration: "3-4 weeks",
-                    description: "Concept development, mood boards, space planning, and detailed design presentations. Multiple iterations until approval."
-                  },
-                  {
-                    phase: "Phase 3",
-                    title: "Documentation & Procurement",
-                    duration: "2-3 weeks",
-                    description: "Final drawings, material selection, vendor coordination, and procurement planning. All specifications documented."
-                  },
-                  {
-                    phase: "Phase 4",
-                    title: "Implementation",
-                    duration: "6-12 weeks",
-                    description: "Construction, installation, and project management. Regular site visits and progress updates throughout execution."
-                  },
-                  {
-                    phase: "Phase 5",
-                    title: "Final Handover",
-                    duration: "1 week",
-                    description: "Final inspection, snag list completion, styling, and project handover. Training on maintenance if required."
-                  }
-                ].map((item, index) => (
-                  <motion.div
-                    key={index}
-                    initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true, margin: "-100px" }}
-                    transition={{ duration: 0.6, delay: index * 0.1 }}
-                    className={`relative flex items-center ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'}`}
-                  >
-                    {/* Timeline Dot */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {[
+                {
+                  name: "Standard Plan",
+                  description: "Pay as you go with milestone-based payments",
+                  features: [
+                    "50% advance booking",
+                    "25% at design approval",
+                    "25% at completion",
+                    "No interest charges",
+                    "Flexible scheduling"
+                  ],
+                  popular: false
+                },
+                {
+                  name: "Premium Plan",
+                  description: "Extended payment terms for larger projects",
+                  features: [
+                    "40% advance booking",
+                    "30% at design approval",
+                    "30% at completion",
+                    "Priority scheduling",
+                    "Dedicated project manager"
+                  ],
+                  popular: true
+                },
+                {
+                  name: "Custom Plan",
+                  description: "Tailored payment schedule for your needs",
+                  features: [
+                    "Customized payment terms",
+                    "Negotiable down payment",
+                    "Flexible milestone structure",
+                    "Project-specific pricing",
+                    "Personalized consultation"
+                  ],
+                  popular: false
+                }
+              ].map((plan, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-100px" }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  whileHover={{ scale: 1.02, y: -5 }}
+                  className={`relative border ${plan.popular ? 'border-[#e99816]' : 'border-border'} bg-card p-8 transition-all hover:border-[#e99816]`}
+                  style={{ borderRadius: "0" }}
+                >
+                  {plan.popular && (
                     <motion.div
-                      initial={{ scale: 0 }}
-                      whileInView={{ scale: 1 }}
+                      initial={{ opacity: 0, y: -10 }}
+                      whileInView={{ opacity: 1, y: 0 }}
                       viewport={{ once: true }}
-                      transition={{ duration: 0.4, delay: index * 0.1 + 0.2 }}
-                      whileHover={{ scale: 1.2 }}
-                      className="absolute left-8 md:left-1/2 w-4 h-4 bg-[#e99816] rounded-full border-4 border-background z-10 -translate-x-1/2 cursor-pointer"
-                    />
-
-                    {/* Content Card */}
-                    <div className={`ml-16 md:ml-0 w-full md:w-5/12 ${index % 2 === 0 ? 'md:pr-12' : 'md:pl-12'}`}>
-                      <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.4, delay: index * 0.1 + 0.3 }}
+                      className="absolute -top-3 left-1/2 -translate-x-1/2 bg-[#e99816] px-4 py-1 text-xs font-medium text-white uppercase tracking-wider"
+                    >
+                      Most Popular
+                    </motion.div>
+                  )}
+                  <h3
+                    className="mb-2 text-xl font-medium text-foreground"
+                    style={{
+                      fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", sans-serif',
+                      WebkitFontSmoothing: 'antialiased',
+                      MozOsxFontSmoothing: 'grayscale',
+                      letterSpacing: '0.02em',
+                    }}
+                  >
+                    {plan.name}
+                  </h3>
+                  <p className="mb-6 text-sm text-muted-foreground" style={{
+                    fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", sans-serif',
+                    WebkitFontSmoothing: 'antialiased',
+                    MozOsxFontSmoothing: 'grayscale',
+                    fontWeight: 300,
+                  }}>
+                    {plan.description}
+                  </p>
+                  <ul className="mb-6 space-y-3">
+                    {plan.features.map((feature, i) => (
+                      <motion.li
+                        key={i}
+                        initial={{ opacity: 0, x: -10 }}
+                        whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true }}
-                        transition={{ duration: 0.5, delay: index * 0.1 + 0.3 }}
-                        whileHover={{ scale: 1.02, y: -5 }}
-                        className="border border-border bg-card p-6 transition-all hover:border-[#e99816] hover:shadow-lg"
-                        style={{ borderRadius: "0" }}
+                        transition={{ duration: 0.3, delay: index * 0.1 + i * 0.05 + 0.2 }}
+                        className="flex items-start gap-2 text-sm text-foreground"
                       >
-                        <div className="mb-2 text-sm font-medium text-[#e99816] uppercase tracking-wider">{item.phase}</div>
-                        <h3
-                          className="mb-3 text-xl font-medium text-foreground"
-                          style={{
-                            fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", sans-serif',
-                            WebkitFontSmoothing: 'antialiased',
-                            MozOsxFontSmoothing: 'grayscale',
-                            letterSpacing: '0.02em',
-                          }}
-                        >
-                          {item.title}
-                        </h3>
-                        <p
-                          className="text-sm text-muted-foreground leading-relaxed mb-4"
-                          style={{
-                            fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", sans-serif',
-                            WebkitFontSmoothing: 'antialiased',
-                            MozOsxFontSmoothing: 'grayscale',
-                            fontWeight: 300,
-                          }}
-                        >
-                          {item.description}
-                        </p>
-                        <motion.div
-                          whileHover={{ scale: 1.05 }}
-                          className="inline-block bg-[#e99816]/10 px-3 py-1"
-                        >
-                          <span className="text-sm font-medium text-[#e99816]">{item.duration}</span>
-                        </motion.div>
-                      </motion.div>
-                    </div>
+                        <span className="text-[#e99816] mt-1">✓</span>
+                        <span style={{
+                          fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", sans-serif',
+                          WebkitFontSmoothing: 'antialiased',
+                          MozOsxFontSmoothing: 'grayscale',
+                          fontWeight: 300,
+                        }}>{feature}</span>
+                      </motion.li>
+                    ))}
+                  </ul>
+                  <motion.div
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    <Link
+                      href="/contact"
+                      className="block w-full border border-[#e99816] bg-[#e99816] px-6 py-3 text-center text-sm font-medium text-white transition-colors hover:bg-[#c9790b]"
+                      style={{
+                        fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", sans-serif',
+                        WebkitFontSmoothing: 'antialiased',
+                        MozOsxFontSmoothing: 'grayscale',
+                        letterSpacing: '0.02em',
+                      }}
+                    >
+                      Choose Plan
+                    </Link>
                   </motion.div>
-                ))}
-              </div>
+                </motion.div>
+              ))}
             </div>
           </div>
         </motion.section>
 
-        {/* Important Notes */}
+        {/* Pricing Transparency Section */}
         <motion.section
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.8 }}
-          className="py-24 bg-muted/30"
+          className="py-24 bg-background"
         >
           <div className="mx-auto max-w-7xl px-6 md:px-10">
             <motion.div
@@ -304,29 +305,44 @@ export default function TimingPage() {
                   letterSpacing: '0.02em',
                 }}
               >
-                Important Notes
+                Transparent Pricing
               </h2>
+              <motion.p
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                className="mx-auto max-w-2xl text-base text-muted-foreground"
+                style={{
+                  fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", sans-serif',
+                  WebkitFontSmoothing: 'antialiased',
+                  MozOsxFontSmoothing: 'grayscale',
+                  fontWeight: 300,
+                }}
+              >
+                No hidden costs, no surprises. What you see is what you pay.
+              </motion.p>
             </motion.div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               {[
                 {
-                  title: "Timeline Variations",
-                  description: "Timelines may vary based on project complexity, size, and client response time. We provide realistic estimates and keep you informed of any changes."
+                  title: "Detailed Quotes",
+                  description: "Every quote includes itemized costs for materials, labor, and any additional services. You'll know exactly what you're paying for."
                 },
                 {
-                  title: "Client Availability",
-                  description: "Your timely feedback and approvals are crucial for maintaining the schedule. We schedule regular check-ins to ensure smooth progress."
+                  title: "No Hidden Fees",
+                  description: "We believe in complete transparency. All costs are discussed upfront, and there are no surprise charges during the project."
                 },
                 {
-                  title: "Material Lead Times",
-                  description: "Custom materials and furniture may have longer lead times. We factor these into our planning and offer alternatives when needed."
+                  title: "Change Orders",
+                  description: "Any changes to the scope are documented with updated pricing. We'll never proceed without your approval on additional costs."
                 },
                 {
-                  title: "Quality Assurance",
-                  description: "We never compromise quality for speed. Our timelines include adequate time for quality checks and refinements at each stage."
+                  title: "Payment Security",
+                  description: "All transactions are secure and documented. You'll receive receipts for every payment made towards your project."
                 }
-              ].map((note, index) => (
+              ].map((item, index) => (
                 <motion.div
                   key={index}
                   initial={{ opacity: 0, y: 30 }}
@@ -334,17 +350,17 @@ export default function TimingPage() {
                   viewport={{ once: true, margin: "-100px" }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                   whileHover={{ scale: 1.02, y: -5 }}
-                  className="border border-border bg-card p-6 transition-all hover:border-[#e99816] hover:shadow-lg"
+                  className="border border-border bg-card p-6 transition-all hover:border-[#e99816]"
                   style={{ borderRadius: "0" }}
                 >
-                  <h3 className="mb-3 text-lg font-medium text-foreground">{note.title}</h3>
+                  <h3 className="mb-3 text-lg font-medium text-foreground">{item.title}</h3>
                   <p className="text-sm text-muted-foreground" style={{
                     fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", sans-serif',
                     WebkitFontSmoothing: 'antialiased',
                     MozOsxFontSmoothing: 'grayscale',
                     fontWeight: 300,
                   }}>
-                    {note.description}
+                    {item.description}
                   </p>
                 </motion.div>
               ))}
@@ -374,7 +390,7 @@ export default function TimingPage() {
                 letterSpacing: '0.02em',
               }}
             >
-              Ready to Start Your Project?
+              Discuss Your Payment Options
             </motion.h2>
             <motion.p
               initial={{ opacity: 0, y: 20 }}
@@ -389,7 +405,7 @@ export default function TimingPage() {
                 fontWeight: 300,
               }}
             >
-              Contact us to discuss your timeline and get a personalized project schedule.
+              Contact us to find a payment plan that works for your budget and project requirements.
             </motion.p>
             <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
@@ -409,14 +425,11 @@ export default function TimingPage() {
                   letterSpacing: '0.02em',
                 }}
               >
-                Contact Us Today
+                Get Started Today
               </Link>
             </motion.div>
           </div>
         </motion.section>
-      </main>
-
-      <FooterSection />
-    </div>
+      </div>
   )
 }

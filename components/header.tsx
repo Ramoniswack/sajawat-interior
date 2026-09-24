@@ -153,9 +153,9 @@ export function Header() {
                   <div className="flex flex-col">
                     <h3 className="mb-4 text-xs font-bold uppercase tracking-wider text-gray-500">Service Information</h3>
                     <ul className="flex flex-col gap-3">
-                      <li><Link href="/timing" className="text-sm text-gray-700 hover:text-black">Timing</Link></li>
-                      <li><Link href="/field-visit" className="text-sm text-gray-700 hover:text-black">Field Visit</Link></li>
-                      <li><Link href="/payment" className="text-sm text-gray-700 hover:text-black">Payment Options</Link></li>
+                      <li><Link href="/services#timing" className="text-sm text-gray-700 hover:text-black">Timing</Link></li>
+                      <li><Link href="/services#field-visit" className="text-sm text-gray-700 hover:text-black">Field Visit</Link></li>
+                      <li><Link href="/services#payment" className="text-sm text-gray-700 hover:text-black">Payment Options</Link></li>
                     </ul>
                   </div>
                 </div>
@@ -343,9 +343,9 @@ export function Header() {
             <div className="mt-4 pt-4 border-t border-gray-200">
               <p className="text-sm text-gray-500 mb-3">Service Information</p>
               <ul className="flex flex-col gap-2">
-                <li><Link href="/timing" className="text-sm text-gray-700 hover:text-black">Timing</Link></li>
-                <li><Link href="/field-visit" className="text-sm text-gray-700 hover:text-black">Field Visit</Link></li>
-                <li><Link href="/payment" className="text-sm text-gray-700 hover:text-black">Payment Options</Link></li>
+                <li><Link href="/services#timing" className="text-sm text-gray-700 hover:text-black">Timing</Link></li>
+                <li><Link href="/services#field-visit" className="text-sm text-gray-700 hover:text-black">Field Visit</Link></li>
+                <li><Link href="/services#payment" className="text-sm text-gray-700 hover:text-black">Payment Options</Link></li>
               </ul>
             </div>
             <Link

@@ -1,9 +1,14 @@
 "use client"
 
 import Link from "next/link"
+import { motion } from "framer-motion"
 import { Header } from "@/components/header"
 import { FooterSection } from "@/components/sections/footer-section"
 import { ServicesHero } from "@/components/services/services-hero"
+import { TimingSection } from "@/components/services/timing-section"
+import { FieldVisitSection } from "@/components/services/field-visit-section"
+import { PaymentSection } from "@/components/services/payment-section"
+import { PricingSection } from "@/components/services/pricing-section"
 
 export default function ServicesPage() {
 
@@ -15,9 +20,21 @@ export default function ServicesPage() {
         <ServicesHero />
 
         {/* Services Section */}
-        <section className="py-24 bg-background">
+        <motion.section
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.8 }}
+          className="py-24 bg-background"
+        >
           <div className="mx-auto max-w-7xl px-6 md:px-10">
-            <div className="mb-16 text-center">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.6 }}
+              className="mb-16 text-center"
+            >
               <h2
                 className="mb-4 text-3xl font-light text-foreground md:text-4xl"
                 style={{
@@ -29,7 +46,11 @@ export default function ServicesPage() {
               >
                 Our Services
               </h2>
-              <p
+              <motion.p
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ duration: 0.6, delay: 0.2 }}
                 className="mx-auto max-w-2xl text-base text-muted-foreground"
                 style={{
                   fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", sans-serif',
@@ -39,149 +60,98 @@ export default function ServicesPage() {
                 }}
               >
                 Learn about our timing, field visit process, and payment options for your interior design project.
-              </p>
-            </div>
+              </motion.p>
+            </motion.div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              <Link href="/timing" className="group">
-                <div className="border border-border bg-card p-8 transition-all hover:border-[#e99816] hover:shadow-lg" style={{ borderRadius: "0" }}>
-                  <div className="mb-4 text-4xl font-light text-[#e99816] transition-colors">01</div>
-                  <h3 className="mb-3 text-xl font-medium text-foreground" style={{
-                    fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", sans-serif',
-                    WebkitFontSmoothing: 'antialiased',
-                    MozOsxFontSmoothing: 'grayscale',
-                    letterSpacing: '0.02em',
-                  }}>Timing</h3>
-                  <p className="text-sm text-muted-foreground" style={{
-                    fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", sans-serif',
-                    WebkitFontSmoothing: 'antialiased',
-                    MozOsxFontSmoothing: 'grayscale',
-                    fontWeight: 300,
-                  }}>Learn about our project timelines and scheduling process.</p>
-                </div>
-              </Link>
-
-              <Link href="/field-visit" className="group">
-                <div className="border border-border bg-card p-8 transition-all hover:border-[#e99816] hover:shadow-lg" style={{ borderRadius: "0" }}>
-                  <div className="mb-4 text-4xl font-light text-[#e99816] transition-colors">02</div>
-                  <h3 className="mb-3 text-xl font-medium text-foreground" style={{
-                    fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", sans-serif',
-                    WebkitFontSmoothing: 'antialiased',
-                    MozOsxFontSmoothing: 'grayscale',
-                    letterSpacing: '0.02em',
-                  }}>Field Visit</h3>
-                  <p className="text-sm text-muted-foreground" style={{
-                    fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", sans-serif',
-                    WebkitFontSmoothing: 'antialiased',
-                    MozOsxFontSmoothing: 'grayscale',
-                    fontWeight: 300,
-                  }}>Understand our on-site consultation and assessment process.</p>
-                </div>
-              </Link>
-
-              <Link href="/payment" className="group">
-                <div className="border border-border bg-card p-8 transition-all hover:border-[#e99816] hover:shadow-lg" style={{ borderRadius: "0" }}>
-                  <div className="mb-4 text-4xl font-light text-[#e99816] transition-colors">03</div>
-                  <h3 className="mb-3 text-xl font-medium text-foreground" style={{
-                    fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", sans-serif',
-                    WebkitFontSmoothing: 'antialiased',
-                    MozOsxFontSmoothing: 'grayscale',
-                    letterSpacing: '0.02em',
-                  }}>Payment Options</h3>
-                  <p className="text-sm text-muted-foreground" style={{
-                    fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", sans-serif',
-                    WebkitFontSmoothing: 'antialiased',
-                    MozOsxFontSmoothing: 'grayscale',
-                    fontWeight: 300,
-                  }}>Explore our flexible payment plans and pricing structure.</p>
-                </div>
-              </Link>
-            </div>
-          </div>
-        </section>
-
-        {/* Process Section */}
-        <section className="py-24 bg-muted/30">
-          <div className="mx-auto max-w-7xl px-6 md:px-10">
-            <div className="mb-16 text-center">
-              <h2
-                className="mb-4 text-3xl font-light text-foreground md:text-4xl"
-                style={{
-                  fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", sans-serif',
-                  WebkitFontSmoothing: 'antialiased',
-                  MozOsxFontSmoothing: 'grayscale',
-                  letterSpacing: '0.02em',
-                }}
-              >
-                Our Process
-              </h2>
-              <p
-                className="mx-auto max-w-2xl text-base text-muted-foreground"
-                style={{
-                  fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", sans-serif',
-                  WebkitFontSmoothing: 'antialiased',
-                  MozOsxFontSmoothing: 'grayscale',
-                  fontWeight: 300,
-                }}
-              >
-                A streamlined approach to bringing your vision to life
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
               {[
-                { step: "01", title: "Consultation", description: "Initial meeting to understand your vision and requirements" },
-                { step: "02", title: "Design", description: "Creating concepts and detailed design plans" },
-                { step: "03", title: "Implementation", description: "Executing the design with precision and care" },
-                { step: "04", title: "Final Touch", description: "Adding finishing touches for perfect completion" },
-              ].map((item, index) => (
-                <div
+                {
+                  number: "01",
+                  title: "Timing",
+                  description: "Learn about our project timelines and scheduling process.",
+                  href: "#timing"
+                },
+                {
+                  number: "02",
+                  title: "Field Visit",
+                  description: "Understand our on-site consultation and assessment process.",
+                  href: "#field-visit"
+                },
+                {
+                  number: "03",
+                  title: "Payment Options",
+                  description: "Explore our flexible payment plans and pricing structure.",
+                  href: "#payment"
+                },
+                {
+                  number: "04",
+                  title: "Pricing & Packages",
+                  description: "Transparent NPR pricing — packages, room rates, materials, and an estimate calculator.",
+                  href: "#pricing"
+                }
+              ].map((service, index) => (
+                <motion.div
                   key={index}
-                  className="process-step relative border border-border bg-card p-6"
-                  style={{ borderRadius: "0" }}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-100px" }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
                 >
-                  <div
-                    className="step-number mb-4 text-4xl font-light text-[#e99816] transition-colors"
-                    style={{
-                      fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", sans-serif',
-                      WebkitFontSmoothing: 'antialiased',
-                      MozOsxFontSmoothing: 'grayscale',
-                    }}
-                  >
-                    {item.step}
-                  </div>
-                  <h3
-                    className="mb-2 text-lg font-medium text-foreground"
-                    style={{
-                      fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", sans-serif',
-                      WebkitFontSmoothing: 'antialiased',
-                      MozOsxFontSmoothing: 'grayscale',
-                      letterSpacing: '0.02em',
-                    }}
-                  >
-                    {item.title}
-                  </h3>
-                  <p
-                    className="text-sm text-muted-foreground"
-                    style={{
-                      fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", sans-serif',
-                      WebkitFontSmoothing: 'antialiased',
-                      MozOsxFontSmoothing: 'grayscale',
-                      fontWeight: 300,
-                    }}
-                  >
-                    {item.description}
-                  </p>
-                </div>
+                  <Link href={service.href} className="group">
+                    <motion.div
+                      whileHover={{ scale: 1.02, y: -5 }}
+                      className="border border-border bg-card p-8 transition-all hover:border-[#e99816] hover:shadow-lg"
+                      style={{ borderRadius: "0" }}
+                    >
+                      <motion.div
+                        initial={{ scale: 0 }}
+                        whileInView={{ scale: 1 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.4, delay: index * 0.1 + 0.2 }}
+                        className="mb-4 text-4xl font-light text-[#e99816] transition-colors"
+                      >
+                        {service.number}
+                      </motion.div>
+                      <h3 className="mb-3 text-xl font-medium text-foreground" style={{
+                        fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", sans-serif',
+                        WebkitFontSmoothing: 'antialiased',
+                        MozOsxFontSmoothing: 'grayscale',
+                        letterSpacing: '0.02em',
+                      }}>{service.title}</h3>
+                      <p className="text-sm text-muted-foreground" style={{
+                        fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", sans-serif',
+                        WebkitFontSmoothing: 'antialiased',
+                        MozOsxFontSmoothing: 'grayscale',
+                        fontWeight: 300,
+                      }}>{service.description}</p>
+                    </motion.div>
+                  </Link>
+                </motion.div>
               ))}
             </div>
           </div>
-        </section>
+        </motion.section>
+
+
+                <TimingSection />
+        <FieldVisitSection />
+        <PaymentSection />
+        <PricingSection />
 
         {/* CTA Section */}
-        <section className="py-24 bg-[#e99816]">
+        <motion.section
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.8 }}
+          className="py-24 bg-[#e99816]"
+        >
           <div className="mx-auto max-w-4xl px-6 text-center">
-            <h2
+            <motion.h2
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.6 }}
               className="mb-6 text-3xl font-light text-white md:text-4xl"
               style={{
                 fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", sans-serif',
@@ -191,8 +161,12 @@ export default function ServicesPage() {
               }}
             >
               Ready to Transform Your Space?
-            </h2>
-            <p
+            </motion.h2>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.6, delay: 0.2 }}
               className="mb-8 text-lg text-white/90"
               style={{
                 fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", sans-serif',
@@ -202,8 +176,14 @@ export default function ServicesPage() {
               }}
             >
               Let's discuss your project and create something beautiful together.
-            </p>
-            <button
+            </motion.p>
+            <motion.button
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.5, delay: 0.4 }}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
               className="button-hover rounded-none bg-white px-8 py-4 text-sm font-medium text-[#e99816] transition-colors hover:bg-gray-100"
               style={{
                 fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", sans-serif',
@@ -213,9 +193,9 @@ export default function ServicesPage() {
               }}
             >
               Get Started Today
-            </button>
+            </motion.button>
           </div>
-        </section>
+        </motion.section>
       </main>
 
       <FooterSection />
