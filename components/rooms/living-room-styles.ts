@@ -64,3 +64,70 @@ export const livingRoomStyles = [
     ],
   },
 ] as const
+
+export const livingRoomLocations = [
+  {
+    slug: "kathmandu-city",
+    title: "Kathmandu City",
+    image: "https://images.unsplash.com/photo-1600573472591-ee6c563aaec5?q=80&w=1200&auto=format&fit=crop",
+    detail: "Space-smart city living with considered storage and modern comfort.",
+    description:
+      "Make the most of city living with flexible layouts, clever storage, and comfortable spaces that feel open and welcoming. This collection brings practical Kathmandu living together with a polished contemporary look.",
+    gallery: [
+      { image: "https://images.unsplash.com/photo-1600573472591-ee6c563aaec5?q=80&w=1600&auto=format&fit=crop", alt: "Space-smart Kathmandu living room with contemporary finishes" },
+      { image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1200&auto=format&fit=crop", alt: "Modern city apartment with a bright open living area" },
+      { image: "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?q=80&w=1200&auto=format&fit=crop", alt: "Compact lounge designed for relaxed city living" },
+      { image: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=1200&auto=format&fit=crop", alt: "Light neutral living space with clean lines" },
+      { image: "https://images.unsplash.com/photo-1600210491892-03d54c0aaf87?q=80&w=1200&auto=format&fit=crop", alt: "Contemporary seating area with layered textures" },
+      { image: "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?q=80&w=1200&auto=format&fit=crop", alt: "Urban living room with warm decorative details" },
+    ],
+  },
+  {
+    slug: "lalitpur-residence",
+    title: "Lalitpur Residence",
+    image: "https://images.unsplash.com/photo-1600210491369-e753d80a41f3?q=80&w=1200&auto=format&fit=crop",
+    detail: "Family-friendly comfort layered with Lalitpur’s Newari character.",
+    description:
+      "A relaxed family home shaped by local character. Comfortable seating, durable natural finishes, and handcrafted accents create a warm living room that works beautifully for everyday life and time together.",
+    gallery: [
+      { image: "https://images.unsplash.com/photo-1600210491369-e753d80a41f3?q=80&w=1600&auto=format&fit=crop", alt: "Welcoming family living room with warm natural textures" },
+      { image: "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?q=80&w=1200&auto=format&fit=crop", alt: "Crafted interior details inspired by Lalitpur heritage" },
+      { image: "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?q=80&w=1200&auto=format&fit=crop", alt: "Comfortable family seating in a warm living area" },
+      { image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1200&auto=format&fit=crop", alt: "Family home blending contemporary and traditional details" },
+      { image: "https://images.unsplash.com/photo-1600566752355-35792bedcfea?q=80&w=1200&auto=format&fit=crop", alt: "A bright, practical living space for gathering" },
+      { image: "https://images.unsplash.com/photo-1600573472591-ee6c563aaec5?q=80&w=1200&auto=format&fit=crop", alt: "Layered finishes in a thoughtfully designed residence" },
+    ],
+  },
+  {
+    slug: "pokhara-lakeside",
+    title: "Pokhara Lakeside",
+    image: "https://images.unsplash.com/photo-1600566752355-35792bedcfea?q=80&w=1200&auto=format&fit=crop",
+    detail: "Breezy, light-filled rooms inspired by lakeside calm and mountain views.",
+    description:
+      "Capture Pokhara’s easy pace with an airy palette, natural textures, and generous light. These living rooms feel connected to the outdoors and made for slow mornings and relaxed evenings.",
+    gallery: [
+      { image: "https://images.unsplash.com/photo-1600566752355-35792bedcfea?q=80&w=1600&auto=format&fit=crop", alt: "Airy lakeside-inspired living room with soft natural colors" },
+      { image: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=1200&auto=format&fit=crop", alt: "Sunlit living space with a calm mountain-inspired palette" },
+      { image: "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?q=80&w=1200&auto=format&fit=crop", alt: "Natural materials and comfortable lounge seating" },
+      { image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1200&auto=format&fit=crop", alt: "Open living room that feels connected to the outdoors" },
+      { image: "https://images.unsplash.com/photo-1600210491892-03d54c0aaf87?q=80&w=1200&auto=format&fit=crop", alt: "Relaxed seating area with warm wood accents" },
+      { image: "https://images.unsplash.com/photo-1600573472591-ee6c563aaec5?q=80&w=1200&auto=format&fit=crop", alt: "Bright, breezy interior for laid-back lakeside living" },
+    ],
+  },
+  {
+    slug: "chitwan-jungle",
+    title: "Chitwan Jungle",
+    image: "https://images.unsplash.com/photo-1600210491892-03d54c0aaf87?q=80&w=1200&auto=format&fit=crop",
+    detail: "Earthy colors, organic materials, and a grounded Terai-inspired feel.",
+    description:
+      "Inspired by Chitwan’s lush landscape, this collection pairs earthy color with organic materials and inviting textures. The result is a grounded, restful retreat with a strong connection to nature.",
+    gallery: [
+      { image: "https://images.unsplash.com/photo-1600210491892-03d54c0aaf87?q=80&w=1600&auto=format&fit=crop", alt: "Earth-toned living room with a grounded natural feel" },
+      { image: "https://images.unsplash.com/photo-1600210491369-e753d80a41f3?q=80&w=1200&auto=format&fit=crop", alt: "Rustic-inspired lounge with natural textures" },
+      { image: "https://images.unsplash.com/photo-1600566752355-35792bedcfea?q=80&w=1200&auto=format&fit=crop", alt: "Warm, organic seating area with soft neutral tones" },
+      { image: "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?q=80&w=1200&auto=format&fit=crop", alt: "Natural wood and tactile materials in a living room" },
+      { image: "https://images.unsplash.com/photo-1600573472591-ee6c563aaec5?q=80&w=1200&auto=format&fit=crop", alt: "Relaxed living space with earthy finishes" },
+      { image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1200&auto=format&fit=crop", alt: "Nature-inspired retreat with contemporary comfort" },
+    ],
+  },
+] as const

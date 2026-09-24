@@ -20,8 +20,12 @@ export function FluidCardStack({ cards, onCardClick }: FluidCardStackProps) {
             key={card.title}
             className="feature-card"
             onClick={() => onCardClick?.(card)}
-            style={{ backgroundImage: `url(${card.image})` }}
           >
+            <span
+              className="feature-card-image"
+              aria-hidden="true"
+              style={{ backgroundImage: `url(${card.image})` }}
+            />
             <div className="feature-card-overlay">
               <span className="feature-title">{card.title}</span>
             </div>
