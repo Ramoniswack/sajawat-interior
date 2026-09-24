@@ -199,7 +199,7 @@ export default function LaundryRoomPage() {
             <div className="flex justify-center">
               <FluidCardStack cards={byLocationCards} galleryType="location" onCardClick={(card) => {
                   const slug = card.title.toLowerCase().replace(/[^a-z0-9]+/g, '-')
-                  router.push(`/rooms/laundry-room/style/${slug}`)
+                  router.push(`/rooms/laundry-room/location/${slug}`)
                 }} />
             </div>
           </div>

@@ -224,7 +224,7 @@ export default function OfficeSpacePage() {
             <div className="flex justify-center">
               <FluidCardStack cards={byLocationCards} galleryType="location" onCardClick={(card) => {
                   const slug = card.title.toLowerCase().replace(/[^a-z0-9]+/g, '-')
-                  router.push(`/rooms/office-space/style/${slug}`)
+                  router.push(`/rooms/office-space/location/${slug}`)
                 }} />
             </div>
           </div>

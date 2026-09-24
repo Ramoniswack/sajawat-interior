@@ -214,7 +214,7 @@ export default function HomeOfficePage() {
             <div className="flex justify-center">
               <FluidCardStack cards={byLocationCards} galleryType="location" onCardClick={(card) => {
                   const slug = card.title.toLowerCase().replace(/[^a-z0-9]+/g, '-')
-                  router.push(`/rooms/home-office/style/${slug}`)
+                  router.push(`/rooms/home-office/location/${slug}`)
                 }} />
             </div>
           </div>

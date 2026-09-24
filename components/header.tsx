@@ -48,106 +48,7 @@ export function Header() {
         </Link>
 
         {/* Desktop Navigation */}
-        <nav className="hidden h-full items-center gap-10 md:flex">
-          <div className="group flex h-full items-center">
-            <Link
-              href="/design-ideas"
-              className={`py-6 text-sm transition-colors group-hover:text-black group-hover:border-b-2 group-hover:border-yellow-400 ${
-                isActive("/design-ideas") 
-                  ? "text-black border-b-2 border-yellow-400" 
-                  : "text-black/80 hover:text-black"
-              }`}
-            >
-              Design Idea
-            </Link>
-            
-            {/* Mega Menu Container */}
-            <div className="absolute left-0 top-[76px] w-full bg-white opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 shadow-xl border-t border-gray-100 pb-10 pt-8 z-50">
-              <div className="mx-auto flex max-w-7xl justify-between px-6 md:px-10">
-                {/* Links Section */}
-                <div className="flex gap-16">
-                  {/* Column 1 */}
-                  <div className="flex flex-col">
-                    <h3 className="mb-4 text-xs font-bold uppercase tracking-wider text-gray-500">Work with a Designer</h3>
-                    <ul className="flex flex-col gap-3">
-                      <li><Link href="/design-ideas#process" className="text-sm text-gray-700 hover:text-black">How it works</Link></li>
-                      <li><Link href="/design-ideas#designers" className="text-sm text-gray-700 hover:text-black">Interior Designers</Link></li>
-                    </ul>
-                  </div>
-
-                  {/* Column 2 */}
-                  <div className="flex flex-col">
-                    <h3 className="mb-4 text-xs font-bold uppercase tracking-wider text-gray-500">Find your Designer</h3>
-                    <ul className="flex flex-col gap-3">
-                      <li><Link href="/design-ideas?tab=style" className="text-sm text-gray-700 hover:text-black">Design by Style</Link></li>
-                      <li><Link href="/design-ideas?tab=location" className="text-sm text-gray-700 hover:text-black">Designers by City</Link></li>
-                    </ul>
-                  </div>
-                </div>
-
-                {/* Right Image/CTA Section */}
-                <div className="relative h-64 w-96 overflow-hidden rounded-xl bg-gray-100 group/card cursor-pointer">
-                  <img 
-                    src="/design-ideas/nepali-minimalist.jpg" 
-                    alt="Start your project" 
-                    className="h-full w-full object-cover transition-transform duration-700 group-hover/card:scale-105"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
-                  <div className="absolute bottom-6 left-6 text-white">
-                    <p className="mb-1 text-xs font-bold uppercase tracking-wider">Designer Service</p>
-                    <p className="mb-2 text-xl font-bold">Start your project</p>
-                    <p className="text-sm text-gray-200">Work 1:1 with a designer</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div className="group flex h-full items-center">
-            <Link
-              href="/services"
-              className={`py-6 text-sm transition-colors group-hover:text-black group-hover:border-b-2 group-hover:border-yellow-400 ${
-                isActive("/services") 
-                  ? "text-black border-b-2 border-yellow-400" 
-                  : "text-black/80 hover:text-black"
-              }`}
-            >
-              Services
-            </Link>
-
-            {/* Mega Menu Container */}
-            <div className="absolute left-0 top-[76px] w-full bg-white opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 shadow-xl border-t border-gray-100 pb-10 pt-8 z-50">
-              <div className="mx-auto flex max-w-7xl justify-between px-6 md:px-10">
-                {/* Links Section */}
-                <div className="flex gap-16">
-                  {/* Single Column */}
-                  <div className="flex flex-col">
-                    <h3 className="mb-4 text-xs font-bold uppercase tracking-wider text-gray-500">Service Information</h3>
-                    <ul className="flex flex-row gap-8">
-                      <li><Link href="/timing" className="text-sm text-gray-700 hover:text-black">Timing</Link></li>
-                      <li><Link href="/field-visit" className="text-sm text-gray-700 hover:text-black">Field Visit</Link></li>
-                      <li><Link href="/payment" className="text-sm text-gray-700 hover:text-black">Payment Options</Link></li>
-                    </ul>
-                  </div>
-                </div>
-
-                {/* Right Image/CTA Section */}
-                <div className="relative h-64 w-96 overflow-hidden rounded-xl bg-gray-100 group/card cursor-pointer">
-                  <img
-                    src="/images/luxury-living-room.png"
-                    alt="Professional Design Services"
-                    className="h-full w-full object-cover transition-transform duration-700 group-hover/card:scale-105"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
-                  <div className="absolute bottom-6 left-6 text-white">
-                    <p className="mb-1 text-xs font-bold uppercase tracking-wider">Design Services</p>
-                    <p className="mb-2 text-xl font-bold">Transform Your Space</p>
-                    <p className="text-sm text-gray-200">Expert interior design solutions</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+        <nav className="hidden h-full items-center gap-16 md:flex">
           <div className="group flex h-full items-center">
             <Link
               href="/rooms"
@@ -223,6 +124,121 @@ export function Header() {
               </div>
             </div>
           </div>
+          <div className="group flex h-full items-center">
+            <Link
+              href="/services"
+              className={`py-6 text-sm transition-colors group-hover:text-black group-hover:border-b-2 group-hover:border-yellow-400 ${
+                isActive("/services") 
+                  ? "text-black border-b-2 border-yellow-400" 
+                  : "text-black/80 hover:text-black"
+              }`}
+            >
+              Services
+            </Link>
+
+            {/* Mega Menu Container */}
+            <div className="absolute left-0 top-[76px] w-full bg-white opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 shadow-xl border-t border-gray-100 pb-10 pt-8 z-50">
+              <div className="mx-auto flex max-w-7xl justify-between px-6 md:px-10">
+                {/* Left Description Section */}
+                <div className="max-w-[200px] flex flex-col">
+                  <h3 className="mb-4 text-xs font-bold uppercase tracking-wider text-gray-500">Our Services</h3>
+                  <p className="text-sm leading-relaxed text-gray-500">
+                    Comprehensive interior design services to transform your spaces with expert guidance and seamless execution.
+                  </p>
+                </div>
+
+                {/* Links Section */}
+                <div className="flex gap-16">
+                  {/* Single Column */}
+                  <div className="flex flex-col">
+                    <h3 className="mb-4 text-xs font-bold uppercase tracking-wider text-gray-500">Service Information</h3>
+                    <ul className="flex flex-col gap-3">
+                      <li><Link href="/timing" className="text-sm text-gray-700 hover:text-black">Timing</Link></li>
+                      <li><Link href="/field-visit" className="text-sm text-gray-700 hover:text-black">Field Visit</Link></li>
+                      <li><Link href="/payment" className="text-sm text-gray-700 hover:text-black">Payment Options</Link></li>
+                    </ul>
+                  </div>
+                </div>
+
+                {/* Right Image/CTA Section */}
+                <div className="relative h-64 w-96 overflow-hidden rounded-xl bg-gray-100 group/card cursor-pointer">
+                  <img
+                    src="/images/luxury-living-room.png"
+                    alt="Professional Design Services"
+                    className="h-full w-full object-cover transition-transform duration-700 group-hover/card:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+                  <div className="absolute bottom-6 left-6 text-white">
+                    <p className="mb-1 text-xs font-bold uppercase tracking-wider">Design Services</p>
+                    <p className="mb-2 text-xl font-bold">Transform Your Space</p>
+                    <p className="text-sm text-gray-200">Expert interior design solutions</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="group flex h-full items-center">
+            <Link
+              href="/design-ideas"
+              className={`py-6 text-sm transition-colors group-hover:text-black group-hover:border-b-2 group-hover:border-yellow-400 ${
+                isActive("/design-ideas") 
+                  ? "text-black border-b-2 border-yellow-400" 
+                  : "text-black/80 hover:text-black"
+              }`}
+            >
+              Design Idea
+            </Link>
+            
+            {/* Mega Menu Container */}
+            <div className="absolute left-0 top-[76px] w-full bg-white opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 shadow-xl border-t border-gray-100 pb-10 pt-8 z-50">
+              <div className="mx-auto flex max-w-7xl justify-between px-6 md:px-10">
+                {/* Left Description Section */}
+                <div className="max-w-[200px] flex flex-col">
+                  <h3 className="mb-4 text-xs font-bold uppercase tracking-wider text-gray-500">Design Idea</h3>
+                  <p className="text-sm leading-relaxed text-gray-500">
+                    Discover your unique aesthetic, meet our expert interior designers, and explore projects tailored to your lifestyle.
+                  </p>
+                </div>
+
+                {/* Links Section */}
+                <div className="flex gap-16">
+                  {/* Column 1 */}
+                  <div className="flex flex-col">
+                    <h3 className="mb-4 text-xs font-bold uppercase tracking-wider text-gray-500">Work with a Designer</h3>
+                    <ul className="flex flex-col gap-3">
+                      <li><Link href="/design-ideas#process" className="text-sm text-gray-700 hover:text-black">How it works</Link></li>
+                      <li><Link href="/design-ideas#designers" className="text-sm text-gray-700 hover:text-black">Interior Designers</Link></li>
+                    </ul>
+                  </div>
+
+                  {/* Column 2 */}
+                  <div className="flex flex-col">
+                    <h3 className="mb-4 text-xs font-bold uppercase tracking-wider text-gray-500">Find your Designer</h3>
+                    <ul className="flex flex-col gap-3">
+                      <li><Link href="/design-ideas?tab=style" className="text-sm text-gray-700 hover:text-black">Design by Style</Link></li>
+                      <li><Link href="/design-ideas?tab=location" className="text-sm text-gray-700 hover:text-black">Designers by City</Link></li>
+                    </ul>
+                  </div>
+                </div>
+
+                {/* Right Image/CTA Section */}
+                <div className="relative h-64 w-96 overflow-hidden rounded-xl bg-gray-100 group/card cursor-pointer">
+                  <img 
+                    src="/design-ideas/nepali-minimalist.jpg" 
+                    alt="Start your project" 
+                    className="h-full w-full object-cover transition-transform duration-700 group-hover/card:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+                  <div className="absolute bottom-6 left-6 text-white">
+                    <p className="mb-1 text-xs font-bold uppercase tracking-wider">Designer Service</p>
+                    <p className="mb-2 text-xl font-bold">Start your project</p>
+                    <p className="text-sm text-gray-200">Work 1:1 with a designer</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
           <Link
             href="/about"
             className={`py-6 text-sm transition-colors hover:text-black group-hover:border-b-2 group-hover:border-yellow-400 ${
@@ -295,13 +311,13 @@ export function Header() {
       {/* Mobile Menu */}
       {isMenuOpen && (
         <div className="border-t border-border bg-background px-6 py-8 md:hidden">
-          <nav className="flex flex-col gap-6">
+          <nav className="flex flex-col gap-8">
             <Link
-              href="/design-ideas"
-              className={`text-lg ${isActive("/design-ideas") ? "text-black font-medium" : "text-foreground"}`}
+              href="/rooms"
+              className={`text-lg ${isActive("/rooms") ? "text-black font-medium" : "text-foreground"}`}
               onClick={() => setIsMenuOpen(false)}
             >
-              Design Idea
+              Rooms
             </Link>
             <Link
               href="/services"
@@ -311,11 +327,11 @@ export function Header() {
               Services
             </Link>
             <Link
-              href="/rooms"
-              className={`text-lg ${isActive("/rooms") ? "text-black font-medium" : "text-foreground"}`}
+              href="/design-ideas"
+              className={`text-lg ${isActive("/design-ideas") ? "text-black font-medium" : "text-foreground"}`}
               onClick={() => setIsMenuOpen(false)}
             >
-              Rooms
+              Design Idea
             </Link>
             <Link
               href="/about"

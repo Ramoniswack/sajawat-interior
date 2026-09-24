@@ -204,7 +204,7 @@ export default function FamilyRoomPage() {
             <div className="flex justify-center">
               <FluidCardStack cards={byLocationCards} galleryType="location" onCardClick={(card) => {
                   const slug = card.title.toLowerCase().replace(/[^a-z0-9]+/g, '-')
-                  router.push(`/rooms/family-room/style/${slug}`)
+                  router.push(`/rooms/family-room/location/${slug}`)
                 }} />
             </div>
           </div>
