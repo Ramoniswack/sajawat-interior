@@ -1,6 +1,7 @@
 "use client"
 
 import Link from "next/link"
+import { Ruler, Search, Lightbulb, Camera, Target, Clipboard } from "lucide-react"
 import { Header } from "@/components/header"
 import { FooterSection } from "@/components/sections/footer-section"
 
@@ -92,32 +93,32 @@ export default function FieldVisitPage() {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {[
                 {
-                  icon: "📐",
+                  icon: <Ruler className="h-12 w-12 text-[#e99816]" />,
                   title: "Space Measurement",
                   description: "Accurate measurements of all rooms, including dimensions, ceiling heights, and architectural features."
                 },
                 {
-                  icon: "🔍",
+                  icon: <Search className="h-12 w-12 text-[#e99816]" />,
                   title: "Site Assessment",
                   description: "Evaluation of existing conditions, lighting, electrical points, and structural considerations."
                 },
                 {
-                  icon: "💡",
+                  icon: <Lightbulb className="h-12 w-12 text-[#e99816]" />,
                   title: "Requirement Discussion",
                   description: "In-depth discussion about your lifestyle, preferences, budget, and design aspirations."
                 },
                 {
-                  icon: "📸",
+                  icon: <Camera className="h-12 w-12 text-[#e99816]" />,
                   title: "Documentation",
                   description: "Photographic documentation of existing space and important details for reference."
                 },
                 {
-                  icon: "🎯",
+                  icon: <Target className="h-12 w-12 text-[#e99816]" />,
                   title: "Opportunity Analysis",
                   description: "Identification of design opportunities and potential challenges in the space."
                 },
                 {
-                  icon: "📋",
+                  icon: <Clipboard className="h-12 w-12 text-[#e99816]" />,
                   title: "Initial Recommendations",
                   description: "Preliminary suggestions and design direction based on site assessment."
                 }
@@ -127,7 +128,7 @@ export default function FieldVisitPage() {
                   className="border border-border bg-card p-6 transition-all hover:border-[#e99816]"
                   style={{ borderRadius: "0" }}
                 >
-                  <div className="mb-4 text-4xl">{item.icon}</div>
+                  <div className="mb-4">{item.icon}</div>
                   <h3
                     className="mb-3 text-lg font-medium text-foreground"
                     style={{

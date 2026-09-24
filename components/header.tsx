@@ -18,7 +18,7 @@ export function Header() {
     if (path === "/") return pathname === "/";
     if (path === "/about") return pathname === "/about";
     if (path === "/rooms") return pathname?.startsWith("/rooms");
-    if (path === "/services") return pathname?.startsWith("/services");
+    if (path === "/services") return pathname?.startsWith("/services") || pathname === "/timing" || pathname === "/field-visit" || pathname === "/payment";
     return pathname?.startsWith(path);
   };
 
@@ -81,18 +81,6 @@ export function Header() {
                     <ul className="flex flex-col gap-3">
                       <li><Link href="/design-ideas?tab=style" className="text-sm text-gray-700 hover:text-black">Design by Style</Link></li>
                       <li><Link href="/design-ideas?tab=location" className="text-sm text-gray-700 hover:text-black">Designers by City</Link></li>
-                    </ul>
-                  </div>
-
-                  {/* Column 3 */}
-                  <div className="flex flex-col">
-                    <h3 className="mb-4 text-xs font-bold uppercase tracking-wider text-gray-500">Plan your Project</h3>
-                    <ul className="flex flex-col gap-3">
-                      <li><Link href="/pricing" className={`text-sm hover:text-black ${pathname === '/pricing' ? 'text-black border-b-2 border-yellow-400' : 'text-gray-700'}`}>Pricing & Packages</Link></li>
-                      <li><Link href="/packages" className={`text-sm hover:text-black ${pathname === '/packages' ? 'text-black border-b-2 border-yellow-400' : 'text-gray-700'}`}>Packages</Link></li>
-                      <li><Link href="#" className="text-sm text-gray-700 hover:text-black">Interior Design Cost Guide</Link></li>
-                      <li><Link href="#" className="text-sm text-gray-700 hover:text-black">Interior Design Style Quiz</Link></li>
-                      <li><Link href="#" className="text-sm text-gray-700 hover:text-black">Gift Cards</Link></li>
                     </ul>
                   </div>
                 </div>

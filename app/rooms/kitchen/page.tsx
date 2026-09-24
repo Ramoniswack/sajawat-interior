@@ -3,8 +3,8 @@
 import { useState } from "react"
 import { Header } from "@/components/header"
 import { FooterSection } from "@/components/sections/footer-section"
-import { RoomGalleryCard } from "@/components/rooms/room-gallery-card"
 import { RoomModal } from "@/components/rooms/room-modal"
+import { FluidCardStack } from "@/components/ui/fluid-card-stack"
 
 const kitchenImages = [
   {
@@ -49,49 +49,49 @@ const kitchenImages = [
   },
 ]
 
-const byStyleImages = [
+const byStyleCards = [
   {
-    url: "https://images.unsplash.com/photo-1556911220-e15b29be8c8f?q=80&w=800&auto=format&fit=crop",
     title: "Nepali Traditional",
-    description: "Warm earthy tones with traditional Nepali patterns and handcrafted wooden elements."
+    image: "https://images.unsplash.com/photo-1556911220-e15b29be8c8f?q=80&w=800&auto=format&fit=crop",
+    detail: "Warm earthy tones with traditional Nepali patterns and handcrafted wooden elements."
   },
   {
-    url: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?q=80&w=800&auto=format&fit=crop",
     title: "Himalayan Minimalist",
-    description: "Clean lines inspired by mountain landscapes with natural materials and serene colors."
+    image: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?q=80&w=800&auto=format&fit=crop",
+    detail: "Clean lines inspired by mountain landscapes with natural materials and serene colors."
   },
   {
-    url: "https://images.unsplash.com/photo-1556910103-1c02745a30bf?q=80&w=800&auto=format&fit=crop",
     title: "Newari Heritage",
-    description: "Traditional Newari kitchen design with intricate wood carvings and rich cultural motifs."
+    image: "https://images.unsplash.com/photo-1556910103-1c02745a30bf?q=80&w=800&auto=format&fit=crop",
+    detail: "Traditional Newari kitchen design with intricate wood carvings and rich cultural motifs."
   },
   {
-    url: "https://images.unsplash.com/photo-1556912967-9c9b48df3c16?q=80&w=800&auto=format&fit=crop",
     title: "Kathmandu Contemporary",
-    description: "Modern design blended with traditional Nepali textiles and vibrant cultural colors."
+    image: "https://images.unsplash.com/photo-1556912967-9c9b48df3c16?q=80&w=800&auto=format&fit=crop",
+    detail: "Modern design blended with traditional Nepali textiles and vibrant cultural colors."
   },
 ]
 
-const byLocationImages = [
+const byLocationCards = [
   {
-    url: "https://images.unsplash.com/photo-1556911420-5319542279dc?q=80&w=800&auto=format&fit=crop",
     title: "Kathmandu City",
-    description: "Space-efficient design perfect for Kathmandu living with smart storage solutions."
+    image: "https://images.unsplash.com/photo-1556911420-5319542279dc?q=80&w=800&auto=format&fit=crop",
+    detail: "Space-efficient design perfect for Kathmandu living with smart storage solutions."
   },
   {
-    url: "https://images.unsplash.com/photo-1556912679-8c2c5d913f65?q=80&w=800&auto=format&fit=crop",
     title: "Lalitpur Residence",
-    description: "Spacious layout with ample counter space and traditional Newari elements."
+    image: "https://images.unsplash.com/photo-1556912679-8c2c5d913f65?q=80&w=800&auto=format&fit=crop",
+    detail: "Spacious layout with ample counter space and traditional Newari elements."
   },
   {
-    url: "https://images.unsplash.com/photo-1556911220-e15b29be8c8f?q=80&w=800&auto=format&fit=crop",
     title: "Pokhara Lakeside",
-    description: "Breezy, light-filled spaces inspired by lakeside living with natural materials."
+    image: "https://images.unsplash.com/photo-1556911220-e15b29be8c8f?q=80&w=800&auto=format&fit=crop",
+    detail: "Breezy, light-filled spaces inspired by lakeside living with natural materials."
   },
   {
-    url: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?q=80&w=800&auto=format&fit=crop",
     title: "Chitwan Jungle",
-    description: "Rustic charm with natural materials and earthy colors inspired by Terai region."
+    image: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?q=80&w=800&auto=format&fit=crop",
+    detail: "Rustic charm with natural materials and earthy colors inspired by Terai region."
   },
 ]
 
@@ -148,17 +148,6 @@ export default function KitchenPage() {
           </div>
         </section>
 
-        <section className="py-24 bg-white">
-          <div className="mx-auto max-w-7xl px-6 md:px-10">
-            <h2 className="mb-12 text-3xl font-light text-foreground">Kitchen Gallery</h2>
-            <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
-              {kitchenImages.map((item, index) => (
-                <RoomGalleryCard key={index} item={item} index={index} onExplore={handleExplore} />
-              ))}
-            </div>
-          </div>
-        </section>
-
         <section className="py-24 bg-gray-50">
           <div className="mx-auto max-w-7xl px-6 md:px-10">
             <div className="mb-16 text-center">
@@ -185,10 +174,8 @@ export default function KitchenPage() {
                 Explore different design styles to find the perfect aesthetic for your space.
               </p>
             </div>
-            <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
-              {byStyleImages.map((item, index) => (
-                <RoomGalleryCard key={index} item={item} index={index} onExplore={handleExplore} />
-              ))}
+            <div className="flex justify-center">
+              <FluidCardStack cards={byStyleCards} onCardClick={(card) => handleExplore({ title: card.title, description: card.detail, url: '' })} />
             </div>
           </div>
         </section>
@@ -219,10 +206,8 @@ export default function KitchenPage() {
                 Discover designs inspired by different regions and cultural influences.
               </p>
             </div>
-            <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
-              {byLocationImages.map((item, index) => (
-                <RoomGalleryCard key={index} item={item} index={index} onExplore={handleExplore} />
-              ))}
+            <div className="flex justify-center">
+              <FluidCardStack cards={byLocationCards} onCardClick={(card) => handleExplore({ title: card.title, description: card.detail, url: '' })} />
             </div>
           </div>
         </section>

@@ -280,9 +280,21 @@ export default function TimingPage() {
         </motion.section>
 
         {/* Important Notes */}
-        <section className="py-24 bg-muted/30">
+        <motion.section
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.8 }}
+          className="py-24 bg-muted/30"
+        >
           <div className="mx-auto max-w-7xl px-6 md:px-10">
-            <div className="mb-16 text-center">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.6 }}
+              className="mb-16 text-center"
+            >
               <h2
                 className="mb-4 text-3xl font-light text-foreground md:text-4xl"
                 style={{
@@ -294,64 +306,66 @@ export default function TimingPage() {
               >
                 Important Notes
               </h2>
-            </div>
+            </motion.div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              <div className="border border-border bg-card p-6" style={{ borderRadius: "0" }}>
-                <h3 className="mb-3 text-lg font-medium text-foreground">Timeline Variations</h3>
-                <p className="text-sm text-muted-foreground" style={{
-                  fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", sans-serif',
-                  WebkitFontSmoothing: 'antialiased',
-                  MozOsxFontSmoothing: 'grayscale',
-                  fontWeight: 300,
-                }}>
-                  Timelines may vary based on project complexity, size, and client response time. We provide realistic estimates and keep you informed of any changes.
-                </p>
-              </div>
-
-              <div className="border border-border bg-card p-6" style={{ borderRadius: "0" }}>
-                <h3 className="mb-3 text-lg font-medium text-foreground">Client Availability</h3>
-                <p className="text-sm text-muted-foreground" style={{
-                  fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", sans-serif',
-                  WebkitFontSmoothing: 'antialiased',
-                  MozOsxFontSmoothing: 'grayscale',
-                  fontWeight: 300,
-                }}>
-                  Your timely feedback and approvals are crucial for maintaining the schedule. We schedule regular check-ins to ensure smooth progress.
-                </p>
-              </div>
-
-              <div className="border border-border bg-card p-6" style={{ borderRadius: "0" }}>
-                <h3 className="mb-3 text-lg font-medium text-foreground">Material Lead Times</h3>
-                <p className="text-sm text-muted-foreground" style={{
-                  fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", sans-serif',
-                  WebkitFontSmoothing: 'antialiased',
-                  MozOsxFontSmoothing: 'grayscale',
-                  fontWeight: 300,
-                }}>
-                  Custom materials and furniture may have longer lead times. We factor these into our planning and offer alternatives when needed.
-                </p>
-              </div>
-
-              <div className="border border-border bg-card p-6" style={{ borderRadius: "0" }}>
-                <h3 className="mb-3 text-lg font-medium text-foreground">Quality Assurance</h3>
-                <p className="text-sm text-muted-foreground" style={{
-                  fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", sans-serif',
-                  WebkitFontSmoothing: 'antialiased',
-                  MozOsxFontSmoothing: 'grayscale',
-                  fontWeight: 300,
-                }}>
-                  We never compromise quality for speed. Our timelines include adequate time for quality checks and refinements at each stage.
-                </p>
-              </div>
+              {[
+                {
+                  title: "Timeline Variations",
+                  description: "Timelines may vary based on project complexity, size, and client response time. We provide realistic estimates and keep you informed of any changes."
+                },
+                {
+                  title: "Client Availability",
+                  description: "Your timely feedback and approvals are crucial for maintaining the schedule. We schedule regular check-ins to ensure smooth progress."
+                },
+                {
+                  title: "Material Lead Times",
+                  description: "Custom materials and furniture may have longer lead times. We factor these into our planning and offer alternatives when needed."
+                },
+                {
+                  title: "Quality Assurance",
+                  description: "We never compromise quality for speed. Our timelines include adequate time for quality checks and refinements at each stage."
+                }
+              ].map((note, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-100px" }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  whileHover={{ scale: 1.02, y: -5 }}
+                  className="border border-border bg-card p-6 transition-all hover:border-[#e99816] hover:shadow-lg"
+                  style={{ borderRadius: "0" }}
+                >
+                  <h3 className="mb-3 text-lg font-medium text-foreground">{note.title}</h3>
+                  <p className="text-sm text-muted-foreground" style={{
+                    fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", sans-serif',
+                    WebkitFontSmoothing: 'antialiased',
+                    MozOsxFontSmoothing: 'grayscale',
+                    fontWeight: 300,
+                  }}>
+                    {note.description}
+                  </p>
+                </motion.div>
+              ))}
             </div>
           </div>
-        </section>
+        </motion.section>
 
         {/* CTA Section */}
-        <section className="py-24 bg-[#e99816]">
+        <motion.section
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.8 }}
+          className="py-24 bg-[#e99816]"
+        >
           <div className="mx-auto max-w-4xl px-6 text-center">
-            <h2
+            <motion.h2
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.6 }}
               className="mb-6 text-3xl font-light text-white md:text-4xl"
               style={{
                 fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", sans-serif',
@@ -361,8 +375,12 @@ export default function TimingPage() {
               }}
             >
               Ready to Start Your Project?
-            </h2>
-            <p
+            </motion.h2>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.6, delay: 0.2 }}
               className="mb-8 text-lg text-white/90"
               style={{
                 fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", sans-serif',
@@ -372,21 +390,30 @@ export default function TimingPage() {
               }}
             >
               Contact us to discuss your timeline and get a personalized project schedule.
-            </p>
-            <Link
-              href="/contact"
-              className="button-hover inline-block rounded-none bg-white px-8 py-4 text-sm font-medium text-[#e99816] transition-colors hover:bg-gray-100"
-              style={{
-                fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", sans-serif',
-                WebkitFontSmoothing: 'antialiased',
-                MozOsxFontSmoothing: 'grayscale',
-                letterSpacing: '0.02em',
-              }}
+            </motion.p>
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.5, delay: 0.4 }}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
             >
-              Contact Us Today
-            </Link>
+              <Link
+                href="/contact"
+                className="button-hover inline-block rounded-none bg-white px-8 py-4 text-sm font-medium text-[#e99816] transition-colors hover:bg-gray-100"
+                style={{
+                  fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", sans-serif',
+                  WebkitFontSmoothing: 'antialiased',
+                  MozOsxFontSmoothing: 'grayscale',
+                  letterSpacing: '0.02em',
+                }}
+              >
+                Contact Us Today
+              </Link>
+            </motion.div>
           </div>
-        </section>
+        </motion.section>
       </main>
 
       <FooterSection />
