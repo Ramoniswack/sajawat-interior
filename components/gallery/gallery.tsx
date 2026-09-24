@@ -4,7 +4,7 @@ import { useMemo, useState } from "react"
 import { galleryCategories, galleryItems, type GalleryItem } from "@/lib/gallery-data"
 import { GalleryFilters } from "./gallery-filters"
 import { GalleryItem as GalleryItemCard } from "./gallery-item"
-import { GalleryLightbox } from "./gallery-lightbox"
+import { designIdeasItems, designIdeasCategories } from "@/lib/design-ideas-data"
 
 type ExtendedGalleryItem = GalleryItem & { features?: string[] }
 
@@ -26,17 +26,11 @@ export function Gallery({
   categories = galleryCategories,
 }: GalleryProps) {
   const [activeCategory, setActiveCategory] = useState("all")
-  const [openIndex, setOpenIndex] = useState<number | null>(null)
 
   const filtered = useMemo(
     () => (activeCategory === "all" ? items : items.filter((item) => item.category === activeCategory)),
     [items, activeCategory],
   )
-
-  const handleSelect = (item: ExtendedGalleryItem) => {
-    const index = filtered.findIndex((i) => i.id === item.id)
-    if (index >= 0) setOpenIndex(index)
-  }
 
   return (
     <div className="mx-auto w-full max-w-6xl px-4 py-10 sm:px-6 sm:py-14">
@@ -50,7 +44,6 @@ export function Gallery({
           active={activeCategory}
           onChange={(id) => {
             setActiveCategory(id)
-            setOpenIndex(null)
           }}
         />
       </header>
@@ -59,7 +52,7 @@ export function Gallery({
         {filtered.length > 0 ? (
           <div className="grid auto-rows-[minmax(11rem,1fr)] grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4 lg:grid-cols-4">
             {filtered.map((item) => (
-              <GalleryItemCard key={item.id} item={item} onSelect={handleSelect} />
+              <GalleryItemCard key={item.id} item={item} />
             ))}
           </div>
         ) : (
@@ -68,15 +61,6 @@ export function Gallery({
           </div>
         )}
       </div>
-
-      {openIndex !== null ? (
-        <GalleryLightbox
-          items={filtered}
-          index={openIndex}
-          onClose={() => setOpenIndex(null)}
-          onNavigate={setOpenIndex}
-        />
-      ) : null}
     </div>
   )
 }
