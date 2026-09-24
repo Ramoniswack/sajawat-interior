@@ -7,7 +7,7 @@ type GalleryImage = {
   alt: string
 }
 
-type LivingRoomGalleryProps = {
+type RoomGalleryProps = {
   title: string
   description: string
   gallery: readonly GalleryImage[]
@@ -18,7 +18,7 @@ type LivingRoomGalleryProps = {
   galleryDescription: string
 }
 
-export function LivingRoomGallery({
+export function RoomGallery({
   title,
   description,
   gallery,
@@ -27,7 +27,7 @@ export function LivingRoomGallery({
   collectionLabel,
   galleryTitle,
   galleryDescription,
-}: LivingRoomGalleryProps) {
+}: RoomGalleryProps) {
   return (
     <div className="flex min-h-screen flex-col">
       <Header />
@@ -77,7 +77,7 @@ export function LivingRoomGallery({
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 lg:gap-6">
               {gallery.map((item, index) => (
                 <figure
-                  key={item.image}
+                  key={`${item.image}-${index}`}
                   className={`group relative overflow-hidden bg-stone-200 ${index === 0 ? "sm:col-span-2 lg:row-span-2" : ""}`}
                 >
                   <img

@@ -1,6 +1,7 @@
 "use client"
 
 import { useState } from "react"
+import { useRouter } from "next/navigation"
 import { Header } from "@/components/header"
 import { FooterSection } from "@/components/sections/footer-section"
 import { RoomModal } from "@/components/rooms/room-modal"
@@ -96,6 +97,7 @@ const byLocationCards = [
 ]
 
 export default function BedroomPage() {
+  const router = useRouter()
   const [selectedRoom, setSelectedRoom] = useState<any>(null)
   const [isModalOpen, setIsModalOpen] = useState(false)
 
@@ -175,7 +177,10 @@ export default function BedroomPage() {
               </p>
             </div>
             <div className="flex justify-center">
-              <FluidCardStack cards={byStyleCards} onCardClick={(card) => handleExplore({ title: card.title, description: card.detail, url: '' })} />
+              <FluidCardStack cards={byStyleCards} galleryType="style" onCardClick={(card) => {
+                  const slug = card.title.toLowerCase().replace(/[^a-z0-9]+/g, '-')
+                  router.push(`/rooms/bedroom/style/${slug}`)
+                }} />
             </div>
           </div>
         </section>
@@ -207,7 +212,10 @@ export default function BedroomPage() {
               </p>
             </div>
             <div className="flex justify-center">
-              <FluidCardStack cards={byLocationCards} onCardClick={(card) => handleExplore({ title: card.title, description: card.detail, url: '' })} />
+              <FluidCardStack cards={byLocationCards} galleryType="location" onCardClick={(card) => {
+                  const slug = card.title.toLowerCase().replace(/[^a-z0-9]+/g, '-')
+                  router.push(`/rooms/bedroom/style/${slug}`)
+                }} />
             </div>
           </div>
         </section>

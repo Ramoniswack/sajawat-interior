@@ -1,5 +1,5 @@
 import { notFound } from "next/navigation"
-import { LivingRoomGallery } from "@/components/rooms/living-room-gallery"
+import { RoomGallery } from "@/components/rooms/room-gallery"
 import { livingRoomStyles } from "@/components/rooms/living-room-styles"
 
 export function generateStaticParams() {
@@ -17,7 +17,7 @@ export default async function LivingRoomStyleGallery({
   if (!style) notFound()
 
   return (
-    <LivingRoomGallery
+    <RoomGallery
       title={style.title}
       description={style.description}
       gallery={style.gallery}
