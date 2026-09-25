@@ -4,8 +4,30 @@ import { Header } from "@/components/header"
 import { FooterSection } from "@/components/sections/footer-section"
 import { Sparkles, Target, Leaf, Check, ArrowRight } from "lucide-react"
 import TeamMemberCard from "@/components/ui/team-member-card"
+import { api, Designer } from "@/lib/api"
+import { useEffect, useState } from "react"
 
 export default function AboutPage() {
+  const [designers, setDesigners] = useState<Designer[]>([])
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState<string | null>(null)
+
+  useEffect(() => {
+    const fetchDesigners = async () => {
+      try {
+        const data = await api.getDesigners()
+        setDesigners(data)
+      } catch (err) {
+        console.error('Error fetching designers:', err)
+        setError('Failed to load team members')
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    fetchDesigners()
+  }, [])
+
   return (
     <div className="flex min-h-screen flex-col">
       <Header />
@@ -197,40 +219,34 @@ export default function AboutPage() {
               </p>
             </div>
 
-            <div className="flex flex-col">
-              <TeamMemberCard
-                position="left"
-                jobPosition="Lead Designer"
-                firstName="Aarav"
-                lastName="Sharma"
-                imageUrl="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=600&auto=format&fit=crop"
-                description="Aarav is a visionary designer with over 10 years of experience in creating stunning residential and commercial spaces. His innovative approach blends modern aesthetics with functional design."
-              />
-              <TeamMemberCard
-                position="right"
-                jobPosition="Architectural Specialist"
-                firstName="Priya"
-                lastName="Gurung"
-                imageUrl="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=600&auto=format&fit=crop"
-                description="Priya brings a wealth of knowledge in sustainable and biophilic design, ensuring every space feels natural and breathable. Her designs seamlessly integrate nature with modern living."
-              />
-              <TeamMemberCard
-                position="left"
-                jobPosition="Design Director"
-                firstName="Siddharth"
-                lastName="Thapa"
-                imageUrl="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=600&auto=format&fit=crop"
-                description="An expert in contemporary fusion, Siddharth transforms ordinary rooms into luxurious, cutting-edge living environments. His work has been featured in leading design publications."
-              />
-              <TeamMemberCard
-                position="right"
-                jobPosition="Interior Consultant"
-                firstName="Anita"
-                lastName="Rai"
-                imageUrl="https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=600&auto=format&fit=crop"
-                description="Anita specializes in creating warm, inviting spaces that reflect her clients' personalities. Her attention to detail and personalized approach ensures every project tells a unique story."
-              />
-            </div>
+            {loading ? (
+              <div className="text-center text-muted-foreground">Loading team members...</div>
+            ) : error ? (
+              <div className="text-center text-red-500">{error}</div>
+            ) : designers.length === 0 ? (
+              <div className="text-center text-muted-foreground">No team members available.</div>
+            ) : (
+              <div className="flex flex-col">
+                {designers.map((designer, index) => {
+                  const nameParts = designer.name.split(' ')
+                  const firstName = nameParts[0] || ''
+                  const lastName = nameParts.slice(1).join(' ') || ''
+                  const position = index % 2 === 0 ? 'left' : 'right'
+                  
+                  return (
+                    <TeamMemberCard
+                      key={designer.id}
+                      position={position}
+                      jobPosition={designer.role}
+                      firstName={firstName}
+                      lastName={lastName}
+                      imageUrl={designer.image_url || 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=600&auto=format&fit=crop'}
+                      description={designer.description}
+                    />
+                  )
+                })}
+              </div>
+            )}
           </div>
         </section>
 
