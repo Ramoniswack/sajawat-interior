@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
+import { api, HomePage } from "@/lib/api";
 
 const word = "SAJAWAT";
 
@@ -36,6 +37,19 @@ const sideImages = [
 export function HeroSection() {
   const sectionRef = useRef<HTMLElement>(null);
   const [scrollProgress, setScrollProgress] = useState(0);
+  const [homeData, setHomeData] = useState<HomePage | null>(null);
+
+  useEffect(() => {
+    async function fetchHomeData() {
+      try {
+        const data = await api.getHomePage();
+        setHomeData(data);
+      } catch (error) {
+        console.error('Failed to fetch home data:', error);
+      }
+    }
+    fetchHomeData();
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {

@@ -1,12 +1,12 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { useRouter } from "next/navigation"
 import { Header } from "@/components/header"
 import { FooterSection } from "@/components/sections/footer-section"
 import { RoomsHero } from "@/components/rooms/rooms-hero"
 import { RoomCard } from "@/components/rooms/room-card"
-import { rooms } from "@/lib/rooms-data-custom"
+import { api, Room } from "@/lib/api"
 
 const roomCategories = [
   { id: "all", label: "All" },
@@ -21,39 +21,45 @@ const roomCategories = [
 export default function RoomsPage() {
   const router = useRouter()
   const [activeCategory, setActiveCategory] = useState("all")
+  const [rooms, setRooms] = useState<Room[]>([])
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState<string | null>(null)
 
-  const handleLearnMore = (room: any) => {
-    // Map room IDs to their dedicated page routes
-    const routeMap: Record<string, string> = {
-      'living-room': '/rooms/living-room',
-      'dining-room': '/rooms/dining-room',
-      'family-room': '/rooms/family-room',
-      'bedroom': '/rooms/bedroom',
-      'master-suite': '/rooms/master-suite',
-      'home-office': '/rooms/home-office',
-      'kitchen': '/rooms/kitchen',
-      'bathroom': '/rooms/bathroom',
-      'laundry-room': '/rooms/laundry-room',
-      'cafe': '/rooms/cafe',
-      'restaurant': '/rooms/restaurant',
-      'office-space': '/rooms/office-space',
+  useEffect(() => {
+    async function fetchRooms() {
+      try {
+        setLoading(true)
+        const data = await api.getRooms()
+        setRooms(data)
+      } catch (err) {
+        console.error('Failed to fetch rooms:', err)
+        setError('Failed to load rooms. Please try again later.')
+      } finally {
+        setLoading(false)
+      }
     }
 
-    const route = routeMap[room.id]
-    if (route) {
-      router.push(route)
-    }
+    fetchRooms()
+  }, [])
+
+  const handleLearnMore = (room: Room) => {
+    // Navigate to room detail page using room ID
+    router.push(`/rooms/${room.id}`)
   }
 
   const filteredRooms = activeCategory === "all"
     ? rooms
     : rooms.filter((room) => {
-        if (activeCategory === "living") return room.id === "living-room" || room.id === "dining-room" || room.id === "family-room"
-        if (activeCategory === "bedroom") return room.id === "bedroom" || room.id === "master-suite"
-        if (activeCategory === "kitchen") return room.id === "kitchen" || room.id === "dining-room"
-        if (activeCategory === "bathroom") return room.id === "bathroom" || room.id === "laundry-room"
-        if (activeCategory === "office") return room.id === "home-office" || room.id === "office-space"
-        if (activeCategory === "commercial") return room.id === "cafe" || room.id === "restaurant"
+        // Note: This is a simplified filtering. In production, you'd want to
+        // fetch room types from the API and filter by actual room_type names
+        // For now, we'll filter based on title as a temporary solution
+        const title = room.title.toLowerCase()
+        if (activeCategory === "living") return title.includes('living') || title.includes('dining') || title.includes('family')
+        if (activeCategory === "bedroom") return title.includes('bedroom') || title.includes('master')
+        if (activeCategory === "kitchen") return title.includes('kitchen') || title.includes('dining')
+        if (activeCategory === "bathroom") return title.includes('bathroom') || title.includes('laundry')
+        if (activeCategory === "office") return title.includes('office')
+        if (activeCategory === "commercial") return title.includes('cafe') || title.includes('restaurant')
         return true
       })
 
@@ -67,51 +73,91 @@ export default function RoomsPage() {
         {/* Rooms Section */}
         <section className="py-24 bg-gray-100">
           <div className="mx-auto max-w-7xl px-6 md:px-10">
-            {/* Filter Buttons */}
-            <div className="mb-8 flex flex-wrap justify-center gap-3">
-              {roomCategories.map((category) => (
-                <button
-                  key={category.id}
-                  onClick={() => setActiveCategory(category.id)}
-                  className={`px-6 py-2.5 text-sm font-medium transition-all ${
-                    activeCategory === category.id
-                      ? "bg-gray-800 text-white"
-                      : "bg-gray-200 text-gray-700 hover:bg-gray-300"
-                  }`}
-                  style={{
-                    fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", sans-serif',
-                    WebkitFontSmoothing: 'antialiased',
-                    MozOsxFontSmoothing: 'grayscale',
-                  }}
-                >
-                  {category.label}
-                </button>
-              ))}
-            </div>
+            {/* Loading State */}
+            {loading && (
+              <div className="text-center py-12">
+                <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-gray-900"></div>
+                <p className="mt-4 text-gray-600">Loading rooms...</p>
+              </div>
+            )}
 
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 auto-rows-[250px]">
-              {filteredRooms.map((room, index) => {
-                // Create varied sizes for abstract mosaic layout
-                const sizes: Array<'small' | 'medium' | 'large' | 'wide' | 'tall'> = [
-                  'large', 'medium', 'tall',
-                  'medium', 'wide', 'small',
-                  'tall', 'medium', 'large',
-                  'small', 'medium', 'wide',
-                  'tall', 'medium', 'large'
-                ]
-                const size = sizes[index % sizes.length]
-                
-                return (
-                  <RoomCard
-                    key={room.id}
-                    room={room}
-                    index={index}
-                    onLearnMore={handleLearnMore}
-                    size={size}
-                  />
-                )
-              })}
-            </div>
+            {/* Error State */}
+            {error && (
+              <div className="text-center py-12">
+                <p className="text-red-600 mb-4">{error}</p>
+                <button
+                  onClick={() => window.location.reload()}
+                  className="px-6 py-2 bg-gray-800 text-white rounded hover:bg-gray-700"
+                >
+                  Retry
+                </button>
+              </div>
+            )}
+
+            {/* Content */}
+            {!loading && !error && (
+              <>
+                {/* Filter Buttons */}
+                <div className="mb-8 flex flex-wrap justify-center gap-3">
+                  {roomCategories.map((category) => (
+                    <button
+                      key={category.id}
+                      onClick={() => setActiveCategory(category.id)}
+                      className={`px-6 py-2.5 text-sm font-medium transition-all ${
+                        activeCategory === category.id
+                          ? "bg-gray-800 text-white"
+                          : "bg-gray-200 text-gray-700 hover:bg-gray-300"
+                      }`}
+                      style={{
+                        fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", sans-serif',
+                        WebkitFontSmoothing: 'antialiased',
+                        MozOsxFontSmoothing: 'grayscale',
+                      }}
+                    >
+                      {category.label}
+                    </button>
+                  ))}
+                </div>
+
+                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 auto-rows-[250px]">
+                  {filteredRooms.length === 0 ? (
+                    <div className="col-span-full text-center py-12">
+                      <p className="text-gray-600">No rooms found in this category.</p>
+                    </div>
+                  ) : (
+                    filteredRooms.map((room, index) => {
+                      // Create varied sizes for abstract mosaic layout
+                      const sizes: Array<'small' | 'medium' | 'large' | 'wide' | 'tall'> = [
+                        'large', 'medium', 'tall',
+                        'medium', 'wide', 'small',
+                        'tall', 'medium', 'large',
+                        'small', 'medium', 'wide',
+                        'tall', 'medium', 'large'
+                      ]
+                      const size = sizes[index % sizes.length]
+                      
+                      // Transform API data to match component expected format
+                      const transformedRoom = {
+                        id: room.id.toString(),
+                        title: room.title,
+                        description: room.description,
+                        image: room.image || '/images/placeholder-room.jpg',
+                      }
+                      
+                      return (
+                        <RoomCard
+                          key={room.id}
+                          room={transformedRoom}
+                          index={index}
+                          onLearnMore={() => handleLearnMore(room)}
+                          size={size}
+                        />
+                      )
+                    })
+                  )}
+                </div>
+              </>
+            )}
           </div>
         </section>
 

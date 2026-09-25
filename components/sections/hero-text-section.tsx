@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { api, HomePage } from "@/lib/api";
 
 const phrases = [
   "Spaces with soul",
@@ -11,6 +12,19 @@ const phrases = [
 
 export function HeroTextSection() {
   const [phraseIndex, setPhraseIndex] = useState(0);
+  const [homeData, setHomeData] = useState<HomePage | null>(null);
+
+  useEffect(() => {
+    async function fetchHomeData() {
+      try {
+        const data = await api.getHomePage();
+        setHomeData(data);
+      } catch (error) {
+        console.error('Failed to fetch home data:', error);
+      }
+    }
+    fetchHomeData();
+  }, []);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -30,15 +44,26 @@ export function HeroTextSection() {
           key={phraseIndex}
           className="text-4xl font-light leading-tight md:text-6xl lg:text-7xl"
         >
-          {`${phrases[phraseIndex]}, made for living.`.split("").map((char, index) => (
-            <span
-              key={index}
-              className="animate-typewriter"
-              style={{ animationDelay: `${index * 0.04}s` }}
-            >
-              {char}
-            </span>
-          ))}
+          {homeData 
+            ? `${homeData.hero_subtitle}`.split("").map((char, index) => (
+                <span
+                  key={index}
+                  className="animate-typewriter"
+                  style={{ animationDelay: `${index * 0.04}s` }}
+                >
+                  {char}
+                </span>
+              ))
+            : `${phrases[phraseIndex]}, made for living.`.split("").map((char, index) => (
+                <span
+                  key={index}
+                  className="animate-typewriter"
+                  style={{ animationDelay: `${index * 0.04}s` }}
+                >
+                  {char}
+                </span>
+              ))
+          }
         </p>
       </div>
     </section>
