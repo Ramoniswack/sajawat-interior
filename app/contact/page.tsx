@@ -38,9 +38,24 @@ export default function ContactPage() {
     success_subtitle: 'Message received'
   };
 
-  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    setSubmitted(true);
+    const formData = new FormData(event.currentTarget);
+    const data = {
+      name: formData.get('name') as string,
+      email: formData.get('email') as string,
+      subject: formData.get('project') as string,
+      message: formData.get('message') as string,
+      service_interest: formData.get('project') as string,
+    };
+
+    try {
+      await api.submitContactForm(data);
+      setSubmitted(true);
+    } catch (error) {
+      console.error('Failed to submit contact form:', error);
+      alert('Failed to submit form. Please try again.');
+    }
   }
 
   return (

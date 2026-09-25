@@ -31,8 +31,8 @@ export function FeaturedProductsSection() {
   // Fallback to static data if API fails or no rooms
   const features = safeFeaturedRooms.length > 0 && safeFeaturedRooms[0]?.title
     ? safeFeaturedRooms.map(room => ({
-        image: room.image || "/images/placeholder-room.jpg",
-        span: room.span === 'large' ? "col-span-2 row-span-2" : 
+        image: room.image_url || room.image || "/images/placeholder-room.jpg",
+        span: room.span === 'large' ? "col-span-2 row-span-2" :
               room.span === 'tall' ? "col-span-1 row-span-2" :
               room.span === 'wide' ? "col-span-2 row-span-1" :
               "col-span-1 row-span-1",

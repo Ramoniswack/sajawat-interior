@@ -1,10 +1,26 @@
 "use client"
 
+import Link from "next/link"
 import { Header } from "@/components/header"
 import { FooterSection } from "@/components/sections/footer-section"
 import { Check, ArrowRight } from "lucide-react"
+import { api } from "@/lib/api"
+import { useEffect, useState } from "react"
 
 export default function PackagesPage() {
+  const [pricingData, setPricingData] = useState<any[]>([])
+
+  useEffect(() => {
+    async function fetchPricingData() {
+      try {
+        const data = await api.getPricing()
+        setPricingData(Array.isArray(data) ? data : [])
+      } catch (error) {
+        console.error('Failed to fetch pricing data:', error)
+      }
+    }
+    fetchPricingData()
+  }, [])
   return (
     <div className="flex min-h-screen flex-col">
       <Header />
@@ -69,10 +85,11 @@ export default function PackagesPage() {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {[
+              {(pricingData.length > 0 ? pricingData : [
                 {
                   name: "Essential",
-                  price: "Rs. 75,000",
+                  final_price: 75000,
+                  currency: "NPR",
                   description: "Complete design solution for single room transformation",
                   features: [
                     "Full room design",
@@ -82,11 +99,12 @@ export default function PackagesPage() {
                     "1 revision round",
                     "Email support"
                   ],
-                  popular: false
+                  featured: false
                 },
                 {
                   name: "Professional",
-                  price: "Rs. 2,00,000",
+                  final_price: 200000,
+                  currency: "NPR",
                   description: "Comprehensive design for multiple rooms",
                   features: [
                     "Multi-room design",
@@ -97,11 +115,12 @@ export default function PackagesPage() {
                     "Project coordination",
                     "Priority support"
                   ],
-                  popular: true
+                  featured: true
                 },
                 {
                   name: "Premium",
-                  price: "Rs. 5,00,000",
+                  final_price: 500000,
+                  currency: "NPR",
                   description: "Complete home transformation with full service",
                   features: [
                     "Full home design",
@@ -113,18 +132,18 @@ export default function PackagesPage() {
                     "On-site supervision",
                     "24/7 support"
                   ],
-                  popular: false
+                  featured: false
                 }
-              ].map((plan, index) => (
+              ]).map((plan, index) => (
                 <div
                   key={index}
                   className={`border bg-white p-8 ${
-                    plan.popular 
-                      ? 'border-[#e99816] shadow-lg' 
+                    plan.featured
+                      ? 'border-[#e99816] shadow-lg'
                       : 'border-gray-200 shadow-sm'
                   }`}
                 >
-                  {plan.popular && (
+                  {plan.featured && (
                     <div className="mb-4 inline-block bg-[#e99816] px-3 py-1 text-xs font-medium text-white">
                       Most Popular
                     </div>
@@ -159,7 +178,7 @@ export default function PackagesPage() {
                       MozOsxFontSmoothing: 'grayscale',
                     }}
                   >
-                    {plan.price}
+                    {plan.currency === 'NPR' ? 'Rs. ' : plan.currency + ' '}{(plan.final_price || plan.price)?.toLocaleString()}
                   </div>
                   <ul className="mb-8 space-y-3">
                     {plan.features.map((feature, idx) => (
@@ -178,9 +197,10 @@ export default function PackagesPage() {
                       </li>
                     ))}
                   </ul>
-                  <button
+                  <Link
+                    href="/contact"
                     className={`w-full flex items-center justify-center gap-2 px-6 py-3 text-sm font-medium transition-colors ${
-                      plan.popular
+                      plan.featured
                         ? 'bg-[#e99816] text-white hover:bg-[#c9790b]'
                         : 'border border-gray-300 text-foreground hover:bg-gray-50'
                     }`}
@@ -193,7 +213,7 @@ export default function PackagesPage() {
                   >
                     Choose Package
                     <ArrowRight className="h-4 w-4" />
-                  </button>
+                  </Link>
                 </div>
               ))}
             </div>
@@ -302,7 +322,8 @@ export default function PackagesPage() {
             >
               Choose a package that fits your needs and let us transform your space.
             </p>
-            <button
+            <Link
+              href="/contact"
               className="bg-white px-8 py-4 text-sm font-medium text-[#e99816] transition-colors hover:bg-gray-100"
               style={{
                 fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", sans-serif',
@@ -312,7 +333,7 @@ export default function PackagesPage() {
               }}
             >
               Get Started
-            </button>
+            </Link>
           </div>
         </section>
       </main>

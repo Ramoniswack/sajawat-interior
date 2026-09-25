@@ -50,8 +50,8 @@ export default function DesignIdeaPage() {
   const galleryItems = (designIdeas || []).map(idea => ({
     id: idea.id,
     title: idea.title,
-    category: idea.style,
-    image: idea.image || '/images/placeholder-room.jpg',
+    category: idea.style?.name || idea.style || 'General',
+    image: idea.image_url || idea.image || '/images/placeholder-room.jpg',
     description: idea.description
   }))
 

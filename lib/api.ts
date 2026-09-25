@@ -12,11 +12,12 @@ export interface Room {
   id: number;
   title: string;
   description: string;
-  room_type: number;
-  style: number;
-  location: number;
+  room_type: RoomType;
+  style: RoomStyle;
+  location: RoomLocation;
   featured: boolean;
   image: string | null;
+  image_url: string | null;
   span: string;
   created_at: string;
   updated_at: string;
@@ -191,6 +192,7 @@ export interface RoomType {
   slug: string;
   description: string;
   image: string | null;
+  image_url: string | null;
 }
 
 export interface RoomStyle {
@@ -384,7 +386,7 @@ class ApiClient {
 
   // Pricing API
   async getPricing(): Promise<any[]> {
-    const response = await this.request<{ count: number; next: string | null; previous: string | null; results: any[] }>('/api/pricing/');
+    const response = await this.request<{ count: number; next: string | null; previous: string | null; results: any[] }>('/api/pricing/packages/');
     return response.results;
   }
 

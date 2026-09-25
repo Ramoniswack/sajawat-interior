@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react"
 import { useRouter } from "next/navigation"
+import Link from "next/link"
 import { Header } from "@/components/header"
 import { FooterSection } from "@/components/sections/footer-section"
 import { RoomsHero } from "@/components/rooms/rooms-hero"
@@ -59,16 +60,14 @@ export default function RoomsPage() {
   const filteredRooms = activeCategory === "all"
     ? safeRooms
     : safeRooms.filter((room) => {
-        // Note: This is a simplified filtering. In production, you'd want to
-        // fetch room types from the API and filter by actual room_type names
-        // For now, we'll filter based on title as a temporary solution
-        const title = room.title.toLowerCase()
-        if (activeCategory === "living") return title.includes('living') || title.includes('dining') || title.includes('family')
-        if (activeCategory === "bedroom") return title.includes('bedroom') || title.includes('master')
-        if (activeCategory === "kitchen") return title.includes('kitchen') || title.includes('dining')
-        if (activeCategory === "bathroom") return title.includes('bathroom') || title.includes('laundry')
-        if (activeCategory === "office") return title.includes('office')
-        if (activeCategory === "commercial") return title.includes('cafe') || title.includes('restaurant')
+        // Filter by room_type name from API
+        const roomTypeName = room.room_type.name.toLowerCase()
+        if (activeCategory === "living") return roomTypeName.includes('living') || roomTypeName.includes('dining') || roomTypeName.includes('family')
+        if (activeCategory === "bedroom") return roomTypeName.includes('bedroom') || roomTypeName.includes('master')
+        if (activeCategory === "kitchen") return roomTypeName.includes('kitchen') || roomTypeName.includes('dining')
+        if (activeCategory === "bathroom") return roomTypeName.includes('bathroom') || roomTypeName.includes('laundry')
+        if (activeCategory === "office") return roomTypeName.includes('office')
+        if (activeCategory === "commercial") return roomTypeName.includes('cafe') || roomTypeName.includes('restaurant')
         return true
       })
 
@@ -150,7 +149,7 @@ export default function RoomsPage() {
                         id: room.id.toString(),
                         title: room.title,
                         description: room.description,
-                        image: room.image || '/images/placeholder-room.jpg',
+                        image: room.image_url || room.image || '/images/placeholder-room.jpg',
                       }
                       
                       return (
@@ -262,7 +261,8 @@ export default function RoomsPage() {
             >
               {roomsPageData?.cta_description || "Let's discuss your project and create something beautiful together."}
             </p>
-            <button
+            <Link
+              href={roomsPageData?.cta_button_link || '/contact'}
               className="button-hover bg-[#e99816] px-8 py-4 text-sm font-medium text-white transition-colors hover:bg-[#c9790b]"
               style={{
                 fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", sans-serif',
@@ -272,7 +272,7 @@ export default function RoomsPage() {
               }}
             >
               {roomsPageData?.cta_button_text || 'Start Your Project'}
-            </button>
+            </Link>
           </div>
         </section>
       </main>
