@@ -9,8 +9,38 @@ import { TimingSection } from "@/components/services/timing-section"
 import { FieldVisitSection } from "@/components/services/field-visit-section"
 import { PaymentSection } from "@/components/services/payment-section"
 import { PricingSection } from "@/components/services/pricing-section"
+import { api, ServicePage } from "@/lib/api"
+import { useEffect, useState } from "react"
 
 export default function ServicesPage() {
+  const [serviceData, setServiceData] = useState<ServicePage | null>(null)
+
+  useEffect(() => {
+    async function fetchServiceData() {
+      try {
+        const data = await api.getServicePage()
+        setServiceData(data)
+      } catch (error) {
+        console.error('Failed to fetch service data:', error)
+      }
+    }
+    fetchServiceData()
+  }, [])
+
+  const data = serviceData || {
+    hero_title: 'Our Services',
+    hero_description: 'Learn about our timing, field visit process, and payment options for your interior design project.',
+    service_cards: [
+      { number: '01', title: 'Timing', description: 'Learn about our project timelines and scheduling process.', href: '#timing' },
+      { number: '02', title: 'Field Visit', description: 'Understand our on-site consultation and assessment process.', href: '#field-visit' },
+      { number: '03', title: 'Payment Options', description: 'Explore our flexible payment plans and pricing structure.', href: '#payment' },
+      { number: '04', title: 'Pricing & Packages', description: 'Transparent NPR pricing — packages, room rates, materials, and an estimate calculator.', href: '#pricing' }
+    ],
+    cta_title: 'Ready to Transform Your Space?',
+    cta_description: "Let's discuss your project and create something beautiful together.",
+    cta_button_text: 'Get Started Today',
+    cta_button_link: '/contact'
+  }
 
   return (
     <div className="flex min-h-screen flex-col">
@@ -44,7 +74,7 @@ export default function ServicesPage() {
                   letterSpacing: '0.02em',
                 }}
               >
-                Our Services
+                {data.hero_title}
               </h2>
               <motion.p
                 initial={{ opacity: 0 }}
@@ -59,37 +89,12 @@ export default function ServicesPage() {
                   fontWeight: 300,
                 }}
               >
-                Learn about our timing, field visit process, and payment options for your interior design project.
+                {data.hero_description}
               </motion.p>
             </motion.div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-              {[
-                {
-                  number: "01",
-                  title: "Timing",
-                  description: "Learn about our project timelines and scheduling process.",
-                  href: "#timing"
-                },
-                {
-                  number: "02",
-                  title: "Field Visit",
-                  description: "Understand our on-site consultation and assessment process.",
-                  href: "#field-visit"
-                },
-                {
-                  number: "03",
-                  title: "Payment Options",
-                  description: "Explore our flexible payment plans and pricing structure.",
-                  href: "#payment"
-                },
-                {
-                  number: "04",
-                  title: "Pricing & Packages",
-                  description: "Transparent NPR pricing — packages, room rates, materials, and an estimate calculator.",
-                  href: "#pricing"
-                }
-              ].map((service, index) => (
+              {data.service_cards.map((service, index) => (
                 <motion.div
                   key={index}
                   initial={{ opacity: 0, y: 30 }}
@@ -160,7 +165,7 @@ export default function ServicesPage() {
                 letterSpacing: '0.02em',
               }}
             >
-              Ready to Transform Your Space?
+              {data.cta_title}
             </motion.h2>
             <motion.p
               initial={{ opacity: 0, y: 20 }}
@@ -175,7 +180,7 @@ export default function ServicesPage() {
                 fontWeight: 300,
               }}
             >
-              Let's discuss your project and create something beautiful together.
+              {data.cta_description}
             </motion.p>
             <motion.button
               initial={{ opacity: 0, scale: 0.9 }}
@@ -192,7 +197,7 @@ export default function ServicesPage() {
                 letterSpacing: '0.02em',
               }}
             >
-              Get Started Today
+              {data.cta_button_text}
             </motion.button>
           </div>
         </motion.section>

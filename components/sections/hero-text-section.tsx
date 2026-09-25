@@ -21,6 +21,7 @@ export function HeroTextSection() {
         setHomeData(data);
       } catch (error) {
         console.error('Failed to fetch home data:', error);
+        // The component will use fallback phrases if homeData is null
       }
     }
     fetchHomeData();

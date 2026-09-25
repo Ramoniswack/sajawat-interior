@@ -1,13 +1,36 @@
 "use client"
 
 import { useState, useEffect } from "react"
+import { api, RoomsPage } from "@/lib/api"
 
 export function RoomsHero() {
   const [isVisible, setIsVisible] = useState(false)
+  const [roomsPageData, setRoomsPageData] = useState<RoomsPage | null>(null)
 
   useEffect(() => {
     setIsVisible(true)
+    async function fetchRoomsPageData() {
+      try {
+        const data = await api.getRoomsPage()
+        setRoomsPageData(data)
+      } catch (error) {
+        console.error('Failed to fetch rooms page data:', error)
+      }
+    }
+    fetchRoomsPageData()
   }, [])
+
+  const data = roomsPageData || {
+    hero_subtitle: 'Room Designs',
+    hero_title: 'Discover Your Perfect Space',
+    hero_description: 'Explore stunning interior designs organized by room type. From living rooms to home offices, find inspiration for every space in your home. Each design is crafted to transform your living environment into something extraordinary.',
+    hero_cta_text: 'Browse Designs',
+    hero_cta_link: '#rooms',
+    hero_secondary_cta_text: 'Get Consultation',
+    hero_secondary_cta_link: '/contact',
+    hero_badge_text: '50+',
+    hero_badge_subtext: 'Room Designs'
+  }
 
   return (
     <div className="relative overflow-hidden bg-black">
@@ -41,7 +64,7 @@ export function RoomsHero() {
                 letterSpacing: '0.05em',
               }}
             >
-              Room Designs
+              {data.hero_subtitle}
             </span>
           </div>
 
@@ -54,8 +77,7 @@ export function RoomsHero() {
               letterSpacing: '0.02em',
             }}
           >
-            Discover Your
-            <span className="block text-[#e99816]">Perfect Space</span>
+            {data.hero_title}
           </h1>
 
           <p
@@ -67,7 +89,7 @@ export function RoomsHero() {
               fontWeight: 300,
             }}
           >
-            Explore stunning interior designs organized by room type. From living rooms to home offices, find inspiration for every space in your home. Each design is crafted to transform your living environment into something extraordinary.
+            {data.hero_description}
           </p>
 
           <div className="flex flex-wrap gap-4">
@@ -80,7 +102,7 @@ export function RoomsHero() {
                 letterSpacing: '0.02em',
               }}
             >
-              Browse Designs
+              {data.hero_cta_text}
             </button>
             <button
               className="button-hover border border-[#e99816] bg-white px-8 py-4 text-sm font-medium text-[#e99816] transition-colors hover:bg-gray-50"
@@ -91,14 +113,14 @@ export function RoomsHero() {
                 letterSpacing: '0.02em',
               }}
             >
-              Get Consultation
+              {data.hero_secondary_cta_text}
             </button>
           </div>
 
           {/* Badge */}
           <div className="absolute bottom-8 right-8 rounded-lg bg-[#e99816] p-6 text-white shadow-lg">
-            <div className="text-3xl font-light">50+</div>
-            <div className="text-sm">Room Designs</div>
+            <div className="text-3xl font-light">{data.hero_badge_text}</div>
+            <div className="text-sm">{data.hero_badge_subtext}</div>
           </div>
         </div>
       </div>

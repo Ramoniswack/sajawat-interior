@@ -9,13 +9,18 @@ export function FeaturedProductsSection() {
   const [featuredRooms, setFeaturedRooms] = useState<Room[]>([]);
   const [loading, setLoading] = useState(true);
 
+  // Ensure featuredRooms is always an array
+  const safeFeaturedRooms = Array.isArray(featuredRooms) ? featuredRooms : [];
+
   useEffect(() => {
     async function fetchFeaturedRooms() {
       try {
         const data = await api.getFeaturedRooms();
-        setFeaturedRooms(data);
+        setFeaturedRooms(Array.isArray(data) ? data : []);
       } catch (error) {
         console.error('Failed to fetch featured rooms:', error);
+        // If API fails, we'll use the fallback static data
+        setFeaturedRooms([]);
       } finally {
         setLoading(false);
       }
@@ -24,8 +29,8 @@ export function FeaturedProductsSection() {
   }, []);
 
   // Fallback to static data if API fails or no rooms
-  const features = featuredRooms.length > 0 
-    ? featuredRooms.map(room => ({
+  const features = safeFeaturedRooms.length > 0 && safeFeaturedRooms[0]?.title
+    ? safeFeaturedRooms.map(room => ({
         image: room.image || "/images/placeholder-room.jpg",
         span: room.span === 'large' ? "col-span-2 row-span-2" : 
               room.span === 'tall' ? "col-span-1 row-span-2" :

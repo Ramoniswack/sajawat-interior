@@ -4,7 +4,16 @@ To connect the frontend with the Django backend, follow these steps:
 
 ## 1. Create Environment File
 
-Create a `.env.local` file in the root directory with the following content:
+**IMPORTANT**: You must create a `.env.local` file in the frontend root directory. Since environment files are git-ignored, you need to create this manually.
+
+On Windows, run this command in the frontend directory:
+
+```bash
+cd "C:\Users\ACER NITRO\Desktop\sajawat-interior"
+echo NEXT_PUBLIC_API_URL=http://localhost:8000 > .env.local
+```
+
+Or create the file manually with this content:
 
 ```env
 NEXT_PUBLIC_API_URL=http://localhost:8000
@@ -16,7 +25,7 @@ Navigate to the backend directory and start the Django development server:
 
 ```bash
 cd C:\Users\ACER NITRO\Desktop\backend\sajawat
-python manage.py runserver
+.venv/Scripts/python.exe manage.py runserver
 ```
 
 The backend will be available at `http://localhost:8000`
@@ -30,7 +39,16 @@ cd C:\Users\ACER NITRO\Desktop\sajawat-interior
 npm run dev
 ```
 
-The frontend will be available at `http://localhost:3000`
+The frontend will be available at `http://localhost:3000` (or the next available port if 3000 is in use)
+
+## Troubleshooting
+
+If you see "Failed to fetch" errors:
+
+1. Check that the `.env.local` file exists in the frontend directory
+2. Verify the backend server is running on port 8000
+3. Check the browser console for detailed error messages
+4. Ensure CORS is properly configured in the backend settings
 
 ## API Endpoints
 

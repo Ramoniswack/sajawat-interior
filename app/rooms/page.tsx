@@ -6,7 +6,7 @@ import { Header } from "@/components/header"
 import { FooterSection } from "@/components/sections/footer-section"
 import { RoomsHero } from "@/components/rooms/rooms-hero"
 import { RoomCard } from "@/components/rooms/room-card"
-import { api, Room } from "@/lib/api"
+import { api, Room, RoomsPage } from "@/lib/api"
 
 const roomCategories = [
   { id: "all", label: "All" },
@@ -22,24 +22,33 @@ export default function RoomsPage() {
   const router = useRouter()
   const [activeCategory, setActiveCategory] = useState("all")
   const [rooms, setRooms] = useState<Room[]>([])
+  const [roomsPageData, setRoomsPageData] = useState<RoomsPage | null>(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
 
+  // Ensure rooms is always an array
+  const safeRooms = Array.isArray(rooms) ? rooms : []
+
   useEffect(() => {
-    async function fetchRooms() {
+    async function fetchRoomsData() {
       try {
         setLoading(true)
-        const data = await api.getRooms()
-        setRooms(data)
+        const [roomsData, pageData] = await Promise.all([
+          api.getRooms(),
+          api.getRoomsPage()
+        ])
+        setRooms(Array.isArray(roomsData) ? roomsData : [])
+        setRoomsPageData(pageData)
       } catch (err) {
-        console.error('Failed to fetch rooms:', err)
+        console.error('Failed to fetch rooms data:', err)
         setError('Failed to load rooms. Please try again later.')
+        setRooms([])
       } finally {
         setLoading(false)
       }
     }
 
-    fetchRooms()
+    fetchRoomsData()
   }, [])
 
   const handleLearnMore = (room: Room) => {
@@ -48,8 +57,8 @@ export default function RoomsPage() {
   }
 
   const filteredRooms = activeCategory === "all"
-    ? rooms
-    : rooms.filter((room) => {
+    ? safeRooms
+    : safeRooms.filter((room) => {
         // Note: This is a simplified filtering. In production, you'd want to
         // fetch room types from the API and filter by actual room_type names
         // For now, we'll filter based on title as a temporary solution
@@ -174,7 +183,7 @@ export default function RoomsPage() {
                   letterSpacing: '0.02em',
                 }}
               >
-                Design Styles
+                {roomsPageData?.design_styles_title || 'Design Styles'}
               </h2>
               <p
                 className="mx-auto max-w-2xl text-base text-muted-foreground"
@@ -185,7 +194,7 @@ export default function RoomsPage() {
                   fontWeight: 300,
                 }}
               >
-                Find the perfect aesthetic that matches your personality
+                {roomsPageData?.design_styles_description || 'Find the perfect aesthetic that matches your personality'}
               </p>
             </div>
 
@@ -240,7 +249,7 @@ export default function RoomsPage() {
                 letterSpacing: '0.02em',
               }}
             >
-              Ready to Transform Your Space?
+              {roomsPageData?.cta_title || 'Ready to Transform Your Space?'}
             </h2>
             <p
               className="mb-8 text-lg text-muted-foreground"
@@ -251,7 +260,7 @@ export default function RoomsPage() {
                 fontWeight: 300,
               }}
             >
-              Let's discuss your project and create something beautiful together.
+              {roomsPageData?.cta_description || "Let's discuss your project and create something beautiful together."}
             </p>
             <button
               className="button-hover bg-[#e99816] px-8 py-4 text-sm font-medium text-white transition-colors hover:bg-[#c9790b]"
@@ -262,7 +271,7 @@ export default function RoomsPage() {
                 letterSpacing: '0.02em',
               }}
             >
-              Start Your Project
+              {roomsPageData?.cta_button_text || 'Start Your Project'}
             </button>
           </div>
         </section>

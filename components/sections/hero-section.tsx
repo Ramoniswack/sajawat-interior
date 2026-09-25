@@ -46,6 +46,35 @@ export function HeroSection() {
         setHomeData(data);
       } catch (error) {
         console.error('Failed to fetch home data:', error);
+        // Set fallback data if API fails
+        setHomeData({
+          hero_title: 'Sajawat Interior Design',
+          hero_subtitle: 'Transform your spaces with our expert interior design services',
+          hero_cta_text: 'Start your project',
+          hero_cta_link: '/contact',
+          statistics: {
+            projects_completed: 500,
+            expert_designers: 50,
+            happy_clients: 1000,
+            design_styles: 15,
+          },
+          hero_phrases: [],
+          featured_section_title: 'A glimpse inside',
+          featured_section_subtitle: 'Displays',
+          featured_section_description: 'Spaces shaped by light, material, and the way you live.',
+          technology_section_title: 'Technology',
+          technology_section_description: '',
+          collection_section_title: 'Collection',
+          collection_section_description: '',
+          design_styles_section_title: 'Design Styles',
+          design_styles_section_description: 'Find the perfect aesthetic that matches your personality',
+          main_cta_title: 'Ready to Transform Your Space?',
+          main_cta_description: "Let's discuss your project and create something beautiful together.",
+          main_cta_button_text: 'Start Your Project',
+          main_cta_button_link: '/contact',
+          meta_title: 'Sajawat Interiors | Pokhara',
+          meta_description: 'Immersive interior design for homes, cafés, offices, and hospitality spaces in Pokhara, Nepal.'
+        });
       }
     }
     fetchHomeData();
@@ -89,6 +118,13 @@ export function HeroSection() {
   
   // Vertical offset for side columns to move them up on mobile
   const sideTranslateY = -(imageProgress * 15); // Move up by 15% when fully expanded
+
+  const heroData = homeData || {
+    hero_title: 'Sajawat Interior Design',
+    hero_subtitle: 'Transform your spaces with our expert interior design services',
+    hero_cta_text: 'Start your project',
+    hero_cta_link: '/contact',
+  };
 
   return (
     <section id="hero" ref={sectionRef} className="relative bg-transparent">
@@ -199,10 +235,10 @@ export function HeroSection() {
           }}
         >
           <Link 
-            href="/contact" 
+            href={heroData.hero_cta_link} 
             className="group flex items-center gap-2 bg-white/90 px-6 py-3 text-[10px] md:px-7 md:py-3.5 md:text-xs font-semibold uppercase tracking-[0.15em] text-black backdrop-blur-md transition-all hover:bg-white hover:scale-105 pointer-events-auto whitespace-nowrap"
           >
-            Start your project
+            {heroData.hero_cta_text}
           </Link>
         </div>
         
