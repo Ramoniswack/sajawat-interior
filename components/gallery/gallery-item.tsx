@@ -6,10 +6,21 @@ import { cn } from "@/lib/utils"
 import type { GalleryItem as GalleryItemType } from "@/lib/gallery-data"
 import Link from "next/link"
 
+// Grid span — how many grid cells this card occupies
 const spanClasses: Record<NonNullable<GalleryItemType["span"]>, string> = {
-  tall: "row-span-2",
-  wide: "sm:col-span-2",
+  tall:  "row-span-2",
+  wide:  "sm:col-span-2",
   large: "sm:col-span-2 row-span-2",
+}
+
+// Aspect ratio — the card's own intrinsic height/shape
+// Applied to the OUTER element so CSS knows its height
+const aspectClasses: Record<NonNullable<GalleryItemType["aspect"]>, string> = {
+  square:    "aspect-square",
+  portrait:  "aspect-[3/4]",
+  landscape: "aspect-[4/3]",
+  wide:      "aspect-video",   // 16/9
+  tall:      "aspect-[2/3]",
 }
 
 type GalleryItemProps = {
@@ -17,12 +28,100 @@ type GalleryItemProps = {
   onSelect?: (item: GalleryItemType) => void
 }
 
-export function GalleryItem({ item, onSelect }: GalleryItemProps) {
-  const [isHovered, setIsHovered] = useState(false)
+function CardInner({
+  item,
+  isHovered,
+  isButton,
+}: {
+  item: GalleryItemType
+  isHovered: boolean
+  isButton: boolean
+}) {
   const hasMedia = Boolean(item.src)
 
-  // If onSelect is provided, use button for lightbox functionality
-  // Otherwise use Link for navigation to style/location gallery or detail page
+  return (
+    <>
+      {/* Image — fills the card via absolute positioning */}
+      {hasMedia && item.type === "image" ? (
+        <img
+          src={item.src!}
+          alt={item.alt ?? item.title}
+          className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+        />
+      ) : hasMedia && item.type === "video" ? (
+        <>
+          <img
+            src={item.poster ?? item.src!}
+            alt={item.alt ?? item.title}
+            className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+          />
+          <span className="absolute inset-0 z-10 flex items-center justify-center">
+            <span className="flex size-12 items-center justify-center rounded-full bg-black/50 backdrop-blur-sm">
+              <Play className="size-5 translate-x-0.5 fill-white" />
+            </span>
+          </span>
+        </>
+      ) : (
+        <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 bg-muted text-muted-foreground">
+          <ImageIcon className="size-6" />
+          <span className="text-xs">No image</span>
+        </div>
+      )}
+
+      {/* Permanent gradient so title text is always readable */}
+      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent pointer-events-none z-10" />
+
+      {/* Hover overlay */}
+      <div
+        className={cn(
+          "absolute inset-0 z-20 flex flex-col items-center justify-center gap-3 p-4 text-center",
+          "bg-[#e99816]/90 transition-opacity duration-300",
+          isHovered ? "opacity-100" : "opacity-0",
+        )}
+      >
+        <h3 className="text-lg font-light leading-snug tracking-wide text-white">
+          {item.title}
+        </h3>
+        <div className="flex items-center gap-2 border-2 border-white px-4 py-2 text-sm font-light text-white hover:bg-white hover:text-[#e99816] transition-colors">
+          {isButton ? "View Details" : "Explore"}
+          <ArrowRight className="h-3.5 w-3.5" />
+        </div>
+      </div>
+
+      {/* Default bottom title (slides away on hover) */}
+      <div
+        className={cn(
+          "absolute bottom-0 left-0 right-0 z-20 px-3 py-3 pointer-events-none",
+          "transition-transform duration-300",
+          isHovered ? "translate-y-full" : "translate-y-0",
+        )}
+      >
+        <span className="block truncate text-sm font-medium tracking-wide text-white drop-shadow-sm">
+          {item.title}
+        </span>
+      </div>
+    </>
+  )
+}
+
+export function GalleryItem({ item, onSelect }: GalleryItemProps) {
+  const [isHovered, setIsHovered] = useState(false)
+
+  // Aspect ratio on the OUTER element (not on absolute children)
+  const aspectClass = item.aspect ? aspectClasses[item.aspect] : "aspect-[3/4]"
+
+  const outerCn = cn(
+    // Span in the grid
+    item.span ? spanClasses[item.span] : "",
+    // Shape of the card itself
+    aspectClass,
+    // Layout — relative so absolute children can fill it
+    "group relative w-full overflow-hidden",
+    // Interactivity
+    "transition-shadow duration-300 hover:shadow-2xl",
+    "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#e99816]",
+  )
+
   if (onSelect) {
     return (
       <button
@@ -30,118 +129,20 @@ export function GalleryItem({ item, onSelect }: GalleryItemProps) {
         onClick={() => onSelect(item)}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
-        className={cn(
-          "group relative flex min-h-40 flex-col overflow-hidden border border-border bg-card text-left",
-          "transition-all duration-500 hover:shadow-2xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
-          item.span && spanClasses[item.span],
-        )}
+        className={outerCn}
         aria-label={`Open ${item.title}`}
       >
-        <div className="relative flex flex-1 items-center justify-center">
-          {hasMedia && item.type === "image" ? (
-            // eslint-disable-next-line @next/next/no-img-element
-            <img
-              src={item.src || "/placeholder.svg"}
-              alt={item.alt ?? item.title}
-              className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-            />
-          ) : hasMedia && item.type === "video" ? (
-            <>
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src={item.poster || "/placeholder.svg"}
-                alt={item.alt ?? item.title}
-                className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-              />
-              <span className="absolute inset-0 flex items-center justify-center">
-                <span className="flex size-12 items-center justify-center rounded-full bg-background/80 backdrop-blur-sm">
-                  <Play className="size-5 translate-x-0.5 fill-foreground" />
-                </span>
-              </span>
-            </>
-          ) : (
-            <div className="flex flex-col items-center gap-2 py-10 text-muted-foreground">
-              {item.type === "video" ? <Play className="size-6" /> : <ImageIcon className="size-6" />}
-              <span className="text-xs">Placeholder</span>
-            </div>
-          )}
-
-          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
-          
-          {/* Hover Overlay */}
-          <div
-            className={cn(
-              "absolute inset-0 bg-[#e99816]/90 transition-opacity duration-500",
-              isHovered ? "opacity-100" : "opacity-0"
-            )}
-          >
-            <div className="flex h-full flex-col items-center justify-center p-4 text-center">
-              <h3
-                className="mb-3 text-xl font-light text-white"
-                style={{
-                  fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", sans-serif',
-                  WebkitFontSmoothing: 'antialiased',
-                  MozOsxFontSmoothing: 'grayscale',
-                  letterSpacing: '0.02em',
-                }}
-              >
-                {item.title}
-              </h3>
-              <div className="flex items-center gap-2 border-2 border-white px-4 py-2 text-sm font-light text-white transition-all hover:bg-white hover:text-[#e99816]"
-                style={{
-                  fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", sans-serif',
-                  WebkitFontSmoothing: 'antialiased',
-                  MozOsxFontSmoothing: 'grayscale',
-                  letterSpacing: '0.02em',
-                }}
-              >
-                View Details
-                <ArrowRight className="h-4 w-4" />
-              </div>
-            </div>
-          </div>
-
-          {/* Default Title */}
-          <div
-            className={cn(
-              "absolute bottom-0 left-0 right-0 p-3 transition-transform duration-500",
-              isHovered ? "translate-y-full" : "translate-y-0"
-            )}
-          >
-            <span 
-              className="truncate text-sm font-medium text-white"
-              style={{
-                fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", sans-serif',
-                WebkitFontSmoothing: 'antialiased',
-                MozOsxFontSmoothing: 'grayscale',
-                fontWeight: 300,
-                letterSpacing: '0.02em'
-              }}
-            >
-              {item.title}
-            </span>
-          </div>
-        </div>
+        <CardInner item={item} isHovered={isHovered} isButton />
       </button>
     )
   }
 
-  // Determine navigation target based on category
   const getHref = () => {
-    if (item.category === "style" && item.style) {
-      return `/design-ideas/style/${item.style}`
-    }
-    if (item.category === "location" && item.location) {
-      return `/design-ideas/location/${item.location}`
-    }
-    // For featured items, navigate to style gallery if available, otherwise location
+    if (item.category === "style" && item.style)       return `/design-ideas/style/${item.style}`
+    if (item.category === "location" && item.location) return `/design-ideas/location/${item.location}`
     if (item.category === "featured") {
-      if (item.style) {
-        return `/design-ideas/style/${item.style}`
-      }
-      if (item.location) {
-        return `/design-ideas/location/${item.location}`
-      }
+      if (item.style)    return `/design-ideas/style/${item.style}`
+      if (item.location) return `/design-ideas/location/${item.location}`
     }
     return `/design-ideas/${item.id}`
   }
@@ -151,98 +152,10 @@ export function GalleryItem({ item, onSelect }: GalleryItemProps) {
       href={getHref()}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      className={cn(
-        "group relative flex min-h-40 flex-col overflow-hidden border border-border bg-card text-left",
-        "transition-all duration-500 hover:shadow-2xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
-        item.span && spanClasses[item.span],
-      )}
-      aria-label={`View ${item.title} details`}
+      className={outerCn}
+      aria-label={`View ${item.title}`}
     >
-      <div className="relative flex flex-1 items-center justify-center">
-        {hasMedia && item.type === "image" ? (
-          // eslint-disable-next-line @next/next/no-img-element
-          <img
-            src={item.src || "/placeholder.svg"}
-            alt={item.alt ?? item.title}
-            className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-          />
-        ) : hasMedia && item.type === "video" ? (
-          <>
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src={item.poster || "/placeholder.svg"}
-              alt={item.alt ?? item.title}
-              className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-            />
-            <span className="absolute inset-0 flex items-center justify-center">
-              <span className="flex size-12 items-center justify-center rounded-full bg-background/80 backdrop-blur-sm">
-                <Play className="size-5 translate-x-0.5 fill-foreground" />
-              </span>
-            </span>
-          </>
-        ) : (
-          <div className="flex flex-col items-center gap-2 py-10 text-muted-foreground">
-            {item.type === "video" ? <Play className="size-6" /> : <ImageIcon className="size-6" />}
-            <span className="text-xs">Placeholder</span>
-          </div>
-        )}
-
-        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
-        
-        {/* Hover Overlay */}
-        <div
-          className={cn(
-            "absolute inset-0 bg-[#e99816]/90 transition-opacity duration-500",
-            isHovered ? "opacity-100" : "opacity-0"
-          )}
-        >
-          <div className="flex h-full flex-col items-center justify-center p-4 text-center">
-            <h3
-              className="mb-3 text-xl font-light text-white"
-              style={{
-                fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", sans-serif',
-                WebkitFontSmoothing: 'antialiased',
-                MozOsxFontSmoothing: 'grayscale',
-                letterSpacing: '0.02em',
-              }}
-            >
-              {item.title}
-            </h3>
-            <div className="flex items-center gap-2 border-2 border-white px-4 py-2 text-sm font-light text-white transition-all hover:bg-white hover:text-[#e99816]"
-              style={{
-                fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", sans-serif',
-                WebkitFontSmoothing: 'antialiased',
-                MozOsxFontSmoothing: 'grayscale',
-                letterSpacing: '0.02em',
-              }}
-            >
-              View Details
-              <ArrowRight className="h-4 w-4" />
-            </div>
-          </div>
-        </div>
-
-        {/* Default Title */}
-        <div
-          className={cn(
-            "absolute bottom-0 left-0 right-0 p-3 transition-transform duration-500",
-            isHovered ? "translate-y-full" : "translate-y-0"
-          )}
-        >
-          <span 
-            className="truncate text-sm font-medium text-white"
-            style={{
-              fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", sans-serif',
-              WebkitFontSmoothing: 'antialiased',
-              MozOsxFontSmoothing: 'grayscale',
-              fontWeight: 300,
-              letterSpacing: '0.02em'
-            }}
-          >
-            {item.title}
-          </span>
-        </div>
-      </div>
+      <CardInner item={item} isHovered={isHovered} isButton={false} />
     </Link>
   )
 }

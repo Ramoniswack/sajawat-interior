@@ -26,6 +26,7 @@ export default async function RestaurantLocationGallery({
       collectionLabel="restaurant by location"
       galleryTitle={`Restaurants in ${location.title}`}
       galleryDescription={`Explore restaurant inspiration shaped by the character and lifestyle of ${location.title}.`}
+      layout="3-col"
     />
   )
 }

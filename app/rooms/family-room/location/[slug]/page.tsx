@@ -26,6 +26,7 @@ export default async function FamilyRoomLocationGallery({
       collectionLabel="family room by location"
       galleryTitle={`Family rooms in ${location.title}`}
       galleryDescription={`Explore family room inspiration shaped by the character and lifestyle of ${location.title}.`}
+      layout="3-col"
     />
   )
 }

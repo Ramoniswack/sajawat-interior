@@ -26,6 +26,7 @@ export default async function HomeOfficeLocationGallery({
       collectionLabel="home office by location"
       galleryTitle={`HomeOffices in ${location.title}`}
       galleryDescription={`Explore home office inspiration shaped by the character and lifestyle of ${location.title}.`}
+      layout="3-col"
     />
   )
 }

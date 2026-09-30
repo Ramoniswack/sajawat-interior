@@ -1,9 +1,10 @@
 import { notFound } from "next/navigation"
 import { RoomGallery } from "@/components/rooms/room-gallery"
-import { locationRoomsData } from "@/lib/location-rooms-data"
+import { getDesignIdeasLocationPage } from "@/lib/api-client"
 
-export function generateStaticParams() {
-  return Object.keys(locationRoomsData).map((slug) => ({ slug }))
+export async function generateStaticParams() {
+  // Dynamic params - will be generated at request time
+  return []
 }
 
 export default async function DesignIdeasLocationGallery({
@@ -12,28 +13,40 @@ export default async function DesignIdeasLocationGallery({
   params: Promise<{ slug: string }>
 }) {
   const { slug } = await params
-  const roomData = locationRoomsData[slug]
-
-  if (!roomData) notFound()
-
-  // Get all designs from all room types for this location
-  const galleryItems = roomData.designs.map(design => ({
-    image: design.image,
-    alt: `${design.roomName} - ${design.alt}`,
-    category: design.roomType,
-  }))
+  
+  // Fetch from widget-based API
+  const pageData = await getDesignIdeasLocationPage(slug)
+  
+  if (!pageData) {
+    notFound()
+  }
+  
+  // Find the gallery widget
+  const galleryWidget = pageData.widgets?.find((w: any) => w.content_type === 'gallery')
+  const widgetData = galleryWidget?.data
+  
+  if (!widgetData) {
+    notFound()
+  }
+  
+  // Transform widget data to match RoomGallery component format
+  const galleryItems = widgetData.custom_items?.map((item: any) => ({
+    image: item.image,
+    alt: item.alt,
+    category: item.category,
+  })) || []
 
   return (
     <RoomGallery
-      title={roomData.title}
-      description={roomData.description}
+      title={pageData.title}
+      description={pageData.description}
       gallery={galleryItems}
-      backHref="/design-ideas#by-location"
-      backLabel="All locations"
-      collectionLabel="location collection"
-      galleryTitle={`${roomData.title} Gallery`}
-      galleryDescription={`Explore the unique design characteristics and cultural influences that define ${roomData.title.toLowerCase()} interiors across all room types.`}
-      showFilters={true}
+      backHref={widgetData.back_href || '/design-ideas'}
+      backLabel={widgetData.back_label || 'Back'}
+      collectionLabel={widgetData.gallery_title || 'Design Collection'}
+      galleryTitle={widgetData.gallery_title || 'Gallery'}
+      galleryDescription={widgetData.gallery_description || ''}
+      showFilters={widgetData.show_filter !== false}
     />
   )
 }

@@ -1,9 +1,10 @@
 import { notFound } from "next/navigation"
 import { RoomGallery } from "@/components/rooms/room-gallery"
-import { bathroomStyles } from "@/components/rooms/bathroom-styles"
+import { getRoomGalleryBySlug } from "@/lib/api-client"
 
-export function generateStaticParams() {
-  return bathroomStyles.map(({ slug }) => ({ slug }))
+export async function generateStaticParams() {
+  // Dynamic params - will be generated at request time
+  return []
 }
 
 export default async function BathroomStyleGallery({
@@ -12,20 +13,34 @@ export default async function BathroomStyleGallery({
   params: Promise<{ slug: string }>
 }) {
   const { slug } = await params
-  const style = bathroomStyles.find((item) => item.slug === slug)
-
-  if (!style) notFound()
+  
+  // Fetch from API only
+  const apiData = await getRoomGalleryBySlug(slug)
+  
+  if (!apiData) {
+    notFound()
+  }
+  
+  // Transform API data to match RoomGallery component format
+  const galleryItems = apiData.images.map(img => ({
+    image: img.image,
+    alt: img.alt,
+    category: img.category,
+    location: img.location,
+    aspect: img.aspect,
+  }))
 
   return (
     <RoomGallery
-      title={style.title}
-      description={style.description}
-      gallery={style.gallery}
-      backHref="/rooms/bathroom#by-style"
-      backLabel="All bathroom styles"
-      collectionLabel="bathroom style collection"
-      galleryTitle="Spaces in this style"
-      galleryDescription={`Explore the textures, tones, and thoughtful details that bring ${style.title.toLowerCase()} to life.`}
+      title={apiData.title}
+      description={apiData.description}
+      gallery={galleryItems}
+      backHref={apiData.back_href}
+      backLabel={apiData.back_label}
+      collectionLabel={apiData.collection_label}
+      galleryTitle={apiData.gallery_title}
+      galleryDescription={apiData.gallery_description}
+      showFilters={apiData.show_filters}
     />
   )
 }

@@ -1,6 +1,5 @@
 "use client"
 
-import { Header } from "@/components/header"
 import { FooterSection } from "@/components/sections/footer-section"
 import { AsymmetricGrid } from "@/components/ui/asymmetric-grid"
 
@@ -17,8 +16,6 @@ const officeWorkspaceImages = [
 export default function OfficeWorkspacePage() {
   return (
     <div className="flex min-h-screen flex-col">
-      <Header />
-
       <main className="flex-grow">
         <section className="py-32 bg-gradient-to-br from-gray-50 via-white to-gray-100">
           <div className="mx-auto max-w-7xl px-6 md:px-10">

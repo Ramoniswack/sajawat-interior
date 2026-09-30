@@ -16,10 +16,25 @@ export type GalleryItem = {
   /** Poster image URL for videos (optional). */
   poster?: string
   /**
-   * Visual footprint in the masonry grid.
-   * "tall" spans two rows, "wide" spans two columns, "large" spans both.
+   * Grid span — controls how many grid columns / rows this card occupies.
+   * "tall"  → 2 rows,  "wide" → 2 cols,  "large" → 2 cols + 2 rows.
+   * Set from Django admin (RoomGallery span field).
    */
   span?: "tall" | "wide" | "large"
+  /**
+   * Card shape / aspect ratio — controls the card's own height independent of span.
+   * Set from Django admin per-image.
+   *   "square"    → 1:1
+   *   "portrait"  → 3:4  (default — like the card in the screenshot)
+   *   "landscape" → 4:3
+   *   "wide"      → 16:9
+   *   "tall"      → 2:3  (extra tall)
+   */
+  aspect?: "square" | "portrait" | "landscape" | "wide" | "tall"
+  /** Optional style slug for design-idea navigation */
+  style?: string
+  /** Optional location slug for design-idea navigation */
+  location?: string
   /** Optional features list for services or other detailed items */
   features?: string[]
 }

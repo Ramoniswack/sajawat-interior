@@ -26,6 +26,7 @@ export default async function MasterSuiteLocationGallery({
       collectionLabel="master suite by location"
       galleryTitle={`MasterSuites in ${location.title}`}
       galleryDescription={`Explore master suite inspiration shaped by the character and lifestyle of ${location.title}.`}
+      layout="3-col"
     />
   )
 }

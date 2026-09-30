@@ -26,6 +26,7 @@ export default async function KitchenLocationGallery({
       collectionLabel="kitchen by location"
       galleryTitle={`Kitchens in ${location.title}`}
       galleryDescription={`Explore kitchen inspiration shaped by the character and lifestyle of ${location.title}.`}
+      layout="3-col"
     />
   )
 }

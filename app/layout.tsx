@@ -5,6 +5,8 @@ import { Analytics } from '@vercel/analytics/next'
 import { Header } from '@/components/header'
 import { ScrollToTop } from '@/components/scroll-to-top'
 import './globals.css'
+// Header is an async server component — it must live here in the layout,
+// NOT inside any "use client" page. All pages share this single instance.
 
 const inter = Inter({ subsets: ["latin"], variable: '--font-sans' });
 const playfair = Playfair_Display({ subsets: ["latin"], variable: '--font-display' });
@@ -27,6 +29,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth">
       <body className={`${inter.variable} ${playfair.variable} font-sans antialiased bg-background text-foreground`}>
+        <Header />
         {children}
         <Analytics />
         <ScrollToTop />

@@ -26,6 +26,7 @@ export default async function LaundryRoomLocationGallery({
       collectionLabel="laundry room by location"
       galleryTitle={`Laundry rooms in ${location.title}`}
       galleryDescription={`Explore laundry room inspiration shaped by the character and lifestyle of ${location.title}.`}
+      layout="3-col"
     />
   )
 }

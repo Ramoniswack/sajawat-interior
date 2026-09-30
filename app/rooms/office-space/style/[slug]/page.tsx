@@ -26,6 +26,7 @@ export default async function OfficeSpaceStyleGallery({
       collectionLabel="office space style collection"
       galleryTitle="Spaces in this style"
       galleryDescription={`Explore the textures, tones, and thoughtful details that bring ${style.title.toLowerCase()} to life.`}
+      layout="3-col"
     />
   )
 }

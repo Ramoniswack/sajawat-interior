@@ -14,7 +14,25 @@ const nextConfig = {
         protocol: "https",
         hostname: "hebbkx1anhila5yf.public.blob.vercel-storage.com",
       },
+      {
+        protocol: "http",
+        hostname: "localhost",
+        port: "8000",
+      },
+      {
+        protocol: "http",
+        hostname: "127.0.0.1",
+        port: "8000",
+      },
     ],
+  },
+  async rewrites() {
+    return [
+      {
+        source: '/api/:path*',
+        destination: 'http://localhost:8000/api/:path*',
+      },
+    ]
   },
 }
 

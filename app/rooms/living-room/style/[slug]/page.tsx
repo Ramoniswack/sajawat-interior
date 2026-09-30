@@ -26,6 +26,7 @@ export default async function LivingRoomStyleGallery({
       collectionLabel="Living room style collection"
       galleryTitle="Spaces in this style"
       galleryDescription={`Explore the textures, tones, and thoughtful details that bring ${style.title.toLowerCase()} to life.`}
+      layout="3-col"
     />
   )
 }
