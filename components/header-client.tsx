@@ -110,7 +110,7 @@ function MegaMenuPanel({
             onClick={onLinkClick}
             className="
               relative ml-10 flex-shrink-0 h-60 w-72
-              overflow-hidden rounded-2xl bg-gray-200
+              overflow-hidden bg-gray-200
               group/card cursor-pointer
               hover:shadow-2xl transition-shadow duration-300
             "
@@ -394,7 +394,7 @@ export function HeaderClient({ navItems: initialNavItems }: { navItems: NavItem[
         <div className="hidden md:flex items-center gap-3">
           <Link
             href="/contact"
-            className="bg-[#e99816] hover:bg-[#c9790b] px-5 py-2.5 text-sm font-semibold text-white transition-colors duration-150 rounded"
+            className="bg-[#e99816] hover:bg-[#c9790b] px-5 py-2.5 text-sm font-semibold text-white transition-colors duration-150"
           >
             Get a Quote
           </Link>
@@ -403,7 +403,7 @@ export function HeaderClient({ navItems: initialNavItems }: { navItems: NavItem[
             <button
               type="button"
               onClick={() => setIsProfileOpen((o) => !o)}
-              className="flex items-center gap-2 border border-gray-200 bg-white px-3 py-2 text-sm text-gray-700 rounded hover:border-gray-400 transition-colors"
+              className="flex items-center gap-2 border border-gray-200 bg-white px-3 py-2 text-sm text-gray-700 hover:border-gray-400 transition-colors"
               aria-expanded={isProfileOpen}
               aria-label="Open profile menu"
             >
@@ -492,14 +492,14 @@ export function HeaderClient({ navItems: initialNavItems }: { navItems: NavItem[
             <Link
               href="/contact"
               onClick={() => setIsMenuOpen(false)}
-              className="bg-[#e99816] text-white text-center text-sm font-semibold py-3 rounded-lg hover:bg-[#c9790b] transition-colors"
+              className="bg-[#e99816] text-white text-center text-sm font-semibold py-3 hover:bg-[#c9790b] transition-colors"
             >
               Get a Quote
             </Link>
             <button
               type="button"
               onClick={() => setIsSignedIn((v) => !v)}
-              className="border border-gray-200 text-gray-700 text-sm py-3 rounded-lg hover:bg-gray-50 transition-colors"
+              className="border border-gray-200 text-gray-700 text-sm py-3 hover:bg-gray-50 transition-colors"
             >
               {isSignedIn ? "Sign out" : "Sign in"}
             </button>
